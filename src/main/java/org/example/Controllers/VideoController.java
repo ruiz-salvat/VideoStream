@@ -7,9 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("video")
+@CrossOrigin
 @AllArgsConstructor
 public class VideoController {
 
@@ -30,9 +32,14 @@ public class VideoController {
         return ResponseEntity.ok(new ByteArrayResource(videoService.getVideo(title).getData()));
     }
 
+    @GetMapping("all")
+    public ResponseEntity<List<String>> getAllVideos() {
+        return ResponseEntity.ok(videoService.getAllVideos());
+    }
+
     @GetMapping("/kek")
     public ResponseEntity<String> kek() {
-        return ResponseEntity.ok("Keksimus prime");
+        return ResponseEntity.ok("Keksimus prime & ratpenat");
     }
 
 }

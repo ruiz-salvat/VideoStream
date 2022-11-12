@@ -1,0 +1,1 @@
+INSERT INTO video (id, title, description, data) VALUES (1, 'kek', 'coses meves', NULL);
