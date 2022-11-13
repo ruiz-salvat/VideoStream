@@ -8,6 +8,8 @@
 
 * Favicon
 
+* Unit Tests
+
 * Setup migration system
 
 * Build video page

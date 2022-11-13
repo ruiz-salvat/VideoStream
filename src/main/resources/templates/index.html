@@ -1,20 +1,20 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <title>JohnTube</title>
+   <title>VideoStream</title>
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
    <header>
-       <h1>JohnTube</h1>
+       <h1>VideoStream</h1>
    </header>
    <main>
-       <div id="video-list">
+       <div>
            <header>
-               <h3>Your videos TZA</h3>
+               <h3>Video List</h3>
            </header>
-           <ul id="your-videos">
+           <ul id="video-list">
            </ul>
        </div>
        <div id="video-player">
@@ -23,18 +23,6 @@
            </header>
            <video id="video-screen" width="720px" height="480px" controls></video>
        </div>
-       <form id="video-form">
-           <fieldset>
-               <legend>Upload a video</legend>
-               <label for="file">Video File</label>
-               <input id="file" name="file" type="file" accept="application/mp4">
-               <label for="title">Title</label>
-               <input id="title" name="title" type="text">
-               <label for="description">Description</label>
-               <input id="description" name="description" type="text">
-               <button type="submit">Save</button>
-           </fieldset>
-       </form>
    </main>
    <script src="js/main.js"></script>
 </body>

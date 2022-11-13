@@ -11,4 +11,9 @@ public class WebController {
         return "index";
     }
 
+    @RequestMapping(value = "/upload-video")
+    public String uploadVideo() {
+        return "upload-video";
+    }
+
 }

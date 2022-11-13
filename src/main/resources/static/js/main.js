@@ -1,4 +1,3 @@
-const form = document.querySelector("#video-form");
 const videoDiv = document.querySelector("#video-player");
 const videoScreen = document.querySelector("#video-screen");
 
@@ -7,7 +6,7 @@ const queryParams = Object.fromEntries(new URLSearchParams(window.location.searc
 fetch('http://localhost:8080/video/all')
     .then(result => result.json())
     .then(result => {
-        const videos = document.querySelector('#your-videos');
+        const videos = document.querySelector('#video-list');
 
         if(result.length > 0){
             for(let vid of result){
@@ -21,7 +20,6 @@ fetch('http://localhost:8080/video/all')
         }else{
             videos.innerHTML = 'No videos found';
         }
-
     });
 
 if(queryParams.video){
@@ -30,19 +28,3 @@ if(queryParams.video){
     document.querySelector('#now-playing')
         .innerText = 'Now playing ' + queryParams.video;
 }
-
-
-form.addEventListener('submit', ev => {
-    ev.preventDefault();
-    let data = new FormData(form);
-
-    console.log("DATA!", data);
-
-    fetch('http://localhost:8080/video', {
-        method: 'POST',
-        body: data
-    }).then(result => result.text()).then(_ => {
-        window.location.reload();
-    });
-
-});
