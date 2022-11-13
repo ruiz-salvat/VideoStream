@@ -3,6 +3,7 @@ package org.example.Controllers;
 import lombok.AllArgsConstructor;
 import org.example.Services.VideoService;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,18 +29,13 @@ public class VideoController {
     }
 
     @GetMapping("{title}")
-    public ResponseEntity<ByteArrayResource> getVideoByTitle(@PathVariable("title") String title) {
+    public ResponseEntity<Resource> getVideoByTitle(@PathVariable("title") String title) {
         return ResponseEntity.ok(new ByteArrayResource(videoService.getVideo(title).getData()));
     }
 
     @GetMapping("all")
     public ResponseEntity<List<String>> getAllVideos() {
         return ResponseEntity.ok(videoService.getAllVideos());
-    }
-
-    @GetMapping("/kek")
-    public ResponseEntity<String> kek() {
-        return ResponseEntity.ok("Keksimus prime & ratpenat");
     }
 
 }

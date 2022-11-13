@@ -1,15 +1,12 @@
 const form = document.querySelector("#video-form");
-const videPlayer = document.querySelector("#video-player");
+const videoDiv = document.querySelector("#video-player");
 const videoScreen = document.querySelector("#video-screen");
 
-// const queryParams = Objetc.fromEntries(new URLSearchParams(window.location.search));
+const queryParams = Object.fromEntries(new URLSearchParams(window.location.search));
 
 fetch('http://localhost:8080/video/all')
     .then(result => result.json())
     .then(result => {
-        
-        console.log("RASULT", result);
-
         const myVids = document.querySelector('#your-videos');
 
         if(result.length > 0){
@@ -26,3 +23,39 @@ fetch('http://localhost:8080/video/all')
         }
 
     });
+
+//if(queryParams.video){
+//    videoScreen.src = `http://localhost:8080/video/${queryParams.video}`;
+    videoDiv.style.display = 'block';
+    document.querySelector('#now-playing')
+        .innerText = 'Now playing ' + queryParams.video;
+//}
+
+
+form.addEventListener('submit', ev => {
+    ev.preventDefault();
+    let data = new FormData(form);
+
+    console.log("DATA!", data);
+
+    fetch('http://localhost:8080/video', {
+        method: 'POST',
+        body: data
+    }).then(result => result.text()).then(_ => {
+        window.location.reload();
+    });
+
+});
+
+
+function requestVideoData() {
+    videoScreen.src = `http://localhost:8080/video/${queryParams.video}`;
+//    console.log("vide src", videoScreen.src);
+//    fetch(`http://localhost:8080/video/${queryParams.video}`).then((response) => {
+//        console.log("response from video", response);
+//    });
+}
+
+function playVideo() {
+    videoScreen.play();
+}

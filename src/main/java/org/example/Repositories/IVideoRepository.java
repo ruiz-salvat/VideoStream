@@ -13,7 +13,7 @@ public interface IVideoRepository extends JpaRepository<Video, Long> {
 
     boolean existsByTitle(String title);
 
-    @Query(nativeQuery = true, value="SELECT title, description FROM video")
+    @Query(nativeQuery = true, value="SELECT title FROM video")
     List<String> getAllEntries();
 
 }
