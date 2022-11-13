@@ -1,15 +1,15 @@
 package org.example.Services;
 
-import org.example.Entities.Video;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.Resource;
+import reactor.core.publisher.Mono;
 import java.io.IOException;
 import java.util.List;
 
 public interface IVideoService {
 
-    Video getVideo(String title);
+    Mono<Resource> getVideo(String title);
 
-    void saveVideo(String title, String description, MultipartFile file) throws IOException;
+    void saveVideo(String title, String description, String filePath) throws IOException;
 
     List<String> getAllVideos();
 

@@ -2,11 +2,10 @@ package org.example.Controllers;
 
 import lombok.AllArgsConstructor;
 import org.example.Services.VideoService;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import reactor.core.publisher.Mono;
 import java.io.IOException;
 import java.util.List;
 
@@ -22,15 +21,15 @@ public class VideoController {
     public ResponseEntity<String> setVideo(
             @RequestParam("title") String title,
             @RequestParam("description") String description,
-            @RequestParam("file") MultipartFile file) throws IOException {
+            @RequestParam("filePath") String filePath) throws IOException {
 
-        videoService.saveVideo(title, description, file);
+        videoService.saveVideo(title, description, filePath);
         return ResponseEntity.ok("Video saved successfully");
     }
 
-    @GetMapping("{title}")
-    public ResponseEntity<Resource> getVideoByTitle(@PathVariable("title") String title) {
-        return ResponseEntity.ok(new ByteArrayResource(videoService.getVideo(title).getData()));
+    @GetMapping(value = "{title}", produces = "video/mp4")
+    public Mono<Resource> getVideo(@PathVariable String title, @RequestHeader("Range") String range) {
+        return videoService.getVideo(title);
     }
 
     @GetMapping("all")

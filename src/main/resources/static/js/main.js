@@ -7,7 +7,7 @@ const queryParams = Object.fromEntries(new URLSearchParams(window.location.searc
 fetch('http://localhost:8080/video/all')
     .then(result => result.json())
     .then(result => {
-        const myVids = document.querySelector('#your-videos');
+        const videos = document.querySelector('#your-videos');
 
         if(result.length > 0){
             for(let vid of result){
@@ -16,20 +16,20 @@ fetch('http://localhost:8080/video/all')
                 link.innerText = vid;
                 link.href = window.location.origin + window.location.pathname + '?video=' + vid;
                 li.appendChild(link);
-                myVids.appendChild(li);
+                videos.appendChild(li);
             }
         }else{
-            myVids.innerHTML = 'No videos found';
+            videos.innerHTML = 'No videos found';
         }
 
     });
 
-//if(queryParams.video){
-//    videoScreen.src = `http://localhost:8080/video/${queryParams.video}`;
+if(queryParams.video){
+    videoScreen.src = `http://localhost:8080/video/${queryParams.video}`;
     videoDiv.style.display = 'block';
     document.querySelector('#now-playing')
         .innerText = 'Now playing ' + queryParams.video;
-//}
+}
 
 
 form.addEventListener('submit', ev => {
@@ -46,16 +46,3 @@ form.addEventListener('submit', ev => {
     });
 
 });
-
-
-function requestVideoData() {
-    videoScreen.src = `http://localhost:8080/video/${queryParams.video}`;
-//    console.log("vide src", videoScreen.src);
-//    fetch(`http://localhost:8080/video/${queryParams.video}`).then((response) => {
-//        console.log("response from video", response);
-//    });
-}
-
-function playVideo() {
-    videoScreen.play();
-}

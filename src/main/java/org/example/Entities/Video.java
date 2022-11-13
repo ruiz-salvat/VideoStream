@@ -17,13 +17,12 @@ public class Video {
 
     private String description;
 
-    @Lob
-    private byte[] data;
+    private String filePath;
 
-    public Video(String title, String description, byte[] data) {
+    public Video(String title, String description, String filePath) {
         this.title = title;
         this.description = description;
-        this.data = data;
+        this.filePath = filePath;
     }
 
 }
