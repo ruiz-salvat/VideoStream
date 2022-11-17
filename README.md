@@ -12,6 +12,8 @@
 
 * Build main page
 
+* Rename main to index
+
 * OAuth
 
 * Sytem with users (only admin atm)
