@@ -2,10 +2,6 @@
 
 ## To Do List
 
-* Poper database
-
-* Unit Tests
-
 * Setup migration system
 
 * Build video page
@@ -13,6 +9,10 @@
 * Build main page
 
 * Rename main to index
+
+* Remove H2 (including data folder)
+
+* Unit Tests
 
 * OAuth
 
@@ -32,6 +32,8 @@
 
 ...
 
+
+
 ## Database setup
 
 ```
@@ -40,3 +42,10 @@ mysql> create user 'springuser'@'%' identified by 'ThePassword'; -- Creates the 
 mysql> grant all on db_example.* to 'springuser'@'%'; -- Gives all privileges to the new user on the newly created database
 ```
 
+## Commands
+
+Apply migration
+
+```
+mvn flyway:migrate
+```
