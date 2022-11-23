@@ -2,8 +2,6 @@
 
 ## To Do List
 
-* Setup migration system
-
 * Build video page
 
 * Build main page
