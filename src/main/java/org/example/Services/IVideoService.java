@@ -9,6 +9,8 @@ public interface IVideoService {
 
     Mono<Resource> getVideo(String title);
 
+    String getVideoDescription(String title);
+
     void saveVideo(String title, String description, String filePath) throws IOException;
 
     List<String> getAllVideos();

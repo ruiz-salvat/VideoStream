@@ -5,15 +5,19 @@
     <title>VideoStream</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/global.css">
 </head>
 <body>
-    <div id="title-bar"></div>
+    <div class="main-container">
+        <div class="sub-container">
+            <div id="title-bar"></div>
 
-    <div id="video-player">
-        <header>
-            <h3 id="now-playing"></h3>
-        </header>
-        <video id="video-screen" width="720px" height="480px" controls></video>
+            <div id="video-player">
+                <video id="video-screen" width="720px" height="480px" controls></video>
+            </div>
+            <h3 id="video-title"></h3>
+            <p id="video-description"></p>
+        </div>
     </div>
 
     <script src="script.js"></script>

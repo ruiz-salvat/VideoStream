@@ -1,0 +1,17 @@
+.main-container {
+    background-color: blue;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border-radius: 2%;
+}
+
+.sub-container {
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+body {
+    background-color: pink;
+}

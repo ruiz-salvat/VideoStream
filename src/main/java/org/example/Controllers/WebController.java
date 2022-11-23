@@ -14,8 +14,6 @@ public class WebController {
         return "index";
     }
 
-
-    // TODO: make it a slug ?
     @RequestMapping(value = "/page")
     public String page() {
         return "page";
