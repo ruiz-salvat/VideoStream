@@ -2,11 +2,9 @@
 
 ## To Do List
 
-* Build video page
+* Add and implement slug field to video model
 
-* Build main page
-
-* Rename main to index
+* Javascript constants file
 
 * Remove H2 (including data folder)
 
@@ -20,6 +18,10 @@
 
 * Upload frontend
 
+* Build video page
+
+* Build main page
+
 -- Milestone --
 
 * Server setup
@@ -27,6 +29,8 @@
 * Docker
 
 * Category system
+
+* Mobile view
 
 ...
 

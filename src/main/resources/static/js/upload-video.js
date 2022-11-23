@@ -1,8 +1,8 @@
-const form = document.querySelector("#video-form");
+const videoForm = document.querySelector("#video-form");
 
-form.addEventListener("submit", ev => {
+videoForm.addEventListener("submit", ev => {
     ev.preventDefault();
-    let data = new FormData(form);
+    let data = new FormData(video);
 
     fetch("http://localhost:8080/video", {
         method: "POST",
