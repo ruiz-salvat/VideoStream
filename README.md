@@ -2,6 +2,8 @@
 
 ## To Do List
 
+* Create and throw exceptions for User and Role
+
 * Add and implement slug field to video model
 
 * Javascript constants file
@@ -51,3 +53,12 @@ Apply migration
 ```
 mvn flyway:migrate
 ```
+
+## Tutorials
+
+SQL relationships:
+<https://medium.com/@emekadc/how-to-implement-one-to-one-one-to-many-and-many-to-many-relationships-when-designing-a-database-9da2de684710>
+
+Spring Security Mysql:
+<https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d>
+

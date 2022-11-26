@@ -67,6 +67,11 @@
             <artifactId>flyway-mysql</artifactId>
             <version>9.8.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.7.3</version>
+        </dependency>
 
         <!-- Development tools -->
         <dependency>
