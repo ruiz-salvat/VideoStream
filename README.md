@@ -6,6 +6,8 @@
 
 * Add and implement slug field to video model
 
+* WevSecurityConfig is deprecated -> update
+
 * Javascript constants file
 
 * Remove H2 (including data folder)
