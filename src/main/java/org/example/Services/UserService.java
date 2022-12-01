@@ -16,8 +16,8 @@ import java.util.List;
 @Service
 public class UserService implements IUserService {
 
-    private IUserRepository userRepository;
-    private IRoleRepository roleRepository;
+    private final IUserRepository userRepository;
+    private final IRoleRepository roleRepository;
 
     @Autowired
     public UserService(IUserRepository userRepository, IRoleRepository roleRepository) {
@@ -48,7 +48,7 @@ public class UserService implements IUserService {
 
         String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(encodedPassword);
-        Role userRole = roleRepository.findByRoleName("ADMIN");
+        Role userRole = roleRepository.findByRoleName("admin");
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
         return userRepository.save(user);
     }

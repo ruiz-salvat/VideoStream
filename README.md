@@ -8,6 +8,10 @@
 
 * WevSecurityConfig is deprecated -> update
 
+* Error page
+
+* Create public and private components folder
+
 * Javascript constants file
 
 * Remove H2 (including data folder)
