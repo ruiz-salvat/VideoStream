@@ -6,7 +6,7 @@
 
 * Add and implement slug field to video model
 
-* WevSecurityConfig is deprecated -> update
+* WebSecurityConfig is deprecated -> update
 
 * Error page
 
@@ -14,21 +14,13 @@
 
 * Javascript constants file
 
-* Remove H2 (including data folder)
-
 * Unit Tests
 
 * OAuth
 
-* Sytem with users (only admin atm)
-
 * Upload backend
 
 * Upload frontend
-
-* Build video page
-
-* Build main page
 
 -- Milestone --
 
