@@ -8,8 +8,6 @@
 
 * WebSecurityConfig is deprecated -> update
 
-* Error page
-
 * Create public and private components folder
 
 * Javascript constants file
@@ -31,6 +29,8 @@
 * Category system
 
 * Mobile view
+
+* Custom error page with handling
 
 ...
 

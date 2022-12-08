@@ -4,22 +4,30 @@
   <meta charset="UTF-8">
   <title>Video Upload</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/admin.css">
   <link rel="stylesheet" href="css/upload-video.css">
 </head>
 <body>
   <h1>UPLOAD VIDEO PAGE</h1>
   <form id="video-form">
-    <fieldset>
-      <legend>Upload a video</legend>
+    <div>
       <label for="file">Video File</label>
       <input id="file" name="file" type="file" accept="application/mp4">
+    </div>
+
+    <div>
       <label for="title">Title</label>
       <input id="title" name="title" type="text">
+    </div>
+
+    <div>
       <label for="description">Description</label>
       <input id="description" name="description" type="text">
-      <button type="submit">Save</button>
-    </fieldset>
+    </div>
+
+    <button type="submit">Save</button>
   </form>
+
   <script src="js/upload-video.js"></script>
 </body>
 </html>

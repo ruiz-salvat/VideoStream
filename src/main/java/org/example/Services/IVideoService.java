@@ -11,7 +11,7 @@ public interface IVideoService {
 
     String getVideoDescription(String title);
 
-    void saveVideo(String title, String description, String filePath) throws IOException;
+    void saveVideo(String title, String description) throws IOException;
 
     List<String> getAllVideos();
 
