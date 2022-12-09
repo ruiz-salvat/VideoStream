@@ -1,6 +1,7 @@
 package org.example.Services;
 
 import lombok.AllArgsConstructor;
+import org.example.Exceptions.EmptyFileException;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -29,13 +30,12 @@ public class StorageService implements IStorageService {
     }
 
     @Override
-    public boolean save(MultipartFile file, String title) {
-        try {
-            Files.write(this.root.resolve(title + ".mp4"), file.getBytes());
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public boolean save(MultipartFile file, String title) throws IOException {
+        if (file.getSize() < 1)
+            throw new EmptyFileException();
+
+        Files.write(this.root.resolve(title + ".mp4"), file.getBytes());
+        return true;
     }
 
     @Override

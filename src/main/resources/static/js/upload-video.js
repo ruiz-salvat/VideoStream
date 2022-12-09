@@ -7,7 +7,16 @@ videoForm.addEventListener("submit", ev => {
     fetch("http://localhost:8080/video", {
         method: "POST",
         body: data
-    }).then(result => result.text()).then(_ => {
-        window.location.reload();
+    }).then(response => {
+        var xmlHttp = new XMLHttpRequest();
+
+        if (response.status === 200) {
+            xmlHttp.open( "GET", "http://localhost:8080/components/video-upload-success", false);
+        } else {
+            xmlHttp.open( "GET", "http://localhost:8080/components/video-upload-fail", false);
+        }
+
+        xmlHttp.send( null );
+        document.getElementById("response-message").innerHTML=xmlHttp.responseText;
     });
 });

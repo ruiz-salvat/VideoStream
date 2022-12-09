@@ -1,9 +1,11 @@
 package org.example.Controllers;
 
 import lombok.AllArgsConstructor;
+import org.example.Exceptions.EmptyFileException;
 import org.example.Services.IStorageService;
 import org.example.Services.IVideoService;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,18 +27,15 @@ public class VideoController {
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("file") MultipartFile file) {
-
-        if (storageService.save(file, title)) {
-            try {
+        try {
+            if (storageService.save(file, title)) {
                 videoService.saveVideo(title, description);
-            } catch (IOException e) {
-                throw new RuntimeException(e); // TODO: throw custom exception
+                return ResponseEntity.ok("Video saved successfully");
             }
-
-            return ResponseEntity.ok("Video saved successfully");
+        } catch (EmptyFileException | IOException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-        throw new RuntimeException("Error saving the video file");
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping(value = "{title}", produces = "video/mp4")

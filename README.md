@@ -2,6 +2,12 @@
 
 ## To Do List
 
+* Server setup
+
+-- Milestone --
+
+* Fix issue: need spring refresh to find video after upload
+
 * Create and throw exceptions for User and Role
 
 * Add and implement slug field to video model
@@ -16,13 +22,9 @@
 
 * OAuth
 
-* Upload backend
+* Finish upload backend
 
-* Upload frontend
-
--- Milestone --
-
-* Server setup
+* Finish upload frontend
 
 * Docker
 
