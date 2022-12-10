@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @CrossOrigin
 public class WebController {
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "")
     public String index() {
         return "index";
     }
 
-    @RequestMapping(value = "/page")
+    @RequestMapping(value = "page")
     public String page() {
         return "page";
     }
 
-    @RequestMapping(value = "/upload-video")
+    @RequestMapping(value = "upload-video")
     public String uploadVideo() {
         return "upload-video";
     }

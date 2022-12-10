@@ -14,6 +14,8 @@
 
 * WebSecurityConfig is deprecated -> update
 
+* Split login and registration controllers
+
 * Create public and private components folder
 
 * Javascript constants file
@@ -25,6 +27,8 @@
 * Finish upload backend
 
 * Finish upload frontend
+
+* Droplet monitoring
 
 * Docker
 
@@ -54,6 +58,16 @@ Apply migration
 mvn flyway:migrate
 ```
 
+Build executable jar
+```
+mvn clean compile assembly:single
+```
+
+Run jar
+```
+java -jar target/VideoStream-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
 ## Tutorials
 
 SQL relationships:
@@ -61,4 +75,15 @@ SQL relationships:
 
 Spring Security Mysql:
 <https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d>
+
+
+## Deployment steps
+
+1. Create droplet
+
+2. Generate SSH key
+
+3. Copy SSH key to github account to grant access to github from the droplet
+
+4. Clone repository
 
