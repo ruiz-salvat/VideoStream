@@ -1,6 +1,6 @@
 const videoList = document.querySelector("#video-list");
 
-fetch("http://localhost:8080/video/all")
+fetch("http://165.22.88.112:8080/video/all")
     .then(result => result.json())
     .then(result => {
         if(result.length > 0){
@@ -20,6 +20,6 @@ fetch("http://localhost:8080/video/all")
 
 // components
 var xmlHttp = new XMLHttpRequest();
-xmlHttp.open( "GET", "http://localhost:8080/components/title-bar", false);
+xmlHttp.open( "GET", "http://165.22.88.112:8080/components/title-bar", false);
 xmlHttp.send( null );
 document.getElementById("title-bar").innerHTML=xmlHttp.responseText;

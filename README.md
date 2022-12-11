@@ -2,8 +2,6 @@
 
 ## To Do List
 
-* Setup development/production environments
-
 * Server setup
 
 	* Run spring with systemctl
