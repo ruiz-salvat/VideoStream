@@ -87,3 +87,44 @@ Spring Security Mysql:
 
 4. Clone repository
 
+5. Install maven
+
+```
+sudo apt update
+sudo apt install maven
+```
+
+6. Create swap file to enable mysql to work
+(1Gb)
+
+```
+ free -m
+ swapon -s
+ swapon -show
+ dd if=/dev/zero of=/swapfile bs=1024 count=1048576
+ chmod 600 /swapfile
+ mkswap /swapfile
+ swapon /swapfile
+ 
+ nano /etc/fstab
+ # Add this line
+ /swapfile swap swap defaults 0 0
+ 
+ # Verify with:
+ free -m
+```
+
+7. Install MySQL
+
+```
+sudo apt update
+sudo apt install mysql-server
+sudo systemctl start mysql.service
+```
+
+8. Create mysql springuser credentials
+
+9. 
+
+
+
