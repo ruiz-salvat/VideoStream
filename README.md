@@ -124,7 +124,7 @@ sudo systemctl start mysql.service
 
 8. Create mysql springuser credentials
 
-9. 
+9. Run migrations, Compile & Run
 
 
 
