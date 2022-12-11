@@ -2,7 +2,13 @@
 
 ## To Do List
 
+* Setup development/production environments
+
 * Server setup
+
+	* Run spring with systemctl
+	
+	* Issue with CORS
 
 -- Milestone --
 
@@ -37,9 +43,6 @@
 * Mobile view
 
 * Custom error page with handling
-
-...
-
 
 
 ## Database setup
@@ -125,6 +128,5 @@ sudo systemctl start mysql.service
 8. Create mysql springuser credentials
 
 9. Run migrations, Compile & Run
-
 
 
