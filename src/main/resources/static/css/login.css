@@ -1,1 +1,59 @@
-/* login page styles */
+.login-form-container {
+    margin-left: auto;
+    margin-right: auto;
+    border: #1b1a6d solid 2px;
+    border-radius: 10px;
+    width: 17rem;
+    background-color: #f0f8ff;
+    margin-top: 9rem;
+}
+
+#form-title {
+    text-align: center;
+}
+
+#form-container {
+    padding: 20px;
+}
+
+.input-div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.input-label {
+    font-size: 20px;
+    color: #1b1a6d;
+}
+
+.form-input {
+    width: 100%;
+}
+
+#form-button {
+    width: 100%;
+    border: solid 2px #1b1a6d;
+    background-color: #1b1a6d;
+    color: #f0f8ff;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#form-button:hover {
+    background-color: #f0f8ff;
+    color: #1b1a6d;
+}
+
+#registration-button {
+    background-color: transparent;
+    border: solid transparent;
+    color: #0498fa;
+}
+
+#registration-button:hover {
+    color: #07598f;
+    cursor: pointer;
+}

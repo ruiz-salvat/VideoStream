@@ -5,8 +5,6 @@
 * Server setup
 
 	* Run spring with systemctl
-	
-	* Issue with CORS
 
 -- Milestone --
 
@@ -125,6 +123,59 @@ sudo systemctl start mysql.service
 
 8. Create mysql springuser credentials
 
-9. Run migrations, Compile & Run
+9. Run migrations
 
+10. Build executable jar
+
+11. Run as service
+
+https://www.springcloud.io/post/2022-02/running-as-system-service/#gsc.tab=0
+
+Create files:
+
+mkdir shell-scripts
+cd shell-scripts
+
+start.sh
+```
+#!/bin/bash
+export JAVA_HOME=/usr/java/jdk1.8.0_131
+export PATH=$JAVA_HOME/bin:$PATH
+APP_NAME=xxx
+nohup java -jar /path/to/xxx.jar.jar > xxx.log 2>&1 &
+echo "$APP_NAME is running"
+```
+
+stop.sh
+```
+#!/bin/bash
+APP_NAME=xxx
+pid=`ps -ef | grep $APP_NAME | grep -v grep | awk '{print $2}'`
+  
+if [ -z "${pid}" ]; then
+   echo "$APP_NAME is not running"
+else
+    echo "kill thread...$pid"
+    kill -9 $pid
+fi
+```
+
+restart.sh
+```
+#!/bin/bash
+export JAVA_HOME=/usr/java/jdk1.8.0_131
+export PATH=$JAVA_HOME/bin:$PATH
+APP_NAME=xxx
+pid=`ps -ef | grep $APP_NAME | grep -v grep | awk '{print $2}'`
+  
+if [ -z "${pid}" ]; then
+   echo "$APP_NAME is not running"
+else
+    echo "kill thread...$pid"
+    kill -9 $pid
+fi
+
+nohup java -jar /path/to/xxx.jar > xxx.log 2>&1 &
+echo "$APP_NAME is running"
+```
 

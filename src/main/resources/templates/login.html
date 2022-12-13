@@ -8,23 +8,32 @@
     <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
-    <form th:action="@{/registration}" method="get">
-        <button type="Submit">Go To Registration Page</button>
-    </form>
-
-    <div>
+    <div class="login-form-container">
         <form th:action="@{/login}" method="POST">
-            <h3>Login page</h3>
+            <div id="form-container">
+                <h3 id="form-title">Login</h3>
 
-            <input id="user_name" name="user_name" type="text" placeholder="John_Doe"/>
+                <div class="input-div">
+                    <div class="input-label">User name:</div>
+                    <input id="user_name" name="user_name" type="text" placeholder="John_Doe" class="form-input"/>
+                </div>
 
-            <input id="password" name="password" type="password" placeholder="password"/>
+                <div class="input-div">
+                    <div class="input-label">Password:</div>
+                    <input id="password" name="password" type="password" placeholder="password" class="form-input"/>
+                </div>
 
-            <div th:if="${param.error}">
-                <p>User Name or Password invalid, please verify</p>
+                <div th:if="${param.error}">
+                    <p>User Name or Password invalid, please verify</p>
+                </div>
+
+                <div class="input-div">
+                    <button id="form-button" name="Submit" type="Submit">Login</button>
+                </div>
             </div>
-
-            <button name="Submit" type="Submit">Login</button>
+        </form>
+        <form th:action="@{/registration}" method="get">
+            <button id="registration-button" type="Submit">Go To Registration Page</button>
         </form>
     </div>
 </body>
