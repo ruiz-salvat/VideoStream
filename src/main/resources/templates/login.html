@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <title>VideoStream</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/login-registration.css">
     <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
-    <div class="login-form-container">
+    <div class="form-container">
         <form th:action="@{/login}" method="POST">
-            <div id="form-container">
+            <div id="form-content">
                 <h3 id="form-title">Login</h3>
 
                 <div class="input-div">
-                    <div class="input-label">User name:</div>
+                    <div class="input-label">Username:</div>
                     <input id="user_name" name="user_name" type="text" placeholder="John_Doe" class="form-input"/>
                 </div>
 
@@ -33,7 +33,7 @@
             </div>
         </form>
         <form th:action="@{/registration}" method="get">
-            <button id="registration-button" type="Submit">Go To Registration Page</button>
+            <button id="redirect-button" type="Submit">Go To Registration Page</button>
         </form>
     </div>
 </body>

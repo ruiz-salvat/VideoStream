@@ -1,4 +1,4 @@
-.login-form-container {
+.form-container {
     margin-left: auto;
     margin-right: auto;
     border: #1b1a6d solid 2px;
@@ -12,7 +12,7 @@
     text-align: center;
 }
 
-#form-container {
+#form-content {
     padding: 20px;
 }
 
@@ -47,13 +47,13 @@
     color: #1b1a6d;
 }
 
-#registration-button {
+#redirect-button {
     background-color: transparent;
     border: solid transparent;
     color: #0498fa;
 }
 
-#registration-button:hover {
+#redirect-button:hover {
     color: #07598f;
     cursor: pointer;
 }

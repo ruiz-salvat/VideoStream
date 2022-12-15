@@ -2,44 +2,45 @@
 
 ## To Do List
 
+* Add and implement slug field to video model and Category system
+	* Develop propper front-end
+
 * Server setup
 
-	* Run spring with systemctl
+* Fix issue: need spring refresh to find video after upload
+	- by not storing the videos in the resource folder
+
+* Implement user roles
+
+* Extend admin page
 
 -- Milestone --
 
-* Fix issue: need spring refresh to find video after upload
-
 * Create and throw exceptions for User and Role
 
-* Add and implement slug field to video model
+* Unit Tests
 
 * WebSecurityConfig is deprecated -> update
 
-* Split login and registration controllers
+* Add application.properties to .gitignore
+
+-- Might do --
 
 * Create public and private components folder
 
 * Javascript constants file
 
-* Unit Tests
-
-* OAuth
-
-* Finish upload backend
-
-* Finish upload frontend
+* OAuth?
 
 * Droplet monitoring
 
-* Docker
-
-* Category system
-
 * Mobile view
 
-* Custom error page with handling
+* Custom error page with handling?
 
+* Docker?
+
+* Jenkins?
 
 ## Database setup
 
@@ -132,14 +133,6 @@ sudo systemctl start mysql.service
 9. Run migrations
 
 10. Build executable jar
-
-11. Install java in /usr/java
-
-```
-sudo apt update
-sudo apt install default-jdk
-sudo apt install default-jre
-```
 
 11. Run as service
 

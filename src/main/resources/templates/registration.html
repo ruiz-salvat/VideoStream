@@ -4,61 +4,55 @@
   <meta charset="UTF-8">
   <title>VideoStream</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/registration.css">
+  <link rel="stylesheet" href="css/login-registration.css">
   <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
-  <form th:action="@{/login}" method="get">
-    <button type="Submit">Go To Login Page</button>
-  </form>
+  <div class="form-container">
+    <form autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" method="post" role="form">
+      <div id="form-content">
+        <h3 id="form-title">Registration</h3>
 
-  <div>
-      <form autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" method="post" role="form">
-        <h3>Registration Form</h3>
-
-        <div>
-          <div>
-            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
-            <input type="text" th:field="*{name}" placeholder="Name"/>
-          </div>
+        <div class="input-div">
+          <div class="input-label">Name:</div>
+          <input class="form-input" type="text" th:field="*{name}" placeholder="Name"/>
+          <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
         </div>
 
-        <div>
-          <div>
-            <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></label>
-            <input type="text" th:field="*{lastName}" placeholder="Last Name"/>
-          </div>
+        <div class="input-div">
+          <div class="input-label">Last name:</div>
+          <input class="form-input" type="text" th:field="*{lastName}" placeholder="Last Name"/>
+          <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></label>
         </div>
 
-        <div>
-          <div>
-            <input type="text" th:field="*{email}" placeholder="Email"/>
-            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
-          </div>
+        <div class="input-div">
+          <div class="input-label">Email:</div>
+          <input class="form-input" type="text" th:field="*{email}" placeholder="Email"/>
+          <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
         </div>
 
-        <div>
-          <div>
-            <input type="text" th:field="*{userName}" placeholder="User Name"/>
-            <label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></label>
-          </div>
+        <div class="input-div">
+          <div class="input-label">User name:</div>
+          <input class="form-input" type="text" th:field="*{userName}" placeholder="User Name"/>
+          <label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></label>
         </div>
 
-        <div>
-          <div>
-            <input type="password" th:field="*{password}" placeholder="Password"/>
-            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
-          </div>
-        </div>
-
-        <div>
-          <div>
-            <button type="submit">Register User</button>
-          </div>
+        <div class="input-div">
+          <div class="input-label">Password:</div>
+          <input class="form-input" type="password" th:field="*{password}" placeholder="Password"/>
+          <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
         </div>
 
         <h2><span th:utext="${successMessage}"></span></h2>
-      </form>
+
+        <div class="input-div">
+          <button id="form-button" type="submit">Register</button>
+        </div>
+      </div>
+    </form>
+    <form th:action="@{/login}" method="get">
+      <button id="redirect-button" type="Submit">Go To Login Page</button>
+    </form>
   </div>
 </body>
 </html>
