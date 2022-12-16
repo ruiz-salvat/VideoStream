@@ -2,6 +2,7 @@ package org.example.Services;
 
 import org.example.Entities.Role;
 import org.example.Entities.User;
+import org.example.Exceptions.MissingFieldsException;
 import org.example.Exceptions.UserAlreadyExistsException;
 import org.example.Exceptions.UserNotFoundException;
 import org.example.Repositories.IRoleRepository;
@@ -50,6 +51,10 @@ public class UserService implements IUserService {
         user.setPassword(encodedPassword);
         Role userRole = roleRepository.findByRoleName("admin");
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
+
+        if (user.getEmail().isEmpty() || user.getName().isEmpty() || user.getLastName().isEmpty())
+            throw new MissingFieldsException();
+
         return userRepository.save(user);
     }
 

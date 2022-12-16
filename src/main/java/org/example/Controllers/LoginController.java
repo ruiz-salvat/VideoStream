@@ -36,21 +36,12 @@ public class LoginController {
         return modelAndView;
     }
 
-//    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-//    public String createNewUser(@Valid User user, BindingResult bindingResult) {
-////        ModelAndView modelAndView = new ModelAndView();
-//
-//        if (bindingResult.hasErrors()) {
-//            return "login";
-////            modelAndView.setViewName("registration");
-//        } else {
-//            userService.saveUser(user);
-////            modelAndView.addObject("successMessage", "User has been registered successfully");
-////            modelAndView.addObject("user", new User());
-////            modelAndView.setViewName("registration");
-//        }
-////        return modelAndView;
-//        return "index";
-//    }
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String createNewUser(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "error";
+        userService.saveUser(user);
+        return "upload-video";
+    }
 
 }

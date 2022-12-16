@@ -2,6 +2,8 @@
 
 ## To Do List
 
+* fix migrations
+
 * Add and implement slug field to video model and Category system
 	* Develop propper front-end
 
@@ -23,6 +25,8 @@
 * WebSecurityConfig is deprecated -> update
 
 * Add application.properties to .gitignore
+
+* Move flyway config to application.properties
 
 -- Might do --
 
@@ -133,6 +137,8 @@ sudo systemctl start mysql.service
 9. Run migrations
 
 10. Build executable jar
+
+10,5. Might need to set a high number in the hibernate sequence table to avoid having problems with ids
 
 11. Run as service
 

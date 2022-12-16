@@ -7,9 +7,9 @@ fetch("video/all")
             for(let video of result){
                 const li = document.createElement("LI");
                 const link = document.createElement("A");
-                link.innerText = video;
+                link.innerText = video.title;
                 link.classList.add("list-element");
-                link.href = window.location.origin + window.location.pathname + "page/?video=" + video;
+                link.href = window.location.origin + window.location.pathname + "page/?video=" + video.slug;
                 li.appendChild(link);
                 videoList.appendChild(li);
             }

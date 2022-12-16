@@ -1,6 +1,7 @@
 package org.example.Controllers;
 
 import lombok.AllArgsConstructor;
+import org.example.Entities.Video;
 import org.example.Exceptions.EmptyFileException;
 import org.example.Services.IStorageService;
 import org.example.Services.IVideoService;
@@ -24,12 +25,13 @@ public class VideoController {
 
     @PostMapping()
     public ResponseEntity<String> setVideo(
+            @RequestParam("slug") String slug,
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("file") MultipartFile file) {
         try {
-            if (storageService.save(file, title)) {
-                videoService.saveVideo(title, description);
+            if (storageService.save(file, slug)) {
+                videoService.saveVideo(slug, title, description);
                 return ResponseEntity.ok("Video saved successfully");
             }
         } catch (EmptyFileException | IOException e) {
@@ -38,18 +40,18 @@ public class VideoController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping(value = "{title}", produces = "video/mp4")
-    public Mono<Resource> getVideo(@PathVariable String title, @RequestHeader("Range") String range) {
-        return videoService.getVideo(title);
+    @GetMapping(value = "{slug}", produces = "video/mp4")
+    public Mono<Resource> getVideo(@PathVariable String slug, @RequestHeader("Range") String range) {
+        return videoService.getVideo(slug);
     }
 
-    @GetMapping(value = "description/{title}")
-    public String getVideoDescription(@PathVariable String title) {
-        return videoService.getVideoDescription(title);
+    @GetMapping(value = "description/{slug}")
+    public String getVideoDescription(@PathVariable String slug) {
+        return videoService.getVideoDescription(slug);
     }
 
     @GetMapping("all")
-    public ResponseEntity<List<String>> getAllVideos() {
+    public ResponseEntity<List<Video>> getAllVideos() {
         return ResponseEntity.ok(videoService.getAllVideos());
     }
 

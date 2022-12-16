@@ -22,37 +22,37 @@ public class VideoService implements IVideoService {
     private static final String FORMAT = "classpath:%s";
 
     @Override
-    public Mono<Resource> getVideo(String title) {
-        if (!videoRepository.existsByTitle(title))
+    public Mono<Resource> getVideo(String slug) {
+        if (!videoRepository.existsBySlug(slug))
             throw new VideoNotFoundException();
 
-        Video video = videoRepository.findByTitle(title);
+        Video video = videoRepository.findBySlug(slug);
         return Mono.fromSupplier(() -> this.resourceLoader.getResource(String.format(FORMAT, video.getFilePath())));
     }
 
     @Override
-    public String getVideoDescription(String title) {
-        if (!videoRepository.existsByTitle(title))
+    public String getVideoDescription(String slug) {
+        if (!videoRepository.existsBySlug(slug))
              throw new VideoNotFoundException();
 
-        Video video = videoRepository.findByTitle(title);
+        Video video = videoRepository.findBySlug(slug);
         return video.getDescription();
     }
 
     @Override
-    public void saveVideo(String title, String description) {
-        if (videoRepository.existsByTitle(title))
+    public void saveVideo(String slug, String title, String description) {
+        if (videoRepository.existsBySlug(slug))
             throw new VideoAlreadyExistsException();
 
-        String filePath = "data/" + title + ".mp4";
+        String filePath = "data/" + slug + ".mp4";
 
-        Video newVideo = new Video(title, description, filePath);
+        Video newVideo = new Video(slug, title, description, filePath);
         videoRepository.save(newVideo);
     }
 
     @Override
-    public List<String> getAllVideos() {
-        return videoRepository.getAllEntries();
+    public List<Video> getAllVideos() {
+        return videoRepository.findAll();
     }
 
 }

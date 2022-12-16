@@ -1,0 +1,1 @@
+ALTER TABLE `video` ADD `slug` varchar(255) NOT NULL;
