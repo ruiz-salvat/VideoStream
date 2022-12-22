@@ -25,6 +25,8 @@
 
 * Move flyway config to application.properties
 
+* Create deployment script
+
 -- Might do --
 
 * Create public and private components folder
@@ -68,6 +70,14 @@ Run jar
 ```
 java -jar target/VideoStream-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
+
+Systemctl service
+```
+systemctl status video_stream
+systemctl start video_stream
+systemctl stop video_stream
+```
+
 
 ## Tutorials
 
@@ -135,6 +145,8 @@ sudo systemctl start mysql.service
 8. Create mysql springuser credentials
 
 9. Run migrations
+
+10. Create VideoStreamData folder at the same level of the repository
 
 10. Build executable jar
 
