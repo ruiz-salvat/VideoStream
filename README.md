@@ -145,14 +145,18 @@ sudo systemctl start mysql.service
 8. Create mysql springuser credentials
 
 9. Run migrations
+	1. Might need to populate hibernate_sequence
+	```
+	INSERT INTO hibernate_sequence VALUES (99);
+	```
 
 10. Create VideoStreamData folder at the same level of the repository
 
-10. Build executable jar
+11. Build executable jar
 
-10,5. Might need to set a high number in the hibernate sequence table to avoid having problems with ids
+12. Might need to set a high number in the hibernate sequence table to avoid having problems with ids
 
-11. Run as service
+13. Run as service
 
 Create files:
 
