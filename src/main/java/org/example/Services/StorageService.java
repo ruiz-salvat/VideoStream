@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 public class StorageService implements IStorageService {
 
-    private final Path root = Paths.get("src/main/resources/data");
+    private final Path root = Paths.get("../VideoStreamData");
 
     @Override
     public void init() {

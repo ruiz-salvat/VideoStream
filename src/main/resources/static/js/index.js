@@ -1,10 +1,10 @@
 const videoList = document.querySelector("#video-list");
 
 fetch("video/all")
-    .then(result => result.json())
-    .then(result => {
-        if(result.length > 0){
-            for(let video of result){
+    .then(response => response.json())
+    .then(response => {
+        if(response.length > 0){
+            for(let video of response){
                 const li = document.createElement("LI");
                 const link = document.createElement("A");
                 link.innerText = video.title;

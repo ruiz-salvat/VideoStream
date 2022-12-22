@@ -5,38 +5,41 @@ import org.example.Entities.Video;
 import org.example.Exceptions.VideoAlreadyExistsException;
 import org.example.Exceptions.VideoNotFoundException;
 import org.example.Repositories.IVideoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class VideoService implements IVideoService {
 
-    @Autowired
-    private ResourceLoader resourceLoader;
     private IVideoRepository videoRepository;
-    private static final String FORMAT = "classpath:%s";
+    private static final String FORMAT = "../VideoStreamData/%s";
 
     @Override
-    public Mono<Resource> getVideo(String slug) {
+    public Mono<byte[]> getVideo(String slug) {
         if (!videoRepository.existsBySlug(slug))
             throw new VideoNotFoundException();
 
         Video video = videoRepository.findBySlug(slug);
-        return Mono.fromSupplier(() -> this.resourceLoader.getResource(String.format(FORMAT, video.getFilePath())));
+        return Mono.fromSupplier(() -> {
+            try {
+                return Files.readAllBytes(Paths.get(String.format(FORMAT, video.getFilePath())));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @Override
-    public String getVideoDescription(String slug) {
+    public Video getVideoDetails(String slug) {
         if (!videoRepository.existsBySlug(slug))
-             throw new VideoNotFoundException();
+            throw new VideoNotFoundException();
 
-        Video video = videoRepository.findBySlug(slug);
-        return video.getDescription();
+        return videoRepository.findBySlug(slug);
     }
 
     @Override
@@ -44,7 +47,7 @@ public class VideoService implements IVideoService {
         if (videoRepository.existsBySlug(slug))
             throw new VideoAlreadyExistsException();
 
-        String filePath = "data/" + slug + ".mp4";
+        String filePath = slug + ".mp4";
 
         Video newVideo = new Video(slug, title, description, filePath);
         videoRepository.save(newVideo);

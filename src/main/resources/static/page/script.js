@@ -11,9 +11,12 @@ if(queryParams.video){
     videoTitle.innerText = "Now playing " + queryParams.video;
 }
 
-fetch(`../video/description/${queryParams.video}`).then(response => {
-    response.text().then(responseText => videoDescription.innerText = responseText);
-});
+fetch(`../video/details/${queryParams.video}`)
+    .then(response => response.json())
+    .then(response => {
+        videoTitle.innerText = response.title;
+        videoDescription.innerText = response.description;
+    });
 
 // components
 var xmlHttp = new XMLHttpRequest();

@@ -1,22 +1,19 @@
 # VideoStream
 
 ## To Do List
-
-* fix migrations
-
-* Add and implement slug field to video model and Category system
-	* Develop propper front-end
+	
+* application.properties variables to code
 
 * Server setup
-
-* Fix issue: need spring refresh to find video after upload
-	- by not storing the videos in the resource folder
+	* fix migrations
 
 * Implement user roles
 
 * Extend admin page
 
 -- Milestone --
+
+* Category system
 
 * Create and throw exceptions for User and Role
 
@@ -79,6 +76,9 @@ Digital Ocean Server Setup:
 
 Run spring boot as service:
 <https://www.springcloud.io/post/2022-02/running-as-system-service/#gsc.tab=0>
+
+Ubuntu firewall:
+<https://ubuntu.com/server/docs/security-firewall>
 
 SQL relationships:
 <https://medium.com/@emekadc/how-to-implement-one-to-one-one-to-many-and-many-to-many-relationships-when-designing-a-database-9da2de684710>
@@ -174,8 +174,6 @@ fi
 restart.sh
 ```
 #!/bin/bash
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/java
-export PATH=$JAVA_HOME/bin:$PATH
 APP_NAME=video_stream
 pid=`ps -ef | grep $APP_NAME | grep -v grep | awk '{print $2}'`
   

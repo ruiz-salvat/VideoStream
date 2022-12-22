@@ -41,13 +41,13 @@ public class VideoController {
     }
 
     @GetMapping(value = "{slug}", produces = "video/mp4")
-    public Mono<Resource> getVideo(@PathVariable String slug, @RequestHeader("Range") String range) {
+    public Mono<byte[]> getVideo(@PathVariable String slug, @RequestHeader("Range") String range) {
         return videoService.getVideo(slug);
     }
 
-    @GetMapping(value = "description/{slug}")
-    public String getVideoDescription(@PathVariable String slug) {
-        return videoService.getVideoDescription(slug);
+    @GetMapping(value = "details/{slug}")
+    public ResponseEntity<Video> getVideoDetails(@PathVariable String slug) {
+        return ResponseEntity.ok(videoService.getVideoDetails(slug));
     }
 
     @GetMapping("all")
