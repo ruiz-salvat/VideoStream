@@ -17,7 +17,8 @@ import java.util.List;
 public class VideoService implements IVideoService {
 
     private IVideoRepository videoRepository;
-    private static final String FORMAT = "../VideoStreamData/%s";
+//    private static final String FORMAT = "../VideoStreamData/%s";
+    private static final String FORMAT = "/root/VideoStreamData/%s";
 
     @Override
     public Mono<byte[]> getVideo(String slug) {

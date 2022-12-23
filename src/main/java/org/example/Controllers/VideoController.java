@@ -28,14 +28,12 @@ public class VideoController {
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("file") MultipartFile file) {
-        System.out.println("Hola");
         try {
             if (storageService.save(file, slug)) {
                 videoService.saveVideo(slug, title, description);
                 return ResponseEntity.ok("Video saved successfully");
             }
         } catch (EmptyFileException | IOException e) {
-            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -5,11 +5,12 @@
 * application.properties variables to code
 
 * Server setup
-	* fix migrations
 
 * Implement user roles
 
 * Extend admin page
+
+* delete non-used methods (StorageService)
 
 -- Milestone --
 
