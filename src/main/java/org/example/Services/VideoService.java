@@ -5,6 +5,8 @@ import org.example.Entities.Video;
 import org.example.Exceptions.VideoAlreadyExistsException;
 import org.example.Exceptions.VideoNotFoundException;
 import org.example.Repositories.IVideoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import java.io.IOException;
@@ -17,8 +19,9 @@ import java.util.List;
 public class VideoService implements IVideoService {
 
     private IVideoRepository videoRepository;
-//    private static final String FORMAT = "../VideoStreamData/%s";
-    private static final String FORMAT = "/root/VideoStreamData/%s";
+
+    @Autowired
+    private Environment env;
 
     @Override
     public Mono<byte[]> getVideo(String slug) {
@@ -28,7 +31,10 @@ public class VideoService implements IVideoService {
         Video video = videoRepository.findBySlug(slug);
         return Mono.fromSupplier(() -> {
             try {
-                return Files.readAllBytes(Paths.get(String.format(FORMAT, video.getFilePath())));
+                String fileFormat = env.getProperty("fileFormat");
+                if (fileFormat == null || fileFormat.isEmpty())
+                    throw new RuntimeException("empty property: fileFormat");
+                return Files.readAllBytes(Paths.get(String.format(fileFormat, video.getFilePath())));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

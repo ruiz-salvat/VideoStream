@@ -1,7 +1,8 @@
 package org.example.Services;
 
-import lombok.AllArgsConstructor;
 import org.example.Exceptions.EmptyFileException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,19 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 @Service
-@AllArgsConstructor
 public class StorageService implements IStorageService {
 
-    private final Path root = Paths.get("../VideoStreamData");
+    @Autowired
+    private Environment env;
+
+    private final Path root;
+
+    public StorageService(Environment env) {
+        String dataPath = env.getProperty("dataPath");
+        if (dataPath == null || dataPath.isEmpty())
+            throw new RuntimeException("empty property: dataPath");
+        root = Paths.get(dataPath);
+    }
 
     @Override
     public void init() {
