@@ -49,7 +49,7 @@ public class UserService implements IUserService {
 
         String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(encodedPassword);
-        Role userRole = roleRepository.findByRoleName("admin");
+        Role userRole = roleRepository.findByRoleName("basic_user");
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
 
         if (user.getEmail().isEmpty() || user.getName().isEmpty() || user.getLastName().isEmpty())

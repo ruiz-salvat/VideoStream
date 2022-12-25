@@ -1,26 +1,14 @@
 # VideoStream
 
 ## To Do List
-	
-* application.properties variables to code
-
-* Server setup
-
-* Implement user roles
-
-* Extend admin page
-
-* delete non-used methods (StorageService)
-
--- Milestone --
-
-* Category system
-
-* Create and throw exceptions for User and Role
 
 * Unit Tests
 
-* WebSecurityConfig is deprecated -> update
+* Integration Tests
+
+* Delete non-used methods (StorageService)
+
+* Server security setup
 
 * Add application.properties to .gitignore
 
@@ -28,7 +16,22 @@
 
 * Create deployment script
 
+-- Milestone --
+
+* Extend admin page
+
+* Category system
+
+* Finish public front-end
+
+* Create and throw exceptions for User and Role
+
+* WebSecurityConfig is deprecated -> update
+
 -- Might do --
+
+* User main page
+	* (to access temporarely available content, basic users must log in)
 
 * Create public and private components folder
 
@@ -79,7 +82,6 @@ systemctl start video_stream
 systemctl stop video_stream
 ```
 
-
 ## Tutorials
 
 Digital Ocean Server Setup:
@@ -97,6 +99,8 @@ SQL relationships:
 Spring Security Mysql:
 <https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d>
 
+Access control by user roles:
+<https://www.baeldung.com/spring-security-method-security>
 
 ## Deployment steps
 

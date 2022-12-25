@@ -27,7 +27,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 
-                // open urls
+                // public urls
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
@@ -41,7 +41,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/components/video-upload-success").permitAll()
                 .antMatchers("/components/video-upload-fail").permitAll()
 
-                // admin page
+                // admin urls
+                .antMatchers("/private-video/**").hasAuthority("admin")
                 .antMatchers("/upload-video").hasAuthority("admin").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
 
