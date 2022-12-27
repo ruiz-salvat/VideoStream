@@ -4,7 +4,7 @@ videoForm.addEventListener("submit", ev => {
     ev.preventDefault();
     let data = new FormData(videoForm);
 
-    fetch("video", {
+    fetch("private-video", {
         method: "POST",
         body: data
     }).then(response => {

@@ -62,7 +62,7 @@ public class VideoService implements IVideoService {
 
     @Override
     public List<Video> getAllVideos() {
-        return videoRepository.findAll();
+        return (List<Video>) videoRepository.findAll();
     }
 
 }

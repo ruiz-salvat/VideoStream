@@ -15,6 +15,10 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class Role {
 
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
+
     @Id
     @GeneratedValue
     private Long id;

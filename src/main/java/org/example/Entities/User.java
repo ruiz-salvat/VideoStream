@@ -16,6 +16,16 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class User {
 
+    public User(String userName, String email, String password, String name, String lastName, String address, Set<Role> roles) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.lastName = lastName;
+        this.address = address;
+        this.roles = roles;
+    }
+
     @Id
     @GeneratedValue
     private Long id;

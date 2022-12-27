@@ -28,6 +28,8 @@
 
 * WebSecurityConfig is deprecated -> update
 
+* Bug: after registration goes to upload video page
+
 -- Might do --
 
 * User main page
