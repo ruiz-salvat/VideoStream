@@ -132,6 +132,12 @@
             <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <version>5.7.3</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Development tools -->
         <dependency>
@@ -158,8 +164,8 @@
                 <configuration>
                     <url>jdbc:mysql://localhost:3306/video_stream</url>
                     <user>springuser</user>
-<!--                    <password>pass_00</password>-->
-                    <password>U6SS&amp;iQaFPVwSF@%</password>
+                    <password>pass_00</password>
+<!--                    <password>U6SS&amp;iQaFPVwSF@%</password>-->
                     <schemas>
                         <schema>video_stream</schema>
                     </schemas>

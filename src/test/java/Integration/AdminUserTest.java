@@ -1,10 +1,7 @@
 package Integration;
 
-import org.example.Entities.Role;
-import org.example.Entities.User;
+import org.example.Entities.Video;
 import org.example.Main;
-import org.example.Repositories.IRoleRepository;
-import org.example.Repositories.IUserRepository;
 import org.example.Repositories.IVideoRepository;
 import org.junit.After;
 import org.junit.Before;
@@ -13,16 +10,18 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import java.util.HashSet;
-import java.util.Set;
 
-import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static Util.Constants.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -34,39 +33,33 @@ public class AdminUserTest {
     @Autowired
     private MockMvc mvc;
     @Autowired
-    private IRoleRepository roleRepository;
-    @Autowired
-    private IUserRepository userRepository;
-    @Autowired
     private IVideoRepository videoRepository;
+    private SecurityMockMvcRequestPostProcessors.UserRequestPostProcessor mockUser;
 
     @Before
-    public void createAdminUser() throws Exception {
-        // create admin user
-        Role role = roleRepository.findByRoleName("admin");
-        Set<Role> roles = new HashSet<Role>();
-        roles.add(role);
-        String encodedPassword = new BCryptPasswordEncoder().encode("testPassword");
-        User user = new User("testUserName", "test@email.com", encodedPassword, "testName", "testLastName", null, roles);
-        userRepository.save(user);
-
-        // log in as admin
-        String formData = "user_name=testUserName&password=testPassword";
-        mvc.perform(post("/login").contentType(APPLICATION_FORM_URLENCODED).content(formData))
-                .andExpect(status().isFound())
-                .andExpect(redirectedUrl("/upload-video"));
+    public void createAdminUser() {
+        GrantedAuthority authority = new SimpleGrantedAuthority("admin");
+        mockUser = user(TEST_USERNAME).authorities(authority);
     }
 
     @Test
-    public void post_videoForm_responseStatus200() throws Exception {
-        String formData = "file=test_byte_array&slug=test_slug&title=test_title&description=test_description";
+    public void post_video_ok() throws Exception {
+        mvc.perform(multipart("/private-video")
+                        .file("file", "some txt".getBytes())
+                        .param("slug", TEST_SLUG)
+                        .param("title", TEST_TITLE)
+                        .param("description", TEST_DESCRIPTION)
+                        .with(mockUser))
+                    .andExpect(status().isOk());
 
-        mvc.perform(post("/private-video").contentType(APPLICATION_FORM_URLENCODED).content(formData)).andExpect(status().isOk());
+        Video video = videoRepository.findBySlug(TEST_SLUG);
+
+        assertNotNull(video);
+        assertEquals(TEST_TITLE, video.getTitle());
     }
 
     @After
     public void cleanTestDatabase() {
-        userRepository.deleteAll();
         videoRepository.deleteAll();
     }
 

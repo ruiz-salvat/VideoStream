@@ -1,7 +1,7 @@
 package Integration;
 
+import org.example.Entities.Video;
 import org.example.Main;
-import org.example.Repositories.IUserRepository;
 import org.example.Repositories.IVideoRepository;
 import org.junit.After;
 import org.junit.Before;
@@ -10,13 +10,17 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static Util.Constants.*;
+import static org.junit.Assert.assertNull;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -28,28 +32,32 @@ public class BasicUserTest {
     @Autowired
     private MockMvc mvc;
     @Autowired
-    private IUserRepository userRepository;
-    @Autowired
     private IVideoRepository videoRepository;
+    private SecurityMockMvcRequestPostProcessors.UserRequestPostProcessor mockUser;
 
     @Before
-    public void registerUser() throws Exception {
-        String formData = "name=test_name&lastName=test_lastname&email=test%40email.com&userName=test_username&password=test_password";
-        mvc.perform(post("/registration").contentType(APPLICATION_FORM_URLENCODED).content(formData)).andExpect(status().isOk());
+    public void createBasicUser() {
+        GrantedAuthority authority = new SimpleGrantedAuthority("basic_user");
+        mockUser = user(TEST_USERNAME).authorities(authority);
     }
 
     @Test
-    public void post_videoForm_responseStatus302() throws Exception {
-        String formData = "file=test_byte_array&slug=test_slug&title=test_title&description=test_description";
+    public void post_video_forbidden() throws Exception {
+        mvc.perform(multipart("/private-video")
+                        .file("file", "some txt".getBytes())
+                        .param("slug", TEST_SLUG)
+                        .param("title", TEST_TITLE)
+                        .param("description", TEST_DESCRIPTION)
+                        .with(mockUser))
+                    .andExpect(status().isForbidden());
 
-        mvc.perform(post("/private-video").contentType(APPLICATION_FORM_URLENCODED).content(formData))
-                .andExpect(status().isFound())
-                .andExpect(redirectedUrl("http://localhost/login"));
+        Video video = videoRepository.findBySlug(TEST_SLUG);
+
+        assertNull(video);
     }
 
     @After
     public void cleanTestDatabase() {
-        userRepository.deleteAll();
         videoRepository.deleteAll();
     }
 

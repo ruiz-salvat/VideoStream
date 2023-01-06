@@ -9,12 +9,13 @@
 * Delete non-used methods (StorageService)
 
 * Server security setup
+	* Reverse proxy server
 
 * Add application.properties to .gitignore
 
 * Move flyway config to application.properties
 
-* Create deployment script
+* CI/CD
 
 -- Milestone --
 
