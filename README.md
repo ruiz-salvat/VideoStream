@@ -3,8 +3,8 @@
 ## To Do List
 
 * Unit Tests
-
-* Integration Tests
+	* VideoService
+	* UserService
 
 * Delete non-used methods (StorageService)
 

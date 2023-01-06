@@ -32,9 +32,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/video/**").permitAll()
-                .antMatchers("/page/**").permitAll()
                 .antMatchers("/components/title-bar").permitAll()
                 .antMatchers("/media/title_image.png").permitAll()
+                .antMatchers("/favicon.ico").permitAll()
 
                 // cookies cannot be set with xmlHttpRequests, so these components must be public even though they are
                 // just used for authenticated users
