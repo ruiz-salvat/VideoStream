@@ -4,7 +4,7 @@
 
 * Unit Tests
 	* VideoService
-	* UserService
+	* StorageService
 
 * Delete non-used methods (StorageService)
 
