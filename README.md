@@ -5,6 +5,8 @@
 * Unit Tests
 	* VideoService
 	* StorageService
+	
+* Rename uploadvideo to admin
 
 * Delete non-used methods (StorageService)
 
