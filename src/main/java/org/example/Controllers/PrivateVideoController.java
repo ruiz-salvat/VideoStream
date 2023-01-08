@@ -35,4 +35,17 @@ public class PrivateVideoController {
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @DeleteMapping(value = "{slug}")
+    public ResponseEntity<String> deleteVideo(@PathVariable String slug) {
+        try {
+            if (storageService.delete(slug)) {
+                videoService.deleteVideo(slug);
+                return ResponseEntity.ok("Video deleted successfully");
+            }
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

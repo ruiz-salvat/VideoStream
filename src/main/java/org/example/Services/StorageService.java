@@ -44,7 +44,13 @@ public class StorageService implements IStorageService {
         if (file.getSize() < 1)
             throw new EmptyFileException();
 
-        Files.write(this.root.resolve(slug + ".mp4"), file.getBytes());
+        Files.write(root.resolve(slug + ".mp4"), file.getBytes());
+        return true;
+    }
+
+    @Override
+    public boolean delete(String slug) throws IOException {
+        Files.delete(root.resolve(slug + ".mp4"));
         return true;
     }
 
@@ -72,7 +78,7 @@ public class StorageService implements IStorageService {
     @Override
     public Stream<Path> loadAll() {
         try {
-            return Files.walk(this.root, 1).filter(path -> !path.equals(this.root)).map(this.root::relativize);
+            return Files.walk(root, 1).filter(path -> !path.equals(root)).map(root::relativize);
         } catch (IOException e) {
             throw new RuntimeException("Could not load the files");
         }

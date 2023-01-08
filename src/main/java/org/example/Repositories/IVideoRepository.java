@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IVideoRepository extends CrudRepository<Video, Long> {
 
-    Video findBySlug(String title);
+    Video findBySlug(String slug);
 
-    boolean existsBySlug(String title);
+    boolean existsBySlug(String slug);
+
+    void deleteBySlug(String slug);
 
 }

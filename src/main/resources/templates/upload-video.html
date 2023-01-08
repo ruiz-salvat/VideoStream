@@ -8,30 +8,50 @@
   <link rel="stylesheet" href="css/upload-video.css">
 </head>
 <body>
-  <h1>UPLOAD VIDEO PAGE</h1>
-  <form id="video-form">
-    <div>
-      <label for="file">Video File</label>
-      <input id="file" name="file" type="file" accept="application/mp4">
+  <h1>ADMIN PAGE</h1>
+  <div class="component-container">
+    <div class="inner-container">
+      <h3>Video list</h3>
+      <table id="video-list-table">
+        <tr>
+          <th>Slug</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </table>
     </div>
+  </div>
 
-    <div>
-      <label for="slug">Slug</label>
-      <input id="slug" name="slug" type="text">
+  <div class="component-container">
+    <div class="inner-container">
+      <h3>Upload new video</h3>
+      <form id="video-form">
+        <div>
+          <label for="file">Video File</label>
+          <input id="file" name="file" type="file" accept="application/mp4">
+        </div>
+
+        <div>
+          <label for="slug">Slug</label>
+          <input id="slug" name="slug" type="text">
+        </div>
+
+        <div>
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text">
+        </div>
+
+        <div>
+          <label for="description">Description</label>
+          <input id="description" name="description" type="text">
+        </div>
+
+        <button type="submit">Save</button>
+      </form>
     </div>
+  </div>
 
-    <div>
-      <label for="title">Title</label>
-      <input id="title" name="title" type="text">
-    </div>
-
-    <div>
-      <label for="description">Description</label>
-      <input id="description" name="description" type="text">
-    </div>
-
-    <button type="submit">Save</button>
-  </form>
   <div id="response-message"></div>
 
   <script src="js/upload-video.js"></script>

@@ -7,9 +7,19 @@ h1 {
 }
 
 h3 {
-    color: #d40000;
+    color: #8B4513;
 }
 
 p {
     color: #2b2b2b;
+}
+
+.component-container {
+    border: solid 2px #2F4F4F;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.inner-container {
+    padding: 10px;
 }

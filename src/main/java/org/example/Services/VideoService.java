@@ -8,6 +8,7 @@ import org.example.Repositories.IVideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -58,6 +59,15 @@ public class VideoService implements IVideoService {
 
         Video newVideo = new Video(slug, title, description, filePath);
         videoRepository.save(newVideo);
+    }
+
+    @Override
+    @Transactional
+    public void deleteVideo(String slug) {
+        if (!videoRepository.existsBySlug(slug))
+            throw new VideoNotFoundException();
+
+        videoRepository.deleteBySlug(slug);
     }
 
     @Override
