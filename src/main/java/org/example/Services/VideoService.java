@@ -24,6 +24,13 @@ public class VideoService implements IVideoService {
     @Autowired
     private Environment env;
 
+    private String getFileFormat() {
+        String fileFormat = env.getProperty("fileFormat");
+        if (fileFormat == null || fileFormat.isEmpty())
+            throw new RuntimeException("empty property: fileFormat");
+        return fileFormat;
+    }
+
     @Override
     public Mono<byte[]> getVideo(String slug) {
         if (!videoRepository.existsBySlug(slug))
@@ -32,10 +39,7 @@ public class VideoService implements IVideoService {
         Video video = videoRepository.findBySlug(slug);
         return Mono.fromSupplier(() -> {
             try {
-                String fileFormat = env.getProperty("fileFormat");
-                if (fileFormat == null || fileFormat.isEmpty())
-                    throw new RuntimeException("empty property: fileFormat");
-                return Files.readAllBytes(Paths.get(String.format(fileFormat, video.getFilePath())));
+                return Files.readAllBytes(Paths.get(String.format(getFileFormat(), video.getVideoFilePath())));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -51,13 +55,20 @@ public class VideoService implements IVideoService {
     }
 
     @Override
+    public byte[] getVideoImage(String slug) throws IOException {
+        Video video = videoRepository.findBySlug(slug);
+        return Files.readAllBytes(Paths.get(String.format(getFileFormat(), video.getImageFilePath())));
+    }
+
+    @Override
     public void saveVideo(String slug, String title, String description) {
         if (videoRepository.existsBySlug(slug))
             throw new VideoAlreadyExistsException();
 
-        String filePath = slug + ".mp4";
+        String videoFilePath = slug + ".mp4";
+        String imageFilePath = slug + ".jpg"; // TODO: handle different formats
 
-        Video newVideo = new Video(slug, title, description, filePath);
+        Video newVideo = new Video(slug, title, description, videoFilePath, imageFilePath);
         videoRepository.save(newVideo);
     }
 

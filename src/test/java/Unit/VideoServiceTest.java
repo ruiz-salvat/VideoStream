@@ -35,7 +35,7 @@ public class VideoServiceTest {
     public void setUp() {
         videoService = new VideoService(videoRepository, env);
 
-        mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_DESCRIPTION, TEST_FILE_PATH);
+        mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH);
 
         Mockito.when(videoRepository.findBySlug(TEST_SLUG))
                 .thenReturn(mockVideo);
@@ -69,7 +69,7 @@ public class VideoServiceTest {
 
     @Test
     public void saveVideo_ok() {
-        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_DESCRIPTION, TEST_FILE_PATH);
+        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH);
         Mockito.when(videoRepository.findBySlug("new_slug"))
                 .thenReturn(mockVideo);
 

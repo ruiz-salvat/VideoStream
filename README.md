@@ -38,6 +38,8 @@
 
 * Create public and private components folder
 
+* Set requirement upload image min width 300px;
+
 * Javascript constants file
 
 * OAuth?

@@ -24,13 +24,16 @@ public class Video {
 
     private String description;
 
-    private String filePath;
+    private String videoFilePath;
 
-    public Video(String slug, String title, String description, String filePath) {
+    private String imageFilePath;
+
+    public Video(String slug, String title, String description, String videoFilePath, String imageFilePath) {
         this.slug = slug;
         this.title = title;
         this.description = description;
-        this.filePath = filePath;
+        this.videoFilePath = videoFilePath;
+        this.imageFilePath = imageFilePath;
     }
 
     @Override

@@ -5,3 +5,26 @@
 #video-list {
     color: #ffffff;
 }
+
+.video-card-container {
+    display: flex;
+}
+
+.video-card {
+    border: solid 2px red;
+}
+
+.video-card-image {
+    max-width: 300px;
+}
+
+.video-card-title {
+    color: white;
+}
+
+.video-card-synopsis {
+    color: white;
+    max-width: 300px;
+    max-height: 100px;
+    overflow: hidden;
+}
