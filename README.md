@@ -8,10 +8,10 @@
 	
 * Rename uploadvideo to admin
 
-* Delete non-used methods (StorageService)
-
 * Server security setup
 	* Reverse proxy server
+	* Domain
+	* SSL
 
 * Add application.properties to .gitignore
 
@@ -19,21 +19,19 @@
 
 * CI/CD
 
--- Milestone --
+* Add admin by a db migration
 
-* Extend admin page
+* Bug: after registration goes to upload video page
 
 * Category system
+
+* Video image
 
 * Finish public front-end
 
 * Create and throw exceptions for User and Role
 
-* WebSecurityConfig is deprecated -> update
-
-* Bug: after registration goes to upload video page
-
--- Might do --
+-- Milestone --
 
 * User main page
 	* (to access temporarely available content, basic users must log in)
@@ -51,8 +49,6 @@
 * Custom error page with handling?
 
 * Docker?
-
-* Jenkins?
 
 ## Database setup
 
