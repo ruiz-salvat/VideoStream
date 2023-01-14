@@ -25,11 +25,7 @@
 
 * Category system
 
-* Video image
-
 * Finish public front-end
-
-* Synopsis in upload video
 
 * Description and synopsis text area in upload video
 
