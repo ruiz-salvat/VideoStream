@@ -6,12 +6,20 @@
     color: #ffffff;
 }
 
-.video-card-container {
+#video-card-container {
     display: flex;
+    overflow: auto;
 }
 
 .video-card {
     border: solid 2px red;
+    margin: 20px;
+    background-color: #a0a0a0;
+    border-radius: 10px;
+}
+
+.video-card-text-container {
+    padding: 5px;
 }
 
 .video-card-image {
@@ -20,6 +28,8 @@
 
 .video-card-title {
     color: white;
+    font-size: 20px;
+    font-weight: 900;
 }
 
 .video-card-synopsis {

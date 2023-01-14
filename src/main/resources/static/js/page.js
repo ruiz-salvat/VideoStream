@@ -7,7 +7,7 @@ const queryParams = Object.fromEntries(new URLSearchParams(window.location.searc
 
 if(queryParams.video){
     videoScreen.src = `video/${queryParams.video}`;
-    videoPlayer.style.display = "block";
+    videoPlayer.style.display = "block"; // TODO: remove
     videoTitle.innerText = "Now playing " + queryParams.video;
 }
 

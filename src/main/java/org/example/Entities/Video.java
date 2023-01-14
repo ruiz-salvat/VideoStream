@@ -22,6 +22,8 @@ public class Video {
 
     private String title;
 
+    private String synopsis;
+
     private String description;
 
     private String videoFilePath;

@@ -35,11 +35,11 @@ public class StorageService implements IStorageService {
     }
 
     @Override
-    public boolean save(MultipartFile file, String slug) throws IOException {
+    public boolean save(MultipartFile file, String slug, String fileExtension) throws IOException {
         if (file.getSize() < 1)
             throw new EmptyFileException();
 
-        Files.write(root.resolve(slug + ".mp4"), file.getBytes());
+        Files.write(root.resolve(slug + fileExtension), file.getBytes());
         return true;
     }
 

@@ -24,9 +24,10 @@ public class PrivateVideoController {
             @RequestParam("slug") String slug,
             @RequestParam("title") String title,
             @RequestParam("description") String description,
-            @RequestParam("file") MultipartFile file) {
+            @RequestParam("video_file") MultipartFile videoFile,
+            @RequestParam("image_file") MultipartFile imageFile) {
         try {
-            if (storageService.save(file, slug)) {
+            if (storageService.save(videoFile, slug, ".mp4") && storageService.save(imageFile, slug, ".jpg")) {
                 videoService.saveVideo(slug, title, description);
                 return ResponseEntity.ok("Video saved successfully");
             }

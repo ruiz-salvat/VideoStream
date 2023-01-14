@@ -1,0 +1,1 @@
+ALTER TABLE `video` ADD `synopsis` varchar(255) NOT NULL;

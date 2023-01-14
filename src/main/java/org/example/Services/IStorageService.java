@@ -7,7 +7,7 @@ public interface IStorageService {
 
     void init();
 
-    boolean save(MultipartFile file, String slug) throws IOException;
+    boolean save(MultipartFile file, String slug, String fileExtension) throws IOException;
 
     boolean delete(String slug) throws IOException;
 

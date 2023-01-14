@@ -29,6 +29,16 @@
 
 * Finish public front-end
 
+* Synopsis in upload video
+
+* Description and synopsis text area in upload video
+
+* Increase varchar() synopsis and text
+
+* Handle multiple image file formats
+
+* Implement DTO
+
 * Create and throw exceptions for User and Role
 
 -- Milestone --

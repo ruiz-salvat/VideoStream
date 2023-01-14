@@ -1,18 +1,13 @@
 package org.example.Controllers;
 
 import lombok.AllArgsConstructor;
-import org.apache.commons.io.IOUtils;
 import org.example.Entities.Video;
 import org.example.Services.IVideoService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
