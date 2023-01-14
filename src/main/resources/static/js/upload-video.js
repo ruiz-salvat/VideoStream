@@ -26,11 +26,13 @@ function addVideoToList(video) {
 
     const tdSlug = document.createElement("TD");
     const tdTitle = document.createElement("TD");
+    const tdSynopsis = document.createElement("TD");
     const tdDescription = document.createElement("TD");
     const tdActions = document.createElement("TD");
 
     tdSlug.innerText = video.slug;
     tdTitle.innerText = video.title;
+    tdSynopsis.innerText = video.synopsis;
     tdDescription.innerText = video.description;
 
     const deleteButton = document.createElement("BUTTON");
@@ -42,6 +44,7 @@ function addVideoToList(video) {
 
     tr.appendChild(tdSlug);
     tr.appendChild(tdTitle);
+    tr.appendChild(tdSynopsis);
     tr.appendChild(tdDescription);
     tr.appendChild(tdActions);
 
@@ -69,6 +72,7 @@ videoForm.addEventListener("submit", ev => {
         let video = {
             slug: data.get("slug"),
             title: data.get("title"),
+            synopsis: data.get("synopsis"),
             description: data.get("description")
         }
         addVideoToList(video);

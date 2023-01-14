@@ -30,9 +30,10 @@ public class Video {
 
     private String imageFilePath;
 
-    public Video(String slug, String title, String description, String videoFilePath, String imageFilePath) {
+    public Video(String slug, String title, String synopsis, String description, String videoFilePath, String imageFilePath) {
         this.slug = slug;
         this.title = title;
+        this.synopsis = synopsis;
         this.description = description;
         this.videoFilePath = videoFilePath;
         this.imageFilePath = imageFilePath;

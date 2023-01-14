@@ -46,6 +46,7 @@ public class StorageService implements IStorageService {
     @Override
     public boolean delete(String slug) throws IOException {
         Files.delete(root.resolve(slug + ".mp4"));
+        Files.delete(root.resolve(slug + ".jpg"));
         return true;
     }
 }

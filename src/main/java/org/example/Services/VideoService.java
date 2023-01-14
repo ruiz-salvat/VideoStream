@@ -61,14 +61,14 @@ public class VideoService implements IVideoService {
     }
 
     @Override
-    public void saveVideo(String slug, String title, String description) {
+    public void saveVideo(String slug, String title, String synopsis, String description) {
         if (videoRepository.existsBySlug(slug))
             throw new VideoAlreadyExistsException();
 
         String videoFilePath = slug + ".mp4";
         String imageFilePath = slug + ".jpg"; // TODO: handle different formats
 
-        Video newVideo = new Video(slug, title, description, videoFilePath, imageFilePath);
+        Video newVideo = new Video(slug, title, synopsis, description, videoFilePath, imageFilePath);
         videoRepository.save(newVideo);
     }
 

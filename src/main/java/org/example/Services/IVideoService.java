@@ -14,7 +14,7 @@ public interface IVideoService {
 
     byte[] getVideoImage(String slug) throws IOException;
 
-    void saveVideo(String slug, String title, String description);
+    void saveVideo(String slug, String title, String synopsis, String description);
 
     void deleteVideo(String slug);
 
