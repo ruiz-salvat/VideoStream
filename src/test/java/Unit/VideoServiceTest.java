@@ -35,7 +35,7 @@ public class VideoServiceTest {
     public void setUp() {
         videoService = new VideoService(videoRepository, env);
 
-        mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH);
+        mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_DESCRIPTION, TEST_SYNOPSIS, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH);
 
         Mockito.when(videoRepository.findBySlug(TEST_SLUG))
                 .thenReturn(mockVideo);
@@ -69,11 +69,11 @@ public class VideoServiceTest {
 
     @Test
     public void saveVideo_ok() {
-        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH);
+        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH);
         Mockito.when(videoRepository.findBySlug("new_slug"))
                 .thenReturn(mockVideo);
 
-        videoService.saveVideo("new_slug", TEST_TITLE, TEST_DESCRIPTION);
+        videoService.saveVideo("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION);
 
         Video video = videoRepository.findBySlug("new_slug");
 
@@ -84,7 +84,7 @@ public class VideoServiceTest {
 
     @Test(expected = VideoAlreadyExistsException.class)
     public void saveVideo_alreadyExists() {
-        videoService.saveVideo(TEST_SLUG, TEST_TITLE, TEST_DESCRIPTION);
+        videoService.saveVideo(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION);
     }
 
     @Test

@@ -18,6 +18,8 @@ public class Constants {
 
     public final static String TEST_TITLE = "test_title";
 
+    public final static String TEST_SYNOPSIS = "test_synopsis";
+
     public final static String TEST_DESCRIPTION = "test_description";
 
     public final static String TEST_VIDEO_FILE_PATH = "test_slug.mp4";

@@ -45,9 +45,11 @@ public class AdminUserTest {
     @Test
     public void post_video_ok() throws Exception {
         mvc.perform(multipart("/private-video")
-                        .file("file", "some txt".getBytes())
+                        .file("video_file", "some txt".getBytes())
+                        .file("image_file", "some text".getBytes())
                         .param("slug", TEST_SLUG)
                         .param("title", TEST_TITLE)
+                        .param("synopsis", TEST_SYNOPSIS)
                         .param("description", TEST_DESCRIPTION)
                         .with(mockUser))
                     .andExpect(status().isOk());
