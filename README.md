@@ -35,8 +35,6 @@
 
 * Handle multiple image file formats
 
-* Implement DTO
-
 * Create and throw exceptions for User and Role
 
 -- Milestone --
@@ -118,6 +116,22 @@ Access control by user roles:
 1. Create droplet
 
 2. Generate SSH key
+
+3. Create ubuntu user
+	```
+	adduser videostream
+	usermod -aG sudo videostream
+	```
+
+4. Set up firewall
+	```
+	ufw allow OpenSSH
+	ufw enable
+	```
+	Verify:
+	```
+	ufw status
+	```
 
 3. Copy SSH key to github account to grant access to github from the droplet
 

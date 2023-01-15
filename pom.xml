@@ -164,8 +164,8 @@
                 <configuration>
                     <url>jdbc:mysql://localhost:3306/video_stream</url>
                     <user>springuser</user>
-                    <password>pass_00</password>
-<!--                    <password>U6SS&amp;iQaFPVwSF@%</password>-->
+<!--                    <password>pass_00</password>-->
+                    <password>U6SS&amp;iQaFPVwSF@%</password>
                     <schemas>
                         <schema>video_stream</schema>
                     </schemas>
