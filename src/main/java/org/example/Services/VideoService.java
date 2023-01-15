@@ -1,9 +1,11 @@
 package org.example.Services;
 
 import lombok.AllArgsConstructor;
+import org.example.DTOs.VideoDTO;
 import org.example.Entities.Video;
 import org.example.Exceptions.VideoAlreadyExistsException;
 import org.example.Exceptions.VideoNotFoundException;
+import org.example.Mappers.IMapper;
 import org.example.Repositories.IVideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -20,6 +22,8 @@ import java.util.List;
 public class VideoService implements IVideoService {
 
     private IVideoRepository videoRepository;
+
+    private IMapper<Video, VideoDTO> videoMapper;
 
     @Autowired
     private Environment env;
@@ -47,11 +51,12 @@ public class VideoService implements IVideoService {
     }
 
     @Override
-    public Video getVideoDetails(String slug) {
+    public VideoDTO getVideoDetails(String slug) {
         if (!videoRepository.existsBySlug(slug))
             throw new VideoNotFoundException();
 
-        return videoRepository.findBySlug(slug);
+        Video video = videoRepository.findBySlug(slug);
+        return videoMapper.modelToDto(video);
     }
 
     @Override
@@ -82,8 +87,8 @@ public class VideoService implements IVideoService {
     }
 
     @Override
-    public List<Video> getAllVideos() {
-        return (List<Video>) videoRepository.findAll();
+    public List<VideoDTO> getAllVideos() {
+        return videoMapper.modelsToDtos(videoRepository.findAll());
     }
 
 }

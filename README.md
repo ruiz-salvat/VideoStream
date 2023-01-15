@@ -2,16 +2,18 @@
 
 ## To Do List
 
+* Server security setup
+	* Ubuntu user
+	* Firewall
+	* Reverse proxy server
+	* Domain
+	* SSL
+
 * Unit Tests
 	* VideoService
 	* StorageService
 	
 * Rename uploadvideo to admin
-
-* Server security setup
-	* Reverse proxy server
-	* Domain
-	* SSL
 
 * Add application.properties to .gitignore
 

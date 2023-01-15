@@ -1,7 +1,7 @@
 package org.example.Controllers;
 
 import lombok.AllArgsConstructor;
-import org.example.Entities.Video;
+import org.example.DTOs.VideoDTO;
 import org.example.Services.IVideoService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class VideoController {
     }
 
     @GetMapping(value = "details/{slug}")
-    public ResponseEntity<Video> getVideoDetails(@PathVariable String slug) {
+    public ResponseEntity<VideoDTO> getVideoDetails(@PathVariable String slug) {
         return ResponseEntity.ok(videoService.getVideoDetails(slug));
     }
 
@@ -34,7 +34,7 @@ public class VideoController {
     }
 
     @GetMapping("all")
-    public ResponseEntity<List<Video>> getAllVideos() {
+    public ResponseEntity<List<VideoDTO>> getAllVideos() {
         return ResponseEntity.ok(videoService.getAllVideos());
     }
 

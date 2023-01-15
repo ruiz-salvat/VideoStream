@@ -1,8 +1,10 @@
 package Unit;
 
+import org.example.DTOs.VideoDTO;
 import org.example.Entities.Video;
 import org.example.Exceptions.VideoAlreadyExistsException;
 import org.example.Exceptions.VideoNotFoundException;
+import org.example.Mappers.VideoMapper;
 import org.example.Repositories.IVideoRepository;
 import org.example.Services.IVideoService;
 import org.example.Services.VideoService;
@@ -30,12 +32,16 @@ public class VideoServiceTest {
     public MockitoRule rule = MockitoJUnit.rule();
     public IVideoService videoService;
     private Video mockVideo;
+    private VideoDTO mockVideoDto;
+    private VideoMapper videoMapper;
 
     @Before
     public void setUp() {
-        videoService = new VideoService(videoRepository, env);
+        videoMapper = new VideoMapper();
+        videoService = new VideoService(videoRepository, videoMapper, env);
 
-        mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_DESCRIPTION, TEST_SYNOPSIS, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH);
+        mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH);
+        mockVideoDto = new VideoDTO(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION);
 
         Mockito.when(videoRepository.findBySlug(TEST_SLUG))
                 .thenReturn(mockVideo);
@@ -57,9 +63,9 @@ public class VideoServiceTest {
 
     @Test
     public void getVideoDetails_ok() {
-        Video video = videoService.getVideoDetails(TEST_SLUG);
+        VideoDTO videoDto = videoService.getVideoDetails(TEST_SLUG);
 
-        assertEquals(mockVideo, video);
+        assertEquals(mockVideoDto, videoDto);
     }
 
     @Test(expected = VideoNotFoundException.class)
