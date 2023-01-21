@@ -27,6 +27,8 @@
 
 * Category system
 
+* DTO (two-way)
+
 * Finish public front-end
 
 * Description and synopsis text area in upload video

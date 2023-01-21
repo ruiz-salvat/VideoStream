@@ -1,10 +1,12 @@
 package Unit;
 
 import org.example.DTOs.VideoDTO;
+import org.example.Entities.Category;
 import org.example.Entities.Video;
 import org.example.Exceptions.VideoAlreadyExistsException;
 import org.example.Exceptions.VideoNotFoundException;
 import org.example.Mappers.VideoMapper;
+import org.example.Repositories.ICategoryRepository;
 import org.example.Repositories.IVideoRepository;
 import org.example.Services.IVideoService;
 import org.example.Services.VideoService;
@@ -19,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 import static Util.Constants.*;
 import static org.junit.Assert.*;
 
@@ -28,25 +32,28 @@ public class VideoServiceTest {
     private Environment env;
     @Mock
     private IVideoRepository videoRepository;
+    @Mock
+    private ICategoryRepository categoryRepository;
     @Rule // initializes mocks
     public MockitoRule rule = MockitoJUnit.rule();
     public IVideoService videoService;
-    private Video mockVideo;
     private VideoDTO mockVideoDto;
-    private VideoMapper videoMapper;
+    private Category mockCategory;
 
     @Before
     public void setUp() {
-        videoMapper = new VideoMapper();
-        videoService = new VideoService(videoRepository, videoMapper, env);
+        VideoMapper videoMapper = new VideoMapper();
+        videoService = new VideoService(videoRepository, categoryRepository, videoMapper, env);
 
-        mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH);
-        mockVideoDto = new VideoDTO(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION);
+        mockCategory = new Category(TEST_CATEGORY_NAME, TEST_CATEGORY_DESCRIPTION);
+        Video mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory);
+        mockVideoDto = new VideoDTO(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID);
 
         Mockito.when(videoRepository.findBySlug(TEST_SLUG))
                 .thenReturn(mockVideo);
         Mockito.when(videoRepository.existsBySlug(TEST_SLUG))
                 .thenReturn(true);
+        Mockito.when(categoryRepository.findById(TEST_CATEGORY_ID)).thenReturn(Optional.of(mockCategory));
     }
 
     @Test
@@ -75,11 +82,12 @@ public class VideoServiceTest {
 
     @Test
     public void saveVideo_ok() {
-        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH);
+        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory);
         Mockito.when(videoRepository.findBySlug("new_slug"))
                 .thenReturn(mockVideo);
+        Mockito.when(videoRepository.save(mockVideo)).thenReturn(mockVideo);
 
-        videoService.saveVideo("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION);
+        videoService.saveVideo("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID);
 
         Video video = videoRepository.findBySlug("new_slug");
 
@@ -90,7 +98,7 @@ public class VideoServiceTest {
 
     @Test(expected = VideoAlreadyExistsException.class)
     public void saveVideo_alreadyExists() {
-        videoService.saveVideo(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION);
+        videoService.saveVideo(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID);
     }
 
     @Test

@@ -1,6 +1,8 @@
 package org.example.Controllers;
 
 import lombok.AllArgsConstructor;
+import org.example.DTOs.VideoDTO;
+import org.example.Entities.Video;
 import org.example.Exceptions.EmptyFileException;
 import org.example.Services.IStorageService;
 import org.example.Services.IVideoService;
@@ -20,17 +22,18 @@ public class PrivateVideoController {
     private IStorageService storageService;
 
     @PostMapping()
-    public ResponseEntity<String> setVideo(
+    public ResponseEntity<VideoDTO> setVideo(
             @RequestParam("slug") String slug,
             @RequestParam("title") String title,
             @RequestParam("synopsis") String synopsis,
             @RequestParam("description") String description,
+            @RequestParam("category") Long category,
             @RequestParam("video_file") MultipartFile videoFile,
             @RequestParam("image_file") MultipartFile imageFile) {
         try {
             if (storageService.save(videoFile, slug, ".mp4") && storageService.save(imageFile, slug, ".jpg")) {
-                videoService.saveVideo(slug, title, synopsis, description);
-                return ResponseEntity.ok("Video saved successfully");
+                VideoDTO videoDTO = videoService.saveVideo(slug, title, synopsis, description, category);
+                return ResponseEntity.ok(videoDTO);
             }
         } catch (EmptyFileException | IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

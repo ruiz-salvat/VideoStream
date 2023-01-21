@@ -2,9 +2,8 @@ package org.example.Entities;
 
 import lombok.*;
 import org.hibernate.Hibernate;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -30,13 +29,18 @@ public class Video {
 
     private String imageFilePath;
 
-    public Video(String slug, String title, String synopsis, String description, String videoFilePath, String imageFilePath) {
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Video(String slug, String title, String synopsis, String description, String videoFilePath, String imageFilePath, Category category) {
         this.slug = slug;
         this.title = title;
         this.synopsis = synopsis;
         this.description = description;
         this.videoFilePath = videoFilePath;
         this.imageFilePath = imageFilePath;
+        this.category = category;
     }
 
     @Override

@@ -2,6 +2,7 @@ package org.example.Mappers;
 
 import lombok.NoArgsConstructor;
 import org.example.DTOs.VideoDTO;
+import org.example.Entities.Category;
 import org.example.Entities.Video;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +13,13 @@ import java.util.List;
 @Component
 @NoArgsConstructor
 public class VideoMapper implements IMapper<Video, VideoDTO> {
-
     @Override
     public VideoDTO modelToDto(Video model) {
-        return new VideoDTO(model.getSlug(), model.getTitle(), model.getSynopsis(), model.getDescription());
+        Category category = model.getCategory();
+        Long categoryId = null;
+        if (category != null)
+            categoryId = category.getId();
+        return new VideoDTO(model.getSlug(), model.getTitle(), model.getSynopsis(), model.getDescription(), categoryId);
     }
 
     @Override

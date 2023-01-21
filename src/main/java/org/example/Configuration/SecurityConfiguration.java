@@ -38,17 +38,19 @@ public class SecurityConfiguration {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/video/**").permitAll()
+                .antMatchers("/category/**").permitAll()
                 .antMatchers("/components/title-bar").permitAll()
                 .antMatchers("/media/title_image.png").permitAll()
                 .antMatchers("/favicon.ico").permitAll()
 
                 // cookies cannot be set with xmlHttpRequests, so these components must be public even though they are
                 // just used for authenticated users
-                .antMatchers("/components/video-upload-success").permitAll()
+                .antMatchers("/components/video-upload-success").permitAll() // TODO: remove?
                 .antMatchers("/components/video-upload-fail").permitAll()
 
                 // admin urls
                 .antMatchers("/private-video/**").hasAuthority("admin")
+                .antMatchers("/private-category/**").hasAuthority("admin")
                 .antMatchers("/upload-video").hasAuthority("admin").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
 

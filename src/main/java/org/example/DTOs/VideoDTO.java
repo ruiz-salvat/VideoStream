@@ -1,8 +1,12 @@
 package org.example.DTOs;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import java.util.Objects;
 
+@Getter
+@Setter
 @AllArgsConstructor
 public class VideoDTO {
 
@@ -14,37 +18,7 @@ public class VideoDTO {
 
     private String description;
 
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    private Long category;
 
     @Override
     public boolean equals(Object o) {

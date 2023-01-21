@@ -26,4 +26,10 @@ public class Constants {
 
     public final static String TEST_IMAGE_FILE_PATH = "test_slug.jpg";
 
+    public final static String TEST_CATEGORY_NAME = "test_category_name";
+
+    public final static String TEST_CATEGORY_DESCRIPTION = "test_category_description";
+
+    public final static Long TEST_CATEGORY_ID = 1L;
+
 }
