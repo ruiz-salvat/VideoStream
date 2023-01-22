@@ -21,7 +21,7 @@ public class PrivateVideoController {
     private IStorageService storageService;
 
     @PostMapping()
-    public ResponseEntity<String> setVideo(
+    public ResponseEntity<VideoDTO> setVideo(
             @RequestParam("slug") String slug,
             @RequestParam("title") String title,
             @RequestParam("synopsis") String synopsis,
@@ -32,12 +32,10 @@ public class PrivateVideoController {
         try {
             if (storageService.save(videoFile, slug, ".mp4") && storageService.save(imageFile, slug, ".jpg")) {
                 VideoDTO videoDTO = videoService.saveVideo(slug, title, synopsis, description, category);
-                return ResponseEntity.ok("Vale!");
-//                return ResponseEntity.ok(videoDTO);
+                return ResponseEntity.ok(videoDTO);
             }
         } catch (EmptyFileException | IOException e) {
-            return ResponseEntity.ok(e.getMessage());
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
