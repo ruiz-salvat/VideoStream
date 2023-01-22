@@ -9,9 +9,14 @@
 	* Domain
 	* SSL
 
+* Finish public front-end
+
 * Unit Tests
 	* VideoService
+	* CategoryService
 	* StorageService
+* Integration Tests
+	* CategoryController
 	
 * Rename uploadvideo to admin
 
@@ -25,11 +30,7 @@
 
 * Bug: after registration goes to upload video page
 
-* Category system
-
 * DTO (two-way)
-
-* Finish public front-end
 
 * Description and synopsis text area in upload video
 
@@ -201,7 +202,7 @@ start.sh
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/java
 export PATH=$JAVA_HOME/bin:$PATH
 APP_NAME=video_stream
-nohup java -jar /root/VideoStream/target/VideoStream-1.0-SNAPSHOT-jar-with-dependencies.jar > video_stream.log 2>&1 &
+nohup java -jar /home/videostream/VideoStream/target/VideoStream-1.0-SNAPSHOT-jar-with-dependencies.jar > video_stream.log 2>&1 &
 echo "$APP_NAME is running"
 ```
 
@@ -232,7 +233,7 @@ else
     kill -9 $pid
 fi
 
-nohup java -jar /root/VideoStream/target/VideoStream-1.0-SNAPSHOT-jar-with-dependencies.jar > video_stream.log 2>&1 &
+nohup java -jar /home/videostream/VideoStream/target/VideoStream-1.0-SNAPSHOT-jar-with-dependencies.jar > video_stream.log 2>&1 &
 echo "$APP_NAME is running"
 ```
 
@@ -254,11 +255,16 @@ After=syslog.target network.target remote-fs.target nss-lookup.target
 
 [Service]
 Type=forking
-ExecStart=/root/shell-scripts/start.sh
-ExecReload=/root/shell-scripts/restart.sh
-ExecStop=/root/shell-scripts/stop.sh
+ExecStart=/home/videostream/shell-scripts/start.sh
+ExecReload=/home/videostream/shell-scripts/restart.sh
+ExecStop=/home/videostream/shell-scripts/stop.sh
 PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target
+
+Reload systemctl:
+```
+sudo systemctl daemon-reload
+```
 

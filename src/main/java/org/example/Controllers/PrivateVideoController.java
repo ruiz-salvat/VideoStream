@@ -2,7 +2,6 @@ package org.example.Controllers;
 
 import lombok.AllArgsConstructor;
 import org.example.DTOs.VideoDTO;
-import org.example.Entities.Video;
 import org.example.Exceptions.EmptyFileException;
 import org.example.Services.IStorageService;
 import org.example.Services.IVideoService;
