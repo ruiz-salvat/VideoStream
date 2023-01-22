@@ -240,11 +240,9 @@ echo "$APP_NAME is running"
 Grant access to the shell scripts:
 
 ```
-chmod 777 shell-scripts
-chmod +rwx start.sh
-chmod +rwx stop.sh
-chmod +rwx restart.sh
-chmod +rwx VideoStream-1.0-SNAPSHOT-jar-with-dependencies.jar
+chmod 777 start.sh
+chmod 777 stop.sh
+chmod 777 restart.sh
 ```
 
 at /usr/lib/systemd/system/video_stream.service:
