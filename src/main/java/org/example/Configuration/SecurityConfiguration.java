@@ -51,13 +51,13 @@ public class SecurityConfiguration {
                 // admin urls
                 .antMatchers("/private-video/**").hasAuthority("admin")
                 .antMatchers("/private-category/**").hasAuthority("admin")
-                .antMatchers("/upload-video").hasAuthority("admin").anyRequest()
+                .antMatchers("/admin").hasAuthority("admin").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
 
                 // login page
                 .loginPage("/login")
                 .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/upload-video")
+                .defaultSuccessUrl("/") // TODO: redirect to dashboard
                 .usernameParameter("user_name")
                 .passwordParameter("password")
                 .and().logout()

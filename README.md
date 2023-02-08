@@ -17,8 +17,6 @@
 * Integration Tests
 	* CategoryController
 	
-* Rename uploadvideo to admin
-
 * Add application.properties to .gitignore
 
 * Move flyway config to application.properties

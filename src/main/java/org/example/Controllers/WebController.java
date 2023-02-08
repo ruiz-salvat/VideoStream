@@ -16,9 +16,9 @@ public class WebController {
         else return "page";
     }
 
-    @RequestMapping(value = "upload-video")
+    @RequestMapping(value = "admin")
     public String uploadVideo() {
-        return "upload-video";
+        return "admin";
     }
 
     @RequestMapping(value = "components/{component-name}")
