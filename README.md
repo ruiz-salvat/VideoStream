@@ -13,7 +13,6 @@
 
 * Unit Tests
 	* VideoService
-	* CategoryService
 	* StorageService
 * Integration Tests
 	* CategoryController
@@ -40,6 +39,10 @@
 
 * Create and throw exceptions for User and Role
 
+* Docker
+
+* Docs
+
 -- Milestone --
 
 * User main page
@@ -59,7 +62,6 @@
 
 * Custom error page with handling?
 
-* Docker?
 
 ## Database setup
 

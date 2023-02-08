@@ -81,7 +81,7 @@ public class VideoServiceTest {
     }
 
     @Test
-    public void saveVideo_ok() {
+    public void saveVideo_ok() { // TODO: refactor
         Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory);
         Mockito.when(videoRepository.findBySlug("new_slug"))
                 .thenReturn(mockVideo);
