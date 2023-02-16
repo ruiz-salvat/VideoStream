@@ -1,0 +1,3 @@
+ALTER TABLE video MODIFY COLUMN synopsis TEXT;
+ALTER TABLE video MODIFY COLUMN description TEXT;
+ALTER TABLE category MODIFY COLUMN description TEXT;

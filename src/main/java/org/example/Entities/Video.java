@@ -2,6 +2,7 @@ package org.example.Entities;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -21,8 +22,12 @@ public class Video {
 
     private String title;
 
+    @Lob
+    @Type(type = "text")
     private String synopsis;
 
+    @Lob
+    @Type(type = "text")
     private String description;
 
     private String videoFilePath;

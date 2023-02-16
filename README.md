@@ -16,16 +16,10 @@
 	* StorageService
 * Integration Tests
 	* CategoryController
-	
-* Add application.properties to .gitignore
-
-* Move flyway config to application.properties
 
 * CI/CD
 
 * Add admin by a db migration
-
-* Bug: after registration goes to upload video page
 
 * DTO (two-way)
 
@@ -37,11 +31,13 @@
 
 * Create and throw exceptions for User and Role
 
-* Docker
-
 * Docs
 
 -- Milestone --
+
+* Dashboard
+
+* Docker
 
 * User main page
 	* (to access temporarely available content, basic users must log in)

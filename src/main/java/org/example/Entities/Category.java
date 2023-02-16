@@ -4,9 +4,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -22,6 +22,8 @@ public class Category {
 
     private String name;
 
+    @Lob
+    @Type(type = "text")
     private String description;
 
     public Category(String name, String description) {
