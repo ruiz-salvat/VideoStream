@@ -15,7 +15,7 @@ fetch(`video/details/${queryParams.video}`)
     .then(response => response.json())
     .then(response => {
         videoTitle.innerText = response.title;
-        videoDescription.innerText = response.description;
+        videoDescription.innerHTML = response.description;
     });
 
 // components

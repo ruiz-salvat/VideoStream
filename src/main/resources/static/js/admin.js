@@ -66,7 +66,6 @@ function deleteCategory(id) {
         });
 }
 
-
 function addVideoToList(video) {
     const tr = document.createElement("TR");
     tr.id = video.slug;
@@ -78,18 +77,19 @@ function addVideoToList(video) {
     const tdCategory = document.createElement("TD");
     const tdActions = document.createElement("TD");
 
-    tdSlug.innerText = video.slug;
-    tdTitle.innerText = video.title;
-    tdSynopsis.innerText = video.synopsis;
-    tdDescription.innerText = video.description;
+    tdSlug.innerHTML = `<div class='cell-container'>${video.slug}</div>`;
+    tdTitle.innerHTML = `<div class='cell-container'>${video.title}</div>`;
+    tdSynopsis.innerHTML = `<div class='cell-container synopsis'>${video.synopsis}</div>`;
+    tdDescription.innerHTML = `<div class='cell-container'>${video.description}</div>`;
 
     let category = categoryOptions.find(category => category.id === video.category);
-    tdCategory.innerText = category.name;
+    tdCategory.innerHTML = `<div class='cell-container'>${category.name}</div>`;
 
     const deleteButton = document.createElement("BUTTON");
     deleteButton.innerText = "delete";
     deleteButton.addEventListener("click", function() {
-        deleteVideo(video.slug);
+        if (confirm("Are you sure that you want to delete this video?"))
+            deleteVideo(video.slug);
     }, false);
     tdActions.appendChild(deleteButton);
 
@@ -111,13 +111,14 @@ function addCategoryToList(category) {
     const tdDescription = document.createElement("TD");
     const tdActions = document.createElement("TD");
 
-    tdName.innerText = category.name;
-    tdDescription.innerText = category.description;
+    tdName.innerHTML = `<div class='cell-container'>${category.name}</div>`;
+    tdDescription.innerHTML = `<div class='cell-container'>${category.description}</div>`;
 
     const deleteButton = document.createElement("BUTTON");
     deleteButton.innerText = "delete";
     deleteButton.addEventListener("click", function() {
-        deleteCategory(category.id);
+        if (confirm("Are you sure that you want to delete this category?"))
+            deleteCategory(category.id);
     }, false);
     tdActions.appendChild(deleteButton);
 

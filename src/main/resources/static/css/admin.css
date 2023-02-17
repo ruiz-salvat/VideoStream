@@ -20,10 +20,31 @@ p {
     margin-bottom: 10px;
 }
 
+.input-container {
+    display: grid;
+    grid-template-columns: 150px auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .inner-container {
     padding: 10px;
 }
 
-table, th, td {
+.cell-container {
+    max-height: 200px;
+    overflow: auto;
+    padding: 15px;
+}
+
+.synopsis {
+    max-width: 500px;
+}
+
+th, td {
   border: 1px solid black;
+}
+
+td {
+    max-height: 200px;
 }

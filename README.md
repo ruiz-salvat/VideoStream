@@ -17,15 +17,9 @@
 * Integration Tests
 	* CategoryController
 
-* CI/CD
-
 * Add admin by a db migration
 
 * DTO (two-way)
-
-* Description and synopsis text area in upload video
-
-* Increase varchar() synopsis and text
 
 * Handle multiple image file formats
 
@@ -38,6 +32,8 @@
 * Dashboard
 
 * Docker
+
+* CI/CD
 
 * User main page
 	* (to access temporarely available content, basic users must log in)
