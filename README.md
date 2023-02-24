@@ -169,19 +169,21 @@ sudo systemctl start mysql.service
 
 8. Create mysql springuser credentials
 
-9. Run migrations
+9. Copy flyway.conf and application.properties (ignored files)
+
+10. Run migrations
 	1. Might need to populate hibernate_sequence
 	```
 	INSERT INTO hibernate_sequence VALUES (99);
 	```
 
-10. Create VideoStreamData folder at the same level of the repository
+11. Create VideoStreamData folder at the same level of the repository
 
-11. Build executable jar
+12. Build executable jar
 
-12. Might need to set a high number in the hibernate sequence table to avoid having problems with ids
+13. Might need to set a high number in the hibernate sequence table to avoid having problems with ids
 
-13. Run as service
+14. Run as service
 
 Create files:
 
