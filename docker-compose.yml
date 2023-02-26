@@ -18,6 +18,6 @@ services:
       MYSQL_PASSWORD: 'pass_00'
       MYSQL_ROOT_PASSWORD: 'pass_00'
     ports:
-      - '3307:3307'
+      - '3306:3306'
     expose:
-      - '3307'
+      - '3306'
