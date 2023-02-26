@@ -1,23 +1,15 @@
 version: '3.8'
 services:
 
-  backend-web:
+  backend:
     build: .
     ports:
-      - "8080:8080"
-#    volumes:
-#      - ./:/app
-    depends_on:
-      - database
-  
+      - '8080:8080'
+
   database:
-    image: mysql:8.0.28
+    image: mysql:8.0.31
     environment:
-      MYSQL_DATABASE: 'video_stream'
-      MYSQL_USER: 'springuser'
-      MYSQL_PASSWORD: 'pass_00'
       MYSQL_ROOT_PASSWORD: 'pass_00'
+      MYSQL_DATABASE: 'video_stream'
     ports:
-      - '3306:3306'
-    expose:
-      - '3306'
+      - '3307:3306'

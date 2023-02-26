@@ -27,11 +27,13 @@
 
 * Docs
 
+* Docker compose
+	* Dev
+	* Prod
+
 -- Milestone --
 
 * Dashboard
-
-* Docker
 
 * CI/CD
 
