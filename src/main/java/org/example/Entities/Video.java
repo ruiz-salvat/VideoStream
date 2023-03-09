@@ -53,7 +53,7 @@ public class Video {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Video video = (Video) o;
-        return id != null && Objects.equals(id, video.id);
+        return (id != null && Objects.equals(id, video.id)) || this.slug.equals(video.slug);
     }
 
     @Override

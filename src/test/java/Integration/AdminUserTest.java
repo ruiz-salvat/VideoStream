@@ -1,7 +1,11 @@
 package Integration;
 
+import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
 import org.example.Entities.Video;
 import org.example.Main;
+import org.example.Repositories.ICategoryRepository;
 import org.example.Repositories.IVideoRepository;
 import org.junit.After;
 import org.junit.Before;
@@ -16,6 +20,8 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static Util.Constants.*;
 import static org.junit.Assert.assertEquals;
@@ -34,6 +40,8 @@ public class AdminUserTest {
     private MockMvc mvc;
     @Autowired
     private IVideoRepository videoRepository;
+    @Autowired
+    private ICategoryRepository categoryRepository;
     private SecurityMockMvcRequestPostProcessors.UserRequestPostProcessor mockUser;
 
     @Before
@@ -44,6 +52,21 @@ public class AdminUserTest {
 
     @Test
     public void post_video_ok() throws Exception {
+        mvc.perform(multipart("/private-category")
+                        .param("name", TEST_CATEGORY_NAME)
+                        .param("description", TEST_CATEGORY_DESCRIPTION)
+                        .with(mockUser))
+                .andExpect(status().isOk());
+
+        MvcResult result = mvc.perform(MockMvcRequestBuilders
+                .get("/category/all")).andReturn();
+
+        String categoryResponse = result.getResponse().getContentAsString();
+        JSONParser parser = new JSONParser();
+        JSONArray jsonArr = (JSONArray) parser.parse(categoryResponse);
+        JSONObject jsonObj = (JSONObject) jsonArr.get(0);
+        Integer id = (Integer) jsonObj.get("id");
+
         mvc.perform(multipart("/private-video")
                         .file("video_file", "some txt".getBytes())
                         .file("image_file", "some text".getBytes())
@@ -51,6 +74,7 @@ public class AdminUserTest {
                         .param("title", TEST_TITLE)
                         .param("synopsis", TEST_SYNOPSIS)
                         .param("description", TEST_DESCRIPTION)
+                        .param("category", id.toString())
                         .with(mockUser))
                     .andExpect(status().isOk());
 
@@ -63,6 +87,7 @@ public class AdminUserTest {
     @After
     public void cleanTestDatabase() {
         videoRepository.deleteAll();
+        categoryRepository.deleteAll();
     }
 
 }

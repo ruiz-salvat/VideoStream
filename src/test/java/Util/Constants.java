@@ -32,4 +32,6 @@ public class Constants {
 
     public final static Long TEST_CATEGORY_ID = 1L;
 
+    public final static String TEST_DATA_PATH = "../VideoStreamData/";
+
 }

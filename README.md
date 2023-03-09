@@ -9,7 +9,7 @@
 	* Domain
 	* SSL
 
-* Finish public front-end
+* Public front-end with Next js
 
 * Unit Tests
 	* VideoService
@@ -28,6 +28,7 @@
 * Docs
 
 * Docker compose
+	- Volumes
 	* Dev
 	* Prod
 
