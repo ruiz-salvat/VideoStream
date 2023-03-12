@@ -1,7 +1,7 @@
-.idea/
-.vscode/
-front-app/.next/
-front-app/node_modules/
+.idea
+.vscode
+.next
+node_modules
 target
-src/main/resources/application.properties
+application.properties
 flyway.conf
