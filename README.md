@@ -109,6 +109,10 @@ Spring Security Mysql:
 Access control by user roles:
 <https://www.baeldung.com/spring-security-method-security>
 
+Next js pre-rendering
+
+https://nextjs.org/learn/basics/data-fetching/pre-rendering
+
 ## Deployment steps
 
 1. Create droplet
