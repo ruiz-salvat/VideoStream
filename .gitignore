@@ -3,5 +3,6 @@
 .next
 node_modules
 target
+VideoStreamData
 application.properties
 flyway.conf
