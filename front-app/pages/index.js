@@ -1,20 +1,15 @@
-import Link from 'next/link'
+import Layout from '../components/layout'
+import CategoryContainer from '../components/category_container'
 
 export default function HomePage({ categories, videos }) {
    return (
-      <div>
-         <ul>
-            {categories.map((category) => (
-               <li key={category.id}>{category.name}</li>
-            ))}
-         </ul>
-         
-         <ul>
-            {videos.map((video) => (
-               <li key={video.slug}>{video.title}</li>
-            ))}
-         </ul>
-      </div>
+      <Layout>
+            <div>
+               {categories.map((category) => (
+                  <CategoryContainer key={category.id} category={category} videos={videos.filter(video => video.category === category.id)}/>
+               ))}
+            </div>
+      </Layout>
     )
 }
 

@@ -21,16 +21,16 @@
 
 * DTO (two-way)
 
-* Handle multiple image file formats
+* Handle just jpg and throw exceptions for other extensions
 
 * Create and throw exceptions for User and Role
 
 * Docs
 
 * Docker compose
-	- Volumes
-	* Dev
-	* Prod
+  - Volumes
+  * Dev
+  * Prod
 
 -- Milestone --
 
@@ -267,3 +267,8 @@ Reload systemctl:
 sudo systemctl daemon-reload
 ```
 
+# Free domain movies sites
+
+<http://www.publicdomaintorrents.info/index.html>
+
+<https://archive.org/details/feature_films>

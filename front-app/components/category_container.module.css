@@ -1,0 +1,4 @@
+.video_card_container {
+    display: flex;
+    overflow: auto;
+}
