@@ -1,5 +1,5 @@
 import Layout from '../components/layout'
-import CategoryContainer from '../components/category_container'
+import CategoryContainer from '../components/index/category_container'
 
 export default function HomePage({ categories, videos }) {
    return (
