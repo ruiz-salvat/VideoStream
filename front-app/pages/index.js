@@ -14,8 +14,8 @@ export default function HomePage({ categories, videos }) {
 }
 
 export async function getStaticProps() {
-   const categoriesRes = await fetch('http://127.0.0.1:8080/category/all')
-   const videosRes = await fetch('http://127.0.0.1:8080/video/all')
+   const categoriesRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}category/all`)
+   const videosRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}video/all`)
    const categories = await categoriesRes.json()
    const videos = await videosRes.json()
 

@@ -1,11 +1,16 @@
+import VideoPage from '../components/page/video_page'
+import Layout from '../components/layout'
+
 export default function Video({ videoDetails }) {
    return <>
-      <p>Post: {videoDetails.title}</p>
+      <Layout>
+         <VideoPage videoDetails={videoDetails} />
+      </Layout>             
    </>
-}
+}                        
  
 export async function getStaticPaths() {
-   const videosRes = await fetch('http://127.0.0.1:8080/video/all')
+   const videosRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}video/all`)
    const videos = await videosRes.json()
 
    const paths = videos.map((video) => ({
@@ -16,12 +21,12 @@ export async function getStaticPaths() {
 }
  
 export async function getStaticProps({ params }) {
-   const videoDetailsRes = await fetch(`http://127.0.0.1:8080/video/details/${params.slug}`)
+   const videoDetailsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}video/details/${params.slug}`)
    const videoDetails = await videoDetailsRes.json()
-
+            
    return {
       props: {
          videoDetails
-      }
+      }             
    }
 }
