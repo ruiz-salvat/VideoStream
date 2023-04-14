@@ -3,6 +3,7 @@
 .next
 node_modules
 target
+mysqldata
 VideoStreamData
 application.properties
 flyway.conf

@@ -8,51 +8,33 @@
 	* Reverse proxy server
 	* Domain
 	* SSL
-
-* Public front-end with Next js
+* Docker
+  * docker dev with volumes
+  * env variables
+  * docker prod
+    * back
+    * db
+    * front
 
 * Unit Tests
-	* VideoService
-	* StorageService
 * Integration Tests
-	* CategoryController
-
 * Add admin by a db migration
-
 * DTO (two-way)
-
 * Handle just jpg and throw exceptions for other extensions
-
 * Create and throw exceptions for User and Role
-
 * Docs
-
-* Docker compose
-  - Volumes
-  * Dev
-  * Prod
 
 -- Milestone --
 
+* Public front-end with Next js
 * Dashboard
-
 * CI/CD
-
-* User main page
-	* (to access temporarely available content, basic users must log in)
-
 * Create public and private components folder
-
 * Set requirement upload image min width 300px;
-
 * Javascript constants file
-
 * OAuth?
-
 * Droplet monitoring
-
 * Mobile view
-
 * Custom error page with handling?
 
 

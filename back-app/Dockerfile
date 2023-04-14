@@ -3,9 +3,9 @@ FROM ubuntu:22.04
 RUN apt update &&\
     apt install maven -y
 
-WORKDIR /app
+WORKDIR /back-app
 
-COPY . .
+# COPY . .
 
 EXPOSE 8080
 

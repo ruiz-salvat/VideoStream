@@ -5,11 +5,15 @@ services:
     build: front-app/.
     ports:
       - '3000:3000'
+    volumes:
+      - ./front-app:/front-app
 
   backend:
     build: back-app/.
     ports:
       - '8080:8080'
+    volumes:
+      - ./back-app:/back-app
   
   database:
     image: mysql:8.0.31
@@ -18,3 +22,5 @@ services:
       MYSQL_DATABASE: 'video_stream'
     ports:
       - '3307:3306'
+    volumes:
+      - ./mysqldata:/var/lib/mysql

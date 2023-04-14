@@ -1,12 +1,12 @@
 FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /front-app
 
 COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install
 
-COPY . .
+# COPY . .
 
 EXPOSE 3000
 
