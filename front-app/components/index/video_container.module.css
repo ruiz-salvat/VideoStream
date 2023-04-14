@@ -1,26 +1,27 @@
 .video_card {
-    border: solid 2px #003d0d;
-    margin: 20px;
-    background-color: #003d0d;
+    border: solid 10px #252525;
+    margin: 1.5rem;
+    background-color: #252525;
 }
 
 .video_card_image {
-    max-width: 300px;
+    max-width: 20rem;
+    min-width: -webkit-fill-available;
 }
 
 .video_card_text_container {
-    padding: 5px;
+    padding: 0.5rem;
 }
 
 .video_card_title {
     color: #ffffff;
-    font-size: 25px;
+    font-size: 2rem;
     font-weight: 900;
 }
 
 .video_card_synopsis {
     color: #ffffff;
-    max-width: 300px;
-    max-height: 100px;
+    max-width: 20rem;
+    max-height: 10rem;
     overflow: hidden;
 }

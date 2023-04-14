@@ -1,16 +1,15 @@
 .container {
-    max-width: 36rem;
-    padding: 0 1rem;
+    max-width: 70rem;
+    padding: 0 2rem;
     margin: 3rem auto 6rem;
-    background-color: #a52a2a;
+    background-color: #5e5e5e6e;
 }
 
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.image_container {
+    text-align: center;
+    padding: 2rem;
 }
 
-.backToHome {
-    margin: 3rem 0 0;
+.image {
+    max-width: -webkit-fill-available;
 }

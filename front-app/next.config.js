@@ -1,9 +1,8 @@
-/**
- * @type {import('next').NextConfig}
- */
+const withVideos = require('next-videos')
 
 const nextConfig = {
-    /* config options here */
+    
 }
 
+module.exports = withVideos()
 module.exports = nextConfig

@@ -1,16 +1,18 @@
 .video_player{
-    display: none;
     text-align: center;
 }
  
 .video_screen {
-    max-width: 100%;
+    max-width: -webkit-fill-available;
 }
 
 .video_title {
-
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
 }
 
 .video_description {
-    
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1.5rem;
 }
