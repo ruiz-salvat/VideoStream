@@ -18,7 +18,6 @@
 
 * Unit Tests
 * Integration Tests
-* Add admin by a db migration
 * DTO (two-way)
 * Handle just jpg and throw exceptions for other extensions
 * Create and throw exceptions for User and Role

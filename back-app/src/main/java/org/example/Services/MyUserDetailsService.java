@@ -1,7 +1,7 @@
 package org.example.Services;
 
+import org.example.Entities.ApplicationUser;
 import org.example.Entities.Role;
-import org.example.Entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,9 +24,9 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.getUserByUserName(username);
-        List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-        return buildUserForAuthentication(user, authorities);
+        ApplicationUser applicationUser = userService.getUserByUserName(username);
+        List<GrantedAuthority> authorities = getUserAuthority(applicationUser.getRoles());
+        return buildUserForAuthentication(applicationUser, authorities);
     }
 
     private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
@@ -37,8 +37,8 @@ public class MyUserDetailsService implements UserDetailsService {
         return new ArrayList<>(roles);
     }
 
-    private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
+    private UserDetails buildUserForAuthentication(ApplicationUser applicationUser, List<GrantedAuthority> authorities) {
+        return new org.springframework.security.core.userdetails.User(applicationUser.getUserName(), applicationUser.getPassword(),
                 true, true, true, true, authorities);
     }
 }

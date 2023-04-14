@@ -1,7 +1,7 @@
 package Unit;
 
+import org.example.Entities.ApplicationUser;
 import org.example.Entities.Role;
-import org.example.Entities.User;
 import org.example.Exceptions.UserAlreadyExistsException;
 import org.example.Exceptions.UserNotFoundException;
 import org.example.Repositories.IRoleRepository;
@@ -23,7 +23,7 @@ import java.util.Set;
 import static Util.Constants.*;
 import static org.junit.Assert.assertEquals;
 
-public class UserServiceTest {
+public class ApplicationUserServiceTest {
 
     @Mock
     private IUserRepository userRepository;
@@ -32,7 +32,7 @@ public class UserServiceTest {
     @Rule // initializes mocks
     public MockitoRule rule = MockitoJUnit.rule();
     private IUserService userService;
-    private User mockUser;
+    private ApplicationUser mockApplicationUser;
 
     @Before
     public void setUp() {
@@ -40,14 +40,14 @@ public class UserServiceTest {
 
         Set<Role> roles = new HashSet<>();
         roles.add(new Role("basic_user"));
-        mockUser = new User(TEST_USERNAME, TEST_EMAIL, TEST_PASSWORD, TEST_NAME, TEST_LAST_NAME, TEST_ADDRESS, roles);
+        mockApplicationUser = new ApplicationUser(TEST_USERNAME, TEST_EMAIL, TEST_PASSWORD, TEST_NAME, TEST_LAST_NAME, TEST_ADDRESS, roles);
 
         Mockito.when(userRepository.findByEmail(TEST_EMAIL))
-                .thenReturn(mockUser);
+                .thenReturn(mockApplicationUser);
         Mockito.when(userRepository.existsByEmail(TEST_EMAIL))
                 .thenReturn(true);
         Mockito.when(userRepository.findByUserName(TEST_USERNAME))
-                .thenReturn(mockUser);
+                .thenReturn(mockApplicationUser);
         Mockito.when(userRepository.existsByUserName(TEST_USERNAME))
                 .thenReturn(true);
         List<String> userList = new ArrayList<String>();
@@ -59,34 +59,34 @@ public class UserServiceTest {
 
     @Test
     public void getUserByEmail_ok() {
-        userRepository.save(mockUser);
+        userRepository.save(mockApplicationUser);
 
-        User user = userService.getUserByEmail(TEST_EMAIL);
+        ApplicationUser applicationUser = userService.getUserByEmail(TEST_EMAIL);
 
-        assertEquals(TEST_EMAIL, user.getEmail());
-        assertEquals(TEST_NAME, user.getName());
+        assertEquals(TEST_EMAIL, applicationUser.getEmail());
+        assertEquals(TEST_NAME, applicationUser.getName());
     }
 
     @Test(expected = UserNotFoundException.class)
     public void getUserByEmail_notFound() {
-        userRepository.save(mockUser);
+        userRepository.save(mockApplicationUser);
 
         userService.getUserByEmail("wrong_email");
     }
 
     @Test
     public void getUserByUserName_ok() {
-        userRepository.save(mockUser);
+        userRepository.save(mockApplicationUser);
 
-        User user = userService.getUserByUserName(TEST_USERNAME);
+        ApplicationUser applicationUser = userService.getUserByUserName(TEST_USERNAME);
 
-        assertEquals(TEST_EMAIL, user.getEmail());
-        assertEquals(TEST_NAME, user.getName());
+        assertEquals(TEST_EMAIL, applicationUser.getEmail());
+        assertEquals(TEST_NAME, applicationUser.getName());
     }
 
     @Test(expected = UserNotFoundException.class)
     public void getUserByUserName_notFound() {
-        userRepository.save(mockUser);
+        userRepository.save(mockApplicationUser);
 
         userService.getUserByUserName("wrong_username");
     }
@@ -98,21 +98,21 @@ public class UserServiceTest {
         String newName = "new name";
         Set<Role> roles = new HashSet<>();
         roles.add(new Role("basic_user"));
-        User newUser = new User(newUsername, newEmail, TEST_PASSWORD, newName, TEST_LAST_NAME, TEST_ADDRESS, roles);
-        Mockito.when(userRepository.save(newUser))
-                .thenReturn(newUser);
+        ApplicationUser newApplicationUser = new ApplicationUser(newUsername, newEmail, TEST_PASSWORD, newName, TEST_LAST_NAME, TEST_ADDRESS, roles);
+        Mockito.when(userRepository.save(newApplicationUser))
+                .thenReturn(newApplicationUser);
 
-        User user = userService.saveUser(newUser);
+        ApplicationUser applicationUser = userService.saveUser(newApplicationUser);
 
-        assertEquals(newUsername, user.getUserName());
-        assertEquals(newEmail, user.getEmail());
-        assertEquals(newName, user.getName());
-        assertEquals(newUser, user);
+        assertEquals(newUsername, applicationUser.getUserName());
+        assertEquals(newEmail, applicationUser.getEmail());
+        assertEquals(newName, applicationUser.getName());
+        assertEquals(newApplicationUser, applicationUser);
     }
 
     @Test(expected = UserAlreadyExistsException.class)
     public void saveUser_alreadyExists() {
-        userService.saveUser(mockUser);
+        userService.saveUser(mockApplicationUser);
     }
 
     @Test

@@ -1,15 +1,16 @@
 package org.example.Services;
 
-import org.example.Entities.User;
+import org.example.Entities.ApplicationUser;
+
 import java.util.List;
 
 public interface IUserService {
 
-    User getUserByEmail(String email);
+    ApplicationUser getUserByEmail(String email);
 
-    User getUserByUserName(String userName);
+    ApplicationUser getUserByUserName(String userName);
 
-    User saveUser(User user);
+    ApplicationUser saveUser(ApplicationUser applicationUser);
 
     List<String> getAllUsers();
 

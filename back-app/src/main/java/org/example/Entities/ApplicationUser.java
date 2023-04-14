@@ -14,9 +14,9 @@ import java.util.Set;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class User {
+public class ApplicationUser {
 
-    public User(String userName, String email, String password, String name, String lastName, String address, Set<Role> roles) {
+    public ApplicationUser(String userName, String email, String password, String name, String lastName, String address, Set<Role> roles) {
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -50,8 +50,8 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
-        return id != null && Objects.equals(id, user.id);
+        ApplicationUser applicationUser = (ApplicationUser) o;
+        return id != null && Objects.equals(id, applicationUser.id);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package org.example.Controllers;
 
-import org.example.Entities.User;
+import org.example.Entities.ApplicationUser;
 import org.example.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,17 +28,17 @@ public class LoginController {
     @RequestMapping(value="registration", method = RequestMethod.GET)
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
-        modelAndView.addObject("user", user);
+        ApplicationUser applicationUser = new ApplicationUser();
+        modelAndView.addObject("applicationUser", applicationUser);
         modelAndView.setViewName("registration");
         return modelAndView;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String createNewUser(@Valid User user, BindingResult bindingResult) {
+    public String createNewUser(@Valid ApplicationUser applicationUser, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "error";
-        userService.saveUser(user);
+        userService.saveUser(applicationUser);
         return "upload-video";
     }
 

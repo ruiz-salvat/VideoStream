@@ -1,17 +1,17 @@
 package org.example.Repositories;
 
-import org.example.Entities.User;
+import org.example.Entities.ApplicationUser;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IUserRepository extends CrudRepository<User, Long> {
+public interface IUserRepository extends CrudRepository<ApplicationUser, Long> {
 
-    User findByEmail(String email);
+    ApplicationUser findByEmail(String email);
 
-    User findByUserName(String userName);
+    ApplicationUser findByUserName(String userName);
 
     boolean existsByEmail(String email);
 
