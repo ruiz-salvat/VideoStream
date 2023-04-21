@@ -15,7 +15,9 @@
     * back
     * db
     * front
-
+  * nginx with compose?
+  * docker desktop?
+  
 * Unit Tests
 * Integration Tests
 * DTO (two-way)

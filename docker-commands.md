@@ -22,7 +22,14 @@ sudo docker rm videostream-container
 sudo docker rm front-app-container
 ```
 
-## 
+## Docker compose dev
+```
+sudo docker compose up
+sudo docker compose down
 ```
 
+## Docker compose prod
+```
+sudo docker compose -f production.yml up -d
+sudo docker compose -f docker-compose.yml -f production.yml up -d
 ```

@@ -12,20 +12,17 @@ services:
       - ./mysqldata:/var/lib/mysql
 
   backend:
-    build: back-app/.
+    build: production-dockerfiles/back-app/.
     ports:
       - '8080:8080'
     volumes:
-      - ./back-app:/back-app
       - ./VideoStreamData:/VideoStreamData
     depends_on:
       - database
 
   frontend:
-    build: front-app/.
+    build: production-dockerfiles/front-app/.
     ports:
       - '3000:3000'
-    volumes:
-      - ./front-app:/front-app
     depends_on:
       - backend
