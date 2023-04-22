@@ -1,12 +1,14 @@
+# PRODUCTION
+
 FROM node:18-alpine
 
 WORKDIR /front-app
 
-COPY ["package.json", "package-lock.json*", "./"]
+COPY ["front-app/package.json", "front-app/package-lock.json*", "./"]
 
 RUN npm install
 
-# COPY . .
+COPY front-app/ .
 
 EXPOSE 3000
 

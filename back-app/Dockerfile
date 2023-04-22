@@ -1,17 +1,14 @@
-FROM ubuntu:22.04
+# PRODUCTION
 
-RUN apt update &&\
-    apt install maven -y
+# FROM eclipse-temurin:11-jdk
+FROM maven:3.8.2-jdk-8
 
 WORKDIR /back-app
 
-# COPY . .
+COPY back-app/ .
+
+RUN mvn clean compile assembly:single
 
 EXPOSE 8080
 
-CMD mvn spring-boot:run
-
-
-# TODO: use maven image
-#FROM maven:3.8.2-jdk-8
-#RUN mvn clean install
+CMD java -jar target/VideoStream-1.0-SNAPSHOT-jar-with-dependencies.jar

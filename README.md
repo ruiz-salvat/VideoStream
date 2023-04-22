@@ -9,8 +9,8 @@
 	* Domain
 	* SSL
 * Docker
-  * docker dev with volumes
   * env variables
+  * restart: always
   * docker prod
     * back
     * db

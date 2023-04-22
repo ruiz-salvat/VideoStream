@@ -4,7 +4,7 @@ services:
   database:
     image: mysql:8.0.31
     environment:
-      MYSQL_ROOT_PASSWORD: 'pass_00'
+      MYSQL_ROOT_PASSWORD: 'U6SS&iQaFPVwSF@%'
       MYSQL_DATABASE: 'video_stream'
     ports:
       - '3307:3306'
@@ -12,7 +12,7 @@ services:
       - ./mysqldata:/var/lib/mysql
 
   backend:
-    build: production-dockerfiles/back-app/.
+    build: back-app/
     ports:
       - '8080:8080'
     volumes:
@@ -20,9 +20,9 @@ services:
     depends_on:
       - database
 
-  frontend:
-    build: production-dockerfiles/front-app/.
-    ports:
-      - '3000:3000'
-    depends_on:
-      - backend
+  # frontend:
+  #   build: front-app/
+  #   ports:
+  #     - '3000:3000'
+  #   depends_on:
+  #     - backend
