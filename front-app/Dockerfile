@@ -6,10 +6,10 @@ WORKDIR /front-app
 
 COPY ["front-app/package.json", "front-app/package-lock.json*", "./"]
 
-RUN npm install
+RUN npm build
 
 COPY front-app/ .
 
 EXPOSE 3000
 
-CMD npm run dev
+CMD npm run start

@@ -1,5 +1,6 @@
 package org.example.Services;
 
+import lombok.AllArgsConstructor;
 import org.example.Entities.ApplicationUser;
 import org.example.Entities.Role;
 import org.example.Exceptions.MissingFieldsException;
@@ -15,16 +16,17 @@ import java.util.HashSet;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class UserService implements IUserService {
 
-    private final IUserRepository userRepository;
-    private final IRoleRepository roleRepository;
+    private IUserRepository userRepository;
+    private IRoleRepository roleRepository;
 
-    @Autowired
-    public UserService(IUserRepository userRepository, IRoleRepository roleRepository) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-    }
+//    @Autowired
+//    public UserService(IUserRepository userRepository, IRoleRepository roleRepository) {
+//        this.userRepository = userRepository;
+//        this.roleRepository = roleRepository;
+//    }
 
     @Override
     public ApplicationUser getUserByEmail(String email) {

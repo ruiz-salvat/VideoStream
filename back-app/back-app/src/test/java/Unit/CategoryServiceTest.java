@@ -32,7 +32,8 @@ public class CategoryServiceTest {
     @Before
     public void setUp() {
         CategoryMapper categoryMapper = new CategoryMapper();
-        categoryService = new CategoryService(categoryRepository, categoryMapper);
+//        categoryService = new CategoryService(categoryRepository, categoryMapper);
+         categoryService = new CategoryService();
 
         Category mockCategory = new Category(TEST_CATEGORY_NAME, TEST_CATEGORY_DESCRIPTION);
 

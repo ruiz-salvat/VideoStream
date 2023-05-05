@@ -36,7 +36,8 @@ public class ApplicationUserServiceTest {
 
     @Before
     public void setUp() {
-        userService = new UserService(userRepository, roleRepository);
+//        userService = new UserService(userRepository, roleRepository);
+        userService = new UserService();
 
         Set<Role> roles = new HashSet<>();
         roles.add(new Role("basic_user"));

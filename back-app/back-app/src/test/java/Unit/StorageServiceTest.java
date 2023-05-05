@@ -26,6 +26,7 @@ public class StorageServiceTest {
     @Before
     public void setUp() {
         storageService = new StorageService(null);
+//        storageService = new StorageService();
         storageService.initializeRoot(TEST_DATA_PATH);
     }
 

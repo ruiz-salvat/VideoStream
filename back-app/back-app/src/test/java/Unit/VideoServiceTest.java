@@ -42,7 +42,8 @@ public class VideoServiceTest {
     @Before
     public void setUp() {
         VideoMapper videoMapper = new VideoMapper();
-        videoService = new VideoService(videoRepository, categoryRepository, videoMapper, env);
+//        videoService = new VideoService(videoRepository, categoryRepository, videoMapper, env);
+        videoService = new VideoService();
 
         mockCategory = new Category(TEST_CATEGORY_NAME, TEST_CATEGORY_DESCRIPTION);
         Video mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory);

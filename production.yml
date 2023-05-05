@@ -4,8 +4,8 @@ services:
   database:
     image: mysql:8.0.31
     environment:
-      MYSQL_ROOT_PASSWORD: 'U6SS&iQaFPVwSF@%'
       MYSQL_DATABASE: 'video_stream'
+      MYSQL_ROOT_PASSWORD: 'U6SS&iQaFPVwSF@%'
     ports:
       - '3307:3306'
     volumes:
