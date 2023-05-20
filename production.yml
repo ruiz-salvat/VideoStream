@@ -5,7 +5,7 @@ services:
     image: mysql:8.0.31
     environment:
       MYSQL_DATABASE: 'video_stream'
-      MYSQL_ROOT_PASSWORD: 'U6SS&iQaFPVwSF@%'
+      MYSQL_ROOT_PASSWORD: 'XVbHYUF3fRh6NNeJGDdy'
     ports:
       - '3307:3306'
     volumes:
@@ -20,9 +20,9 @@ services:
     depends_on:
       - database
 
-  # frontend:
-  #   build: front-app/
-  #   ports:
-  #     - '3000:3000'
-  #   depends_on:
-  #     - backend
+  frontend:
+    build: front-app/
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend

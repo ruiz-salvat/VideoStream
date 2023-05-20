@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+// @AllArgsConstructor
 public class UserService implements IUserService {
 
     private IUserRepository userRepository;

@@ -62,11 +62,20 @@ mvn flyway:migrate
 Build executable jar
 ```
 mvn clean compile assembly:single
+
+or
+
+mvn clean package
 ```
 
 Run jar
+
 ```
 java -jar target/VideoStream-1.0-SNAPSHOT-jar-with-dependencies.jar
+
+or
+
+java -jar target/VideoStream-1.0-SNAPSHOT.jar
 ```
 
 Systemctl service

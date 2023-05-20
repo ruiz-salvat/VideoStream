@@ -18,6 +18,7 @@ import java.io.IOException;
 public class PrivateVideoController {
 
     private IVideoService videoService;
+
     private IStorageService storageService;
 
     @PostMapping()

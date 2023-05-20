@@ -18,15 +18,17 @@ public class StorageService implements IStorageService {
 
     private Path root;
 
-   public StorageService(Environment env) {
-       if (env != null) {
-           String dataPath = env.getProperty("dataPath");
-           if (dataPath == null || dataPath.isEmpty())
-               throw new RuntimeException("empty property: dataPath");
-           root = Paths.get(dataPath);
-       }
-   }
+    @Autowired
+    public StorageService() {
+        if (env != null) {
+            String dataPath = env.getProperty("dataPath");
+            if (dataPath == null || dataPath.isEmpty())
+                throw new RuntimeException("empty property: dataPath");
+            root = Paths.get(dataPath);
+        }
+    }
 
+    @Override
     public void initializeRoot(String dataPath) {
         root = Paths.get(dataPath);
     }

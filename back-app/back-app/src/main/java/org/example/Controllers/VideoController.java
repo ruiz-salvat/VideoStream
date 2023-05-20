@@ -38,9 +38,4 @@ public class VideoController {
         return ResponseEntity.ok(videoService.getAllVideos());
     }
 
-    @GetMapping("test")
-    public ResponseEntity<String> test() {
-        return ResponseEntity.ok("hola mon1");
-    }
-
 }
