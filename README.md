@@ -12,17 +12,13 @@
   * env variables
   * restart: always
   * docker prod
-    * Service for the migration
-    * back
-    * db
-    * front
+    * Service for the migration?
   * docker test
   * nginx with compose?
   * docker desktop?
   
 * Unit Tests
-  * Solve service injection
-
+  
 * Integration Tests
 * DTO (two-way)
 * Handle just jpg and throw exceptions for other extensions

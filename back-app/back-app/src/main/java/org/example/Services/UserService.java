@@ -16,17 +16,13 @@ import java.util.HashSet;
 import java.util.List;
 
 @Service
-// @AllArgsConstructor
+@AllArgsConstructor
 public class UserService implements IUserService {
 
     private IUserRepository userRepository;
+
     private IRoleRepository roleRepository;
 
-//    @Autowired
-//    public UserService(IUserRepository userRepository, IRoleRepository roleRepository) {
-//        this.userRepository = userRepository;
-//        this.roleRepository = roleRepository;
-//    }
 
     @Override
     public ApplicationUser getUserByEmail(String email) {
