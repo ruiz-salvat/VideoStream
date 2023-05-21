@@ -7,7 +7,7 @@ services:
       MYSQL_DATABASE: 'video_stream'
       MYSQL_ROOT_PASSWORD: 'XVbHYUF3fRh6NNeJGDdy'
     ports:
-      - '3306:3306'
+      - '3307:3306'
     volumes:
       - ./mysqldata:/var/lib/mysql
     restart: always
