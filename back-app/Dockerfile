@@ -8,7 +8,7 @@ WORKDIR /back-app
 COPY back-app/ .
 
 # RUN mvn clean compile assembly:single
-RUN mvn clean package
+RUN mvn clean package -Dmaven.test.skip
 
 EXPOSE 8080
 

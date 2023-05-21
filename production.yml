@@ -7,9 +7,10 @@ services:
       MYSQL_DATABASE: 'video_stream'
       MYSQL_ROOT_PASSWORD: 'XVbHYUF3fRh6NNeJGDdy'
     ports:
-      - '3307:3306'
+      - '3306:3306'
     volumes:
       - ./mysqldata:/var/lib/mysql
+    restart: always
 
   backend:
     build: back-app/
@@ -19,6 +20,7 @@ services:
       - ./VideoStreamData:/VideoStreamData
     depends_on:
       - database
+    restart: always
 
   frontend:
     build: front-app/
@@ -26,3 +28,4 @@ services:
       - '3000:3000'
     depends_on:
       - backend
+    restart: always
