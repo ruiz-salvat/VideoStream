@@ -17,24 +17,32 @@ public class StorageService implements IStorageService {
     private Environment env;
 
     private Path root;
+    private String dataPath;
 
     @Autowired
     public StorageService() {
-        if (env != null) {
-            String dataPath = env.getProperty("dataPath");
-            if (dataPath == null || dataPath.isEmpty())
-                throw new RuntimeException("empty property: dataPath");
-            root = Paths.get(dataPath);
-        }
+        initializeRoot("");
     }
 
     @Override
     public void initializeRoot(String dataPath) {
-        root = Paths.get(dataPath);
+        if (dataPath == null) {
+            if (env != null) {
+                this.dataPath = env.getProperty("dataPath");
+                if (this.dataPath == null || this.dataPath.isEmpty())
+                    throw new RuntimeException("empty property: dataPath");
+            } else {
+                throw new RuntimeException("environment variables not loaded");
+            }
+        } else {
+            this.dataPath = dataPath;
+        }
+
+        root = Paths.get(this.dataPath);
     }
 
     @Override
-    public void init() {
+    public void init() { // TODO: remove?
         try {
             Files.createDirectories(root);
         } catch (IOException e) {
@@ -44,6 +52,9 @@ public class StorageService implements IStorageService {
 
     @Override
     public boolean save(MultipartFile file, String slug, String fileExtension) throws IOException {
+        if (root == null)
+            initializeRoot(null);
+
         if (file.getSize() < 1)
             throw new EmptyFileException();
 

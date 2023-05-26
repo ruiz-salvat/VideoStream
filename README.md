@@ -10,7 +10,7 @@
 	* SSL
 * Docker
   * env variables
-  * restart: always
+  * name containers?
   * docker prod
     * Service for the migration?
   * docker test
@@ -103,7 +103,13 @@ Access control by user roles:
 
 Next js pre-rendering
 
-https://nextjs.org/learn/basics/data-fetching/pre-rendering
+<https://nextjs.org/learn/basics/data-fetching/pre-rendering>
+
+Install docker compose ubuntu
+
+<https://docs.docker.com/engine/install/ubuntu/>
+
+<https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-22-04>
 
 ## Deployment steps
 
