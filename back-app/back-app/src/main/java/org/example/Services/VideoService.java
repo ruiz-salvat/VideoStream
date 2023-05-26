@@ -3,6 +3,7 @@ package org.example.Services;
 import lombok.AllArgsConstructor;
 import org.example.DTOs.VideoDTO;
 import org.example.Entities.Category;
+import org.example.Entities.Plan;
 import org.example.Entities.Video;
 import org.example.Exceptions.CategoryNotFoundException;
 import org.example.Exceptions.VideoAlreadyExistsException;
@@ -84,7 +85,9 @@ public class VideoService implements IVideoService {
         else
             throw new CategoryNotFoundException();
 
-        Video newVideo = new Video(slug, title, synopsis, description, videoFilePath, imageFilePath, category);
+        Plan plan = new Plan();
+
+        Video newVideo = new Video(slug, title, synopsis, description, videoFilePath, imageFilePath, category, plan);
         Video video = videoRepository.save(newVideo);
         return videoMapper.modelToDto(video);
     }
