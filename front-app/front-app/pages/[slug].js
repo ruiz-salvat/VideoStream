@@ -10,7 +10,7 @@ export default function Video({ videoDetails }) {
 }                        
  
 export async function getStaticPaths() {
-   const videosRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}video/all`)
+   const videosRes = await fetch(`${process.env.API_URL}video/all`)
    const videos = await videosRes.json()
 
    const paths = videos.map((video) => ({
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 }
  
 export async function getStaticProps({ params }) {
-   const videoDetailsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}video/details/${params.slug}`)
+   const videoDetailsRes = await fetch(`${process.env.API_URL}video/details/${params.slug}`)
    const videoDetails = await videoDetailsRes.json()
             
    return {
