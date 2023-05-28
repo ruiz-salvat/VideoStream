@@ -28,11 +28,12 @@ public class PrivateVideoController {
             @RequestParam("synopsis") String synopsis,
             @RequestParam("description") String description,
             @RequestParam("category") Long category,
+            @RequestParam("plan") Long plan,
             @RequestParam("video_file") MultipartFile videoFile,
             @RequestParam("image_file") MultipartFile imageFile) {
         try {
             if (storageService.save(videoFile, slug, ".mp4") && storageService.save(imageFile, slug, ".jpg")) {
-                VideoDTO videoDTO = videoService.saveVideo(slug, title, synopsis, description, category);
+                VideoDTO videoDTO = videoService.saveVideo(slug, title, synopsis, description, category, plan);
                 return ResponseEntity.ok(videoDTO);
             }
         } catch (EmptyFileException | IOException e) {

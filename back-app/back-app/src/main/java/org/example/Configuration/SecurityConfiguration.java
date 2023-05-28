@@ -53,6 +53,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 // admin urls
                 .antMatchers("/private-video/**").hasAuthority("admin")
                 .antMatchers("/private-category/**").hasAuthority("admin")
+                .antMatchers("/private-plan/**").hasAuthority("admin")
                 .antMatchers("/admin").hasAuthority("admin").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
 

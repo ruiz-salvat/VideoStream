@@ -4,8 +4,10 @@ const categoryForm = document.querySelector("#category-form");
 const videoListTable = document.querySelector("#video-list-table");
 const categoryListTable = document.querySelector("#category-list-table");
 const categorySelector = document.querySelector("#category");
+const planSelector = document.querySelector("#plan");
 
 let categoryOptions = [];
+let planOptions = [];
 
 function addCategoryOption(category) {
     categoryOptions.push(category);
@@ -14,6 +16,15 @@ function addCategoryOption(category) {
     option.value = category.id;
     option.id = "option_" + category.id;
     categorySelector.appendChild(option);
+}
+
+function addPlanOption(plan) {
+    planOptions.push(plan);
+    const option = document.createElement("OPTION");
+    option.innerText = plan.id; // TODO: set a name
+    option.value = plan.id;
+    option.id = "option_" + plan.id;
+    planSelector.appendChild(option);
 }
 
 function removeCategoryOption(id) {
@@ -75,6 +86,7 @@ function addVideoToList(video) {
     const tdSynopsis = document.createElement("TD");
     const tdDescription = document.createElement("TD");
     const tdCategory = document.createElement("TD");
+    const tdPlan = document.createElement("TD");
     const tdActions = document.createElement("TD");
 
     tdSlug.innerHTML = `<div class='cell-container'>${video.slug}</div>`;
@@ -84,6 +96,9 @@ function addVideoToList(video) {
 
     let category = categoryOptions.find(category => category.id === video.category);
     tdCategory.innerHTML = `<div class='cell-container'>${category.name}</div>`;
+
+    let plan = planOptions.find(plan => plan.id === video.plan);
+    tdPlan.innerHTML = `<div class='cell-container'>${plan.id}</div>`;
 
     const deleteButton = document.createElement("BUTTON");
     deleteButton.innerText = "delete";
@@ -98,6 +113,7 @@ function addVideoToList(video) {
     tr.appendChild(tdSynopsis);
     tr.appendChild(tdDescription);
     tr.appendChild(tdCategory);
+    tr.appendChild(tdPlan);
     tr.appendChild(tdActions);
 
     videoListTable.appendChild(tr);
@@ -139,15 +155,25 @@ fetch("category/all")
             }
         }
     }).then(() => {
-        fetch("video/all")
+        fetch("private-plan/all")
             .then(response => response.json())
             .then(response => {
-                if(response.length > 0) {
-                    for (let video of response) {
-                        addVideoToList(video);
+                if (response.length > 0) {
+                    for (let plan of response) {
+                        addPlanOption(plan);
                     }
                 }
-            });
+        }).then(() => {
+            fetch("video/all")
+                .then(response => response.json())
+                .then(response => {
+                    if(response.length > 0) {
+                        for (let video of response) {
+                            addVideoToList(video);
+                        }
+                    }
+                });
+        });
     });
 
 videoForm.addEventListener("submit", ev => {

@@ -6,10 +6,12 @@ import org.example.Entities.Category;
 import org.example.Entities.Plan;
 import org.example.Entities.Video;
 import org.example.Exceptions.CategoryNotFoundException;
+import org.example.Exceptions.PlanNotFoundException;
 import org.example.Exceptions.VideoAlreadyExistsException;
 import org.example.Exceptions.VideoNotFoundException;
 import org.example.Mappers.IMapper;
 import org.example.Repositories.ICategoryRepository;
+import org.example.Repositories.IPlanRepository;
 import org.example.Repositories.IVideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -26,6 +28,8 @@ import java.util.List;
 public class VideoService implements IVideoService {
 
     private IVideoRepository videoRepository;
+
+    private IPlanRepository planRepository;
 
     private ICategoryRepository categoryRepository;
 
@@ -72,7 +76,7 @@ public class VideoService implements IVideoService {
     }
 
     @Override
-    public VideoDTO saveVideo(String slug, String title, String synopsis, String description, Long categoryId) {
+    public VideoDTO saveVideo(String slug, String title, String synopsis, String description, Long categoryId, Long planId) {
         if (videoRepository.existsBySlug(slug))
             throw new VideoAlreadyExistsException();
 
@@ -85,7 +89,11 @@ public class VideoService implements IVideoService {
         else
             throw new CategoryNotFoundException();
 
-        Plan plan = new Plan();
+        Plan plan;
+        if (planRepository.findById(planId).isPresent())
+            plan = planRepository.findById(planId).get();
+        else
+            throw new PlanNotFoundException();
 
         Video newVideo = new Video(slug, title, synopsis, description, videoFilePath, imageFilePath, category, plan);
         Video video = videoRepository.save(newVideo);

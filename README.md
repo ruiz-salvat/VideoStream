@@ -2,6 +2,8 @@
 
 ## To Do List
 
+* finish plan
+* phpAdmin prod
 * Server security setup
 	* Ubuntu user
 	* Firewall
@@ -9,10 +11,7 @@
 	* Domain
 	* SSL
 * Docker
-  * env variables
   * name containers?
-  * docker prod
-    * Service for the migration?
   * docker test
   * nginx with compose?
   * docker desktop?
@@ -27,7 +26,9 @@
 
 -- Milestone --
 
-* Public front-end with Next js
+* Plan name
+* Authentication Next JS
+* New DB model
 * Dashboard
 * CI/CD
 * Create public and private components folder

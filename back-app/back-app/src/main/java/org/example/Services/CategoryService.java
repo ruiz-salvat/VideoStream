@@ -5,7 +5,6 @@ import org.example.DTOs.CategoryDTO;
 import org.example.Entities.Category;
 import org.example.Exceptions.CategoryAlreadyExistsException;
 import org.example.Exceptions.CategoryNotFoundException;
-import org.example.Mappers.CategoryMapper;
 import org.example.Mappers.IMapper;
 import org.example.Repositories.ICategoryRepository;
 import org.springframework.stereotype.Service;
