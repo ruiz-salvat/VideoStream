@@ -1,24 +1,21 @@
 # VideoStream
 
-## To Do List
+## To Do List32
 
 * Server security setup
-	* Ubuntu user
-	* Firewall
-	* Reverse proxy server
-	* Domain
-	* SSL
+  * Ubuntu user
+  * Firewall
+  * Reverse proxy server
+  * Domain
+  * SSL
 * Docker
-  * env variables
   * name containers?
-  * docker prod
-    * Service for the migration?
   * docker test
   * nginx with compose?
   * docker desktop?
-  
+
 * Unit Tests
-  
+
 * Integration Tests
 * DTO (two-way)
 * Handle just jpg and throw exceptions for other extensions
@@ -27,7 +24,9 @@
 
 -- Milestone --
 
-* Public front-end with Next js
+* Plan name
+* Authentication Next JS
+* New DB model
 * Dashboard
 * CI/CD
 * Create public and private components folder

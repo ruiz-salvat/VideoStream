@@ -20,6 +20,8 @@ public class VideoDTO {
 
     private Long category;
 
+    private Long plan;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
