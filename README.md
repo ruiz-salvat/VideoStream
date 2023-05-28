@@ -1,23 +1,21 @@
 # VideoStream
 
-## To Do List
+## To Do List32
 
-* finish plan
-* phpAdmin prod
 * Server security setup
-	* Ubuntu user
-	* Firewall
-	* Reverse proxy server
-	* Domain
-	* SSL
+  * Ubuntu user
+  * Firewall
+  * Reverse proxy server
+  * Domain
+  * SSL
 * Docker
   * name containers?
   * docker test
   * nginx with compose?
   * docker desktop?
-  
+
 * Unit Tests
-  
+
 * Integration Tests
 * DTO (two-way)
 * Handle just jpg and throw exceptions for other extensions
