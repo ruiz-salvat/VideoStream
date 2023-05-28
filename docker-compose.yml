@@ -11,19 +11,6 @@ services:
     volumes:
       - ./mysqldata:/var/lib/mysql
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    links:
-      - database
-    environment:
-      PMA_HOST: database
-      PMA_PORT: 3306
-      PMA_ARBITRARY: 1
-    ports:
-      - 8081:80
-    depends_on:
-      - database
-
   backend:
     build: back-app/back-app/
     ports:
@@ -42,3 +29,16 @@ services:
       - ./front-app/front-app:/front-app
     depends_on:
       - backend
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8081:80
+    depends_on:
+      - frontend
