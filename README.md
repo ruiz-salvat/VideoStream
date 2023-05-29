@@ -1,24 +1,21 @@
 # VideoStream
 
-## To Do List
+## To Do List32
 
 * Server security setup
-	* Ubuntu user
-	* Firewall
-	* Reverse proxy server
-	* Domain
-	* SSL
+  * Ubuntu user
+  * Firewall
+  * Reverse proxy server
+  * Domain
+  * SSL
 * Docker
-  * env variables
-  * restart: always
-  * docker prod
-    * Service for the migration?
+  * name containers?
   * docker test
   * nginx with compose?
   * docker desktop?
-  
+
 * Unit Tests
-  
+
 * Integration Tests
 * DTO (two-way)
 * Handle just jpg and throw exceptions for other extensions
@@ -27,7 +24,9 @@
 
 -- Milestone --
 
-* Public front-end with Next js
+* Plan name
+* Authentication Next JS
+* New DB model
 * Dashboard
 * CI/CD
 * Create public and private components folder
@@ -103,7 +102,13 @@ Access control by user roles:
 
 Next js pre-rendering
 
-https://nextjs.org/learn/basics/data-fetching/pre-rendering
+<https://nextjs.org/learn/basics/data-fetching/pre-rendering>
+
+Install docker compose ubuntu
+
+<https://docs.docker.com/engine/install/ubuntu/>
+
+<https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-22-04>
 
 ## Deployment steps
 

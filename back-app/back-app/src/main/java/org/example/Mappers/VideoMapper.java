@@ -3,9 +3,9 @@ package org.example.Mappers;
 import lombok.NoArgsConstructor;
 import org.example.DTOs.VideoDTO;
 import org.example.Entities.Category;
+import org.example.Entities.Plan;
 import org.example.Entities.Video;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,7 +19,13 @@ public class VideoMapper implements IMapper<Video, VideoDTO> {
         Long categoryId = null;
         if (category != null)
             categoryId = category.getId();
-        return new VideoDTO(model.getSlug(), model.getTitle(), model.getSynopsis(), model.getDescription(), categoryId);
+        
+        Plan plan = model.getPlan();
+        Long planId = null;
+        if (plan != null)
+            planId = plan.getId();
+
+        return new VideoDTO(model.getSlug(), model.getTitle(), model.getSynopsis(), model.getDescription(), categoryId, planId);
     }
 
     @Override

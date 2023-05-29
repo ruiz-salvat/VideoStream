@@ -13,7 +13,7 @@ public interface IVideoService {
 
     byte[] getVideoImage(String slug) throws IOException;
 
-    VideoDTO saveVideo(String slug, String title, String synopsis, String description, Long categoryId);
+    VideoDTO saveVideo(String slug, String title, String synopsis, String description, Long categoryId, Long planId);
 
     void deleteVideo(String slug);
 

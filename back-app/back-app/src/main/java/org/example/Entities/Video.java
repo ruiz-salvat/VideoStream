@@ -38,7 +38,11 @@ public class Video {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Video(String slug, String title, String synopsis, String description, String videoFilePath, String imageFilePath, Category category) {
+    @ManyToOne
+    @JoinColumn(name = "plan_id")
+    private Plan plan;
+
+    public Video(String slug, String title, String synopsis, String description, String videoFilePath, String imageFilePath, Category category, Plan plan) {
         this.slug = slug;
         this.title = title;
         this.synopsis = synopsis;
@@ -46,6 +50,7 @@ public class Video {
         this.videoFilePath = videoFilePath;
         this.imageFilePath = imageFilePath;
         this.category = category;
+        this.plan = plan;
     }
 
     @Override

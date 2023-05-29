@@ -2,11 +2,13 @@ package Unit;
 
 import org.example.DTOs.VideoDTO;
 import org.example.Entities.Category;
+import org.example.Entities.Plan;
 import org.example.Entities.Video;
 import org.example.Exceptions.VideoAlreadyExistsException;
 import org.example.Exceptions.VideoNotFoundException;
 import org.example.Mappers.VideoMapper;
 import org.example.Repositories.ICategoryRepository;
+import org.example.Repositories.IPlanRepository;
 import org.example.Repositories.IVideoRepository;
 import org.example.Services.IVideoService;
 import org.example.Services.VideoService;
@@ -32,6 +34,8 @@ public class VideoServiceTest {
     @Mock
     private IVideoRepository videoRepository;
     @Mock
+    private IPlanRepository planRepository;
+    @Mock
     private ICategoryRepository categoryRepository;
     @Rule // initializes mocks
     public MockitoRule rule = MockitoJUnit.rule();
@@ -42,11 +46,12 @@ public class VideoServiceTest {
     @Before
     public void setUp() {
         VideoMapper videoMapper = new VideoMapper();
-        videoService = new VideoService(videoRepository, categoryRepository, videoMapper, env);
+        videoService = new VideoService(videoRepository, planRepository, categoryRepository, videoMapper, env);
 
         mockCategory = new Category(TEST_CATEGORY_NAME, TEST_CATEGORY_DESCRIPTION);
-        Video mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory);
-        mockVideoDto = new VideoDTO(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID);
+        Plan plan = new Plan();
+        Video mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory, plan);
+        mockVideoDto = new VideoDTO(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID, TEST_PLAN_ID);
 
         Mockito.when(videoRepository.findBySlug(TEST_SLUG))
                 .thenReturn(mockVideo);
@@ -81,12 +86,13 @@ public class VideoServiceTest {
 
     @Test
     public void saveVideo_ok() { // TODO: refactor
-        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory);
+        Plan plan = new Plan();
+        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory, plan);
         Mockito.when(videoRepository.findBySlug("new_slug"))
                 .thenReturn(mockVideo);
         Mockito.when(videoRepository.save(mockVideo)).thenReturn(mockVideo);
 
-        videoService.saveVideo("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID);
+        videoService.saveVideo("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID, TEST_PLAN_ID);
 
         Video video = videoRepository.findBySlug("new_slug");
 
@@ -97,7 +103,7 @@ public class VideoServiceTest {
 
     @Test(expected = VideoAlreadyExistsException.class)
     public void saveVideo_alreadyExists() {
-        videoService.saveVideo(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID);
+        videoService.saveVideo(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID, TEST_PLAN_ID);
     }
 
     @Test
