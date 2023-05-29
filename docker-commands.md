@@ -1,25 +1,21 @@
 ## Build image
 ```
-sudo docker build --tag videostream-image .
-sudo docker build --tag front-app-image .
+sudo docker build --tag <image_name> .
 ```
 
 ## Run container
 ```
-sudo docker run --publish 8080:8080 --name videostream-container videostream-image
-sudo docker run --publish 3000:3000 --name front-app-container front-app-image
+sudo docker run --publish 8080:8080 --name <container_name> <image_name>
 ```
 
 ## Remove image
 ```
-sudo docker rmi videostream-image
-sudo docker rmi front-app-image
+sudo docker rmi <image_name>
 ```
 
 ## Remove container
 ```
-sudo docker rm videostream-container
-sudo docker rm front-app-container
+sudo docker rm <container_name>
 ```
 
 ## Docker compose dev
@@ -32,4 +28,9 @@ sudo docker compose down
 ```
 sudo docker compose -f production.yml up -d
 sudo docker compose -f docker-compose.yml -f production.yml up -d
+```
+
+## Restart service
+```
+sudo docker compose restart <service_name>
 ```
