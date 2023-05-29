@@ -62,6 +62,8 @@ public class StorageService implements IStorageService {
         if (file.getSize() < 1)
             throw new EmptyFileException();
 
+        System.out.println(root.toAbsolutePath());
+
         Files.write(root.resolve(slug + fileExtension), file.getBytes());
         return true;
     }
