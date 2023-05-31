@@ -1,6 +1,6 @@
 # VideoStream
 
-## To Do List32
+## To Do List
 
 * Server security setup
   * Ubuntu user
