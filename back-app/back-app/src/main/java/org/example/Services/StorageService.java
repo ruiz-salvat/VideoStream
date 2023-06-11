@@ -36,7 +36,9 @@ public class StorageService implements IStorageService {
                 else
                     isRootInitialized = true;
             } else {
-                throw new RuntimeException("environment variables not loaded");
+//                throw new RuntimeException("environment variables not loaded");
+                this.dataPath = "";
+                isRootInitialized = true;
             }
         } else {
             this.dataPath = dataPath;

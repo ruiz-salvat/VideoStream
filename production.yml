@@ -43,3 +43,10 @@ services:
     depends_on:
       - frontend
     restart: always
+
+  proxy:
+    build: nginx/
+    ports:
+      - 80:80
+    depends_on:
+      - frontend

@@ -22,10 +22,12 @@ import org.mockito.junit.MockitoRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import reactor.core.publisher.Mono;
+
 import java.util.Optional;
 
 import static Util.Constants.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class VideoServiceTest {
 
@@ -42,6 +44,7 @@ public class VideoServiceTest {
     public IVideoService videoService;
     private VideoDTO mockVideoDto;
     private Category mockCategory;
+    private Plan mockPlan;
 
     @Before
     public void setUp() {
@@ -49,8 +52,8 @@ public class VideoServiceTest {
         videoService = new VideoService(videoRepository, planRepository, categoryRepository, videoMapper, env);
 
         mockCategory = new Category(TEST_CATEGORY_NAME, TEST_CATEGORY_DESCRIPTION);
-        Plan plan = new Plan();
-        Video mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory, plan);
+        mockPlan = new Plan(0, 0, 0, 0);
+        Video mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory, mockPlan);
         mockVideoDto = new VideoDTO(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID, TEST_PLAN_ID);
 
         Mockito.when(videoRepository.findBySlug(TEST_SLUG))
@@ -58,6 +61,7 @@ public class VideoServiceTest {
         Mockito.when(videoRepository.existsBySlug(TEST_SLUG))
                 .thenReturn(true);
         Mockito.when(categoryRepository.findById(TEST_CATEGORY_ID)).thenReturn(Optional.of(mockCategory));
+        Mockito.when(planRepository.findById(TEST_PLAN_ID)).thenReturn(Optional.of(mockPlan));
     }
 
     @Test
@@ -86,8 +90,7 @@ public class VideoServiceTest {
 
     @Test
     public void saveVideo_ok() { // TODO: refactor
-        Plan plan = new Plan();
-        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory, plan);
+        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory, mockPlan);
         Mockito.when(videoRepository.findBySlug("new_slug"))
                 .thenReturn(mockVideo);
         Mockito.when(videoRepository.save(mockVideo)).thenReturn(mockVideo);

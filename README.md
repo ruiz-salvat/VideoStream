@@ -1,19 +1,23 @@
 # VideoStream
 
-## To Do List32
+## To Do List
 
 * Server security setup
   * Ubuntu user
   * Firewall
   * Reverse proxy server
   * Domain
+    * make 3000 be the main
   * SSL
+  * NGINX
+    * load balancer
+    * finish proxies
+    * handle errors and index
 * Docker
   * name containers?
   * docker test
-  * nginx with compose?
   * docker desktop?
-
+  
 * Unit Tests
 
 * Integration Tests
@@ -29,13 +33,16 @@
 * New DB model
 * Dashboard
 * CI/CD
-* Create public and private components folder
+* Scale admin
 * Set requirement upload image min width 300px;
-* Javascript constants file
 * OAuth?
 * Droplet monitoring
 * Mobile view
 * Custom error page with handling?
+* Analytics
+  * Bugs
+  * Views
+
 
 
 ## Database setup
