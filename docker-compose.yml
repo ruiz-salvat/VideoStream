@@ -42,3 +42,13 @@ services:
       - 8081:80
     depends_on:
       - frontend
+  
+  proxy:
+    build: nginx/
+    ports:
+      - 80:80
+      # - 8083:90
+    depends_on:
+      - frontend
+    # volumes:
+    #   - ./nginx/src:/usr/share/nginx/html
