@@ -2,12 +2,13 @@
 
 ## To Do List
 
-* Server security setup
-  * Ubuntu user
+* Externalize file storage
+* Analytics
+  * Bugs
+  * Views
+* Server/security setup
   * Firewall
-  * Reverse proxy server
-  * Domain
-    * make 3000 be the main
+    * make ports unavailable
   * SSL
   * NGINX
     * load balancer
@@ -17,13 +18,8 @@
   * name containers?
   * docker test
   * docker desktop?
-  
 * Unit Tests
-
 * Integration Tests
-* DTO (two-way)
-* Handle just jpg and throw exceptions for other extensions
-* Create and throw exceptions for User and Role
 * Docs
 
 -- Milestone --
@@ -33,15 +29,18 @@
 * New DB model
 * Dashboard
 * CI/CD
+
+-- Improvement --
+
 * Scale admin
 * Set requirement upload image min width 300px;
 * OAuth?
 * Droplet monitoring
 * Mobile view
 * Custom error page with handling?
-* Analytics
-  * Bugs
-  * Views
+* DTO (two-way)
+* Handle just jpg and throw exceptions for other extensions
+* Create and throw exceptions for User and Role
 
 
 
@@ -272,7 +271,15 @@ sudo systemctl daemon-reload
 ```
 ### Docker compose deployment
 
+1. Install docker compose
 
+2. Run:
+
+   ```
+   sudo docker compose -f production.yml up -d
+   ```
+
+   
 
 # Free domain movies sites
 
