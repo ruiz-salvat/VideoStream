@@ -3,9 +3,9 @@
 ## To Do List
 
 * Externalize file storage
-* Analytics
-  * Bugs
-  * Views
+* Google Analytics
+* Analytics Bugs
+* Docker Migration
 * Server/security setup
   * Firewall
     * make ports unavailable

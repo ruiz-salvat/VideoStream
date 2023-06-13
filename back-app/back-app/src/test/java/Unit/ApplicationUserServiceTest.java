@@ -2,6 +2,7 @@ package Unit;
 
 import org.example.Entities.ApplicationUser;
 import org.example.Entities.Role;
+import org.example.Entities.Subscription;
 import org.example.Exceptions.UserAlreadyExistsException;
 import org.example.Exceptions.UserNotFoundException;
 import org.example.Repositories.IRoleRepository;
@@ -41,7 +42,8 @@ public class ApplicationUserServiceTest {
 
         Set<Role> roles = new HashSet<>();
         roles.add(new Role("basic_user"));
-        mockApplicationUser = new ApplicationUser(TEST_USERNAME, TEST_EMAIL, TEST_PASSWORD, TEST_NAME, TEST_LAST_NAME, TEST_ADDRESS, roles);
+        Subscription subscription = new Subscription();
+        mockApplicationUser = new ApplicationUser(TEST_USERNAME, TEST_EMAIL, TEST_PASSWORD, TEST_NAME, TEST_LAST_NAME, TEST_ADDRESS, roles, subscription);
 
         Mockito.when(userRepository.findByEmail(TEST_EMAIL))
                 .thenReturn(mockApplicationUser);
@@ -99,7 +101,8 @@ public class ApplicationUserServiceTest {
         String newName = "new name";
         Set<Role> roles = new HashSet<>();
         roles.add(new Role("basic_user"));
-        ApplicationUser newApplicationUser = new ApplicationUser(newUsername, newEmail, TEST_PASSWORD, newName, TEST_LAST_NAME, TEST_ADDRESS, roles);
+        Subscription subscription = new Subscription();
+        ApplicationUser newApplicationUser = new ApplicationUser(newUsername, newEmail, TEST_PASSWORD, newName, TEST_LAST_NAME, TEST_ADDRESS, roles, subscription);
         Mockito.when(userRepository.save(newApplicationUser))
                 .thenReturn(newApplicationUser);
 
