@@ -1,11 +1,7 @@
 package org.example.Entities;
 
 import lombok.*;
-import org.hibernate.Hibernate;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,7 +12,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class ApplicationUser {
 
-    public ApplicationUser(String userName, String email, String password, String name, String lastName, String address, Set<Role> roles) {
+    public ApplicationUser(String userName, String email, String password, String name, String lastName, String address, Set<Role> roles, Subscription subscription) {
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -24,6 +20,7 @@ public class ApplicationUser {
         this.lastName = lastName;
         this.address = address;
         this.roles = roles;
+        this.subscription = subscription;
     }
 
     @Id
@@ -46,16 +43,20 @@ public class ApplicationUser {
     @ToString.Exclude
     private Set<Role> roles;
 
+    @ManyToOne
+    @JoinColumn(name = "subscription_id")
+    private Subscription subscription;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        ApplicationUser applicationUser = (ApplicationUser) o;
-        return id != null && Objects.equals(id, applicationUser.id);
+        if (o == null || getClass() != o.getClass()) return false;
+        ApplicationUser that = (ApplicationUser) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getUserName(), that.getUserName()) && Objects.equals(getEmail(), that.getEmail()) && Objects.equals(getPassword(), that.getPassword()) && Objects.equals(getName(), that.getName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getRoles(), that.getRoles()) && Objects.equals(getSubscription(), that.getSubscription());
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return Objects.hash(getId(), getUserName(), getEmail(), getPassword(), getName(), getLastName(), getAddress(), getRoles(), getSubscription());
     }
 }
