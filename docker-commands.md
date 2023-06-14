@@ -32,5 +32,11 @@ sudo docker compose -f docker-compose.yml -f production.yml up -d
 
 ## Restart service
 ```
+sudo docker compose restart
 sudo docker compose restart <service_name>
+```
+
+## Recreate
+```
+sudo docker compose -f production.yml up --force-recreate
 ```
