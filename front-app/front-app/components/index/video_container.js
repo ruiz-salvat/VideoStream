@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function VideoContainer({video}) {
     return <>
-        <Link href={video.slug}>
+        <Link className={styles.video_link} href={video.slug}>
             <div className={styles.video_card}>
                 <img className={styles.video_card_image} src={process.env.NEXT_PUBLIC_LOCALHOST_URL + 'video/image/' + video.slug} />
                 <div className={styles.video_card_text_container}>

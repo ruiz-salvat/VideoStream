@@ -1,3 +1,7 @@
+.video_link {
+    text-decoration: none;
+}
+
 .video_card {
     border: solid 10px #252525;
     margin: 1.5rem;

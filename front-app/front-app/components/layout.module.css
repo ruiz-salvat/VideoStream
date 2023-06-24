@@ -5,6 +5,26 @@
     background-color: #5e5e5e6e;
 }
 
+.menu_container {
+    right: 3rem;
+    position: fixed;
+    margin-top: 2.5rem;
+}
+
+.menu_link {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    border: solid #ffffff 2px;
+}
+
+.menu_link:hover {
+    background-color: #ffffff;
+    color: #252525;
+}
+
 .image_container {
     text-align: center;
     padding: 2rem;

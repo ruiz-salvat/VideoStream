@@ -43,15 +43,17 @@ public class UserService implements IUserService {
     @Override
     public ApplicationUser saveUser(ApplicationUser applicationUser) {
         if (userRepository.existsByEmail(applicationUser.getEmail()) || userRepository.existsByUserName(applicationUser.getUserName()))
-            throw new UserAlreadyExistsException();
+            return null;
+            //            throw new UserAlreadyExistsException();
+
+        if (applicationUser.getEmail().isEmpty() || applicationUser.getName().isEmpty() || applicationUser.getLastName().isEmpty())
+            return null;
+            //            throw new MissingFieldsException();
 
         String encodedPassword = new BCryptPasswordEncoder().encode(applicationUser.getPassword());
         applicationUser.setPassword(encodedPassword);
         Role userRole = roleRepository.findByRoleName("basic_user");
         applicationUser.setRoles(new HashSet<>(Collections.singletonList(userRole)));
-
-        if (applicationUser.getEmail().isEmpty() || applicationUser.getName().isEmpty() || applicationUser.getLastName().isEmpty())
-            throw new MissingFieldsException();
 
         return userRepository.save(applicationUser);
     }

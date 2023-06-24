@@ -17,7 +17,7 @@ public class WebController {
     }
 
     @RequestMapping(value = "admin")
-    public String uploadVideo() {
+    public String admin() {
         return "admin";
     }
 
