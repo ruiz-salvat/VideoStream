@@ -37,9 +37,12 @@ public class LoginController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String createNewUser(@Valid ApplicationUser applicationUser, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "error";
-        userService.saveUser(applicationUser);
-        return "upload-video";
+            return "registration";
+
+        if (userService.saveUser(applicationUser) != null)
+            return "index";
+        else
+            return "registration";
     }
 
 }

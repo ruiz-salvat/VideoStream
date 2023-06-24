@@ -20,6 +20,8 @@ public class Plan {
     @GeneratedValue
     private Long id;
 
+    private String name;
+
     private Integer price24;
 
     private Integer price48;
@@ -28,11 +30,15 @@ public class Plan {
 
     private Integer price48premium;
 
-    public Plan(Integer price24, Integer price48, Integer price24premium, Integer price48premium) {
+    private boolean isPublic;
+
+    public Plan(String name, Integer price24, Integer price48, Integer price24premium, Integer price48premium, boolean isPublic) {
+        this.name = name;
         this.price24 = price24;
         this.price48 = price48;
         this.price24premium = price24premium;
         this.price48premium = price48premium;
+        this.isPublic = isPublic;
     }
 
     @Override
@@ -40,11 +46,11 @@ public class Plan {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Plan plan = (Plan) o;
-        return Objects.equals(getId(), plan.getId()) && Objects.equals(getPrice24(), plan.getPrice24()) && Objects.equals(getPrice48(), plan.getPrice48()) && Objects.equals(getPrice24premium(), plan.getPrice24premium()) && Objects.equals(getPrice48premium(), plan.getPrice48premium());
+        return isPublic() == plan.isPublic() && Objects.equals(getId(), plan.getId()) && Objects.equals(getName(), plan.getName()) && Objects.equals(getPrice24(), plan.getPrice24()) && Objects.equals(getPrice48(), plan.getPrice48()) && Objects.equals(getPrice24premium(), plan.getPrice24premium()) && Objects.equals(getPrice48premium(), plan.getPrice48premium());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getPrice24(), getPrice48(), getPrice24premium(), getPrice48premium());
+        return Objects.hash(getId(), getName(), getPrice24(), getPrice48(), getPrice24premium(), getPrice48premium(), isPublic());
     }
 }

@@ -52,8 +52,8 @@ public class VideoServiceTest {
         videoService = new VideoService(videoRepository, planRepository, categoryRepository, videoMapper, env);
 
         mockCategory = new Category(TEST_CATEGORY_NAME, TEST_CATEGORY_DESCRIPTION);
-        mockPlan = new Plan(0, 0, 0, 0);
-        Video mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory, mockPlan);
+        mockPlan = new Plan("test_plan", 0, 0, 0, 0, false);
+        Video mockVideo = new Video(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, false, mockCategory, mockPlan);
         mockVideoDto = new VideoDTO(TEST_SLUG, TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_CATEGORY_ID, TEST_PLAN_ID);
 
         Mockito.when(videoRepository.findBySlug(TEST_SLUG))
@@ -90,7 +90,7 @@ public class VideoServiceTest {
 
     @Test
     public void saveVideo_ok() { // TODO: refactor
-        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, mockCategory, mockPlan);
+        Video mockVideo = new Video("new_slug", TEST_TITLE, TEST_SYNOPSIS, TEST_DESCRIPTION, TEST_VIDEO_FILE_PATH, TEST_IMAGE_FILE_PATH, false, mockCategory, mockPlan);
         Mockito.when(videoRepository.findBySlug("new_slug"))
                 .thenReturn(mockVideo);
         Mockito.when(videoRepository.save(mockVideo)).thenReturn(mockVideo);

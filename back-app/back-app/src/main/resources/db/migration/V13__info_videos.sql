@@ -1,0 +1,3 @@
+ALTER TABLE video ADD is_info_video BOOLEAN NULL;
+ALTER TABLE plan ADD name VARCHAR(255) NULL;
+ALTER TABLE plan ADD is_public BOOLEAN NULL;

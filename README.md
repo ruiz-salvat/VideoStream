@@ -2,14 +2,28 @@
 
 ## To Do List
 
+* Registration form validation at template
+* Frontend
+
+  * video reproducer
+  * Authentication Next JS
+    * NextAuth: https://next-auth.js.org/getting-started/example
+    * react hook form: https://blog.logrocket.com/react-hook-form-complete-guide/
+  * start with dashboard
+  * index page 
+    * Redo design and add suggestions and more text
+    * scrolling
+  * redesign video page
+* Ads
 * Externalize file storage
-* Google Analytics
 * Analytics Bugs
-* Docker Migration
 * Server/security setup
   * Firewall
     * make ports unavailable
   * SSL
+    * https://www.learnbestcoding.com/post/17/ssl-https-with-nginx
+    * https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
+    * https://www.digitalocean.com/community/tutorials/how-to-secure-a-containerized-node-js-application-with-nginx-let-s-encrypt-and-docker-compose
   * NGINX
     * load balancer
     * finish proxies
@@ -24,25 +38,30 @@
 
 -- Milestone --
 
-* Plan name
-* Authentication Next JS
-* New DB model
+* Captcha
+* OAuth
 * Dashboard
+* Plan name
+* New DB model
 * CI/CD
 
 -- Improvement --
 
 * Scale admin
 * Set requirement upload image min width 300px;
-* OAuth?
 * Droplet monitoring
 * Mobile view
 * Custom error page with handling?
+* Docker Migration
 * DTO (two-way)
 * Handle just jpg and throw exceptions for other extensions
 * Create and throw exceptions for User and Role
 
+-- Issues --
 
+* warn-once.js:11  Do not add <script> tags using next/head (see <script> tag with src="https://www.googletagmanager.com/gtag/js?id=G-8F2W27LGV5"). Use next/script instead. 
+* WebSocket connection to 'ws://127.0.0.1:8082/_next/webpack-hmr' failed: 
+  init @ websocket.js:60
 
 ## Database setup
 
