@@ -95,7 +95,7 @@ public class VideoService implements IVideoService {
         else
             throw new PlanNotFoundException();
 
-        Video newVideo = new Video(slug, title, synopsis, description, videoFilePath, imageFilePath, category, plan);
+        Video newVideo = new Video(slug, title, synopsis, description, videoFilePath, imageFilePath, false, category, plan);
         Video video = videoRepository.save(newVideo);
         return videoMapper.modelToDto(video);
     }
@@ -111,7 +111,7 @@ public class VideoService implements IVideoService {
 
     @Override
     public List<VideoDTO> getAllVideos() {
-        return videoMapper.modelsToDtos(videoRepository.findAll());
+        return videoMapper.modelsToDtos(videoRepository.findByIsInfoVideoIsFalse());
     }
 
 }

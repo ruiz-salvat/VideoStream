@@ -47,7 +47,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
                 // cookies cannot be set with xmlHttpRequests, so these components must be public even though they are
                 // just used for authenticated users
-                .antMatchers("/components/video-upload-success").permitAll() // TODO: remove?
+                .antMatchers("/components/video-upload-success").permitAll()
                 .antMatchers("/components/video-upload-fail").permitAll()
 
                 // admin urls
@@ -59,8 +59,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
                 // login page
                 .loginPage("/login")
-                .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/") // TODO: redirect to dashboard
+                .failureUrl("http://videopulse.xyz/login?error=true")
+                .defaultSuccessUrl("http://videopulse.xyz/")
                 .usernameParameter("user_name")
                 .passwordParameter("password")
                 .and().logout()
