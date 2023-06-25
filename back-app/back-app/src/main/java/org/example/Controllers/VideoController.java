@@ -39,6 +39,10 @@ public class VideoController {
                 Plan freePlan = planRepository.findByName("free");
 //                Plan loginPlan = planRepository.findByName("login");
 
+                System.out.println("\n*******\n");
+                System.out.println(grantedAuthority);
+                System.out.println("\n*******\n");
+
                 if (basicAuthority.equals(grantedAuthority)) {
 
 //                    VideoDTO videoDto = videoService.getVideoDetails(slug);

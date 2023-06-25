@@ -38,12 +38,14 @@
 
 -- Milestone --
 
+* Logout
 * Captcha
 * OAuth
 * Dashboard
 * Plan name
 * New DB model
 * CI/CD
+* GTA4 to login and registration
 
 -- Improvement --
 
