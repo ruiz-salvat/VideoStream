@@ -2,7 +2,9 @@
 
 ## To Do List
 
+* Fix bug with permissions
 * Registration form validation at template
+* serialize name plan
 * Frontend
 
   * video reproducer
@@ -38,6 +40,7 @@
 
 -- Milestone --
 
+* 404 error nginx
 * Logout
 * Captcha
 * OAuth
@@ -46,6 +49,7 @@
 * New DB model
 * CI/CD
 * GTA4 to login and registration
+* Document how video permissions work
 
 -- Improvement --
 
