@@ -5,6 +5,7 @@ export default function HomePage({ categories, videos }) {
    function testButton() {
       fetch(`${process.env.NEXT_PUBLIC_LOCALHOST_URL}video/details/sinkin_bathtub`, {
          credentials: "include",
+         mode: "cors",
          headers: {
             'Access-Control-Allow-Origin': `http://165.22.88.112:80`
          }
