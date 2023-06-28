@@ -42,6 +42,8 @@ public class VideoController {
                 System.out.println("\n*******\n");
                 System.out.println(grantedAuthority);
                 System.out.println("\n*******\n");
+                System.out.println(authority);
+                System.out.println("\n*******\n");
 
                 if (basicAuthority.equals(grantedAuthority)) {
 
