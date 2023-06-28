@@ -20,7 +20,6 @@ export default function HomePage({ categories, videos }) {
       <Layout>
             <div>
                <button onClick={testButton}>Test Button</button>
-               Hola
             </div>
             <div>
                {categories.map((category) => (

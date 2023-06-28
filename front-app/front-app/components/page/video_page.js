@@ -5,7 +5,7 @@ export default function VideoPage({videoDetails}) {
         <div>
             <div className={styles.video_player}>
                 <video 
-                    src={process.env.NEXT_PUBLIC_LOCALHOST_URL + 'video/' + videoDetails.slug}
+                    src={`video/${videoDetails.slug}`}
                     controls
                     className={styles.video_screen}/>
             </div>
