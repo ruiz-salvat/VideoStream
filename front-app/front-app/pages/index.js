@@ -3,7 +3,9 @@ import CategoryContainer from '../components/index/category_container'
 
 export default function HomePage({ categories, videos }) {
    function testButton() {
-      fetch(`${process.env.NEXT_PUBLIC_LOCALHOST_URL}video/details/sinkin_bathtub`)
+      fetch(`${process.env.NEXT_PUBLIC_LOCALHOST_URL}video/details/sinkin_bathtub`, {
+         credentials: "include"
+      })
       .then(response => response.json())
       .then(response => {
          console.log("Response", response);

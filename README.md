@@ -5,6 +5,10 @@
 * Fix bug with permissions
 * Registration form validation at template
 * serialize name plan
+* nginx
+  * 404
+  * 502
+
 * Frontend
 
   * video reproducer
