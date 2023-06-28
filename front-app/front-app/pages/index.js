@@ -6,7 +6,7 @@ export default function HomePage({ categories, videos }) {
       fetch(`${process.env.NEXT_PUBLIC_LOCALHOST_URL}video/details/sinkin_bathtub`, {
          credentials: "include",
          headers: {
-            'Access-Control-Allow-Origin': `${process.env.NEXT_PUBLIC_LOCALHOST_URL}`
+            'Access-Control-Allow-Origin': `http://165.22.88.112:80`
          }
       })
       .then(response => response.json())
