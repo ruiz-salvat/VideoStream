@@ -2,25 +2,8 @@ import Layout from '../components/layout'
 import CategoryContainer from '../components/index/category_container'
 
 export default function HomePage({ categories, videos }) {
-   function testButton() {
-      fetch(`video/details/sinkin_bathtub`, {
-         credentials: "include",
-         mode: "cors",
-         headers: {
-            'Access-Control-Allow-Origin': `http://165.22.88.112:80`
-         }
-      })
-      .then(response => response.json())
-      .then(response => {
-         console.log("Response", response);
-      })
-   }
-
    return (
       <Layout>
-            <div>
-               <button onClick={testButton}>Test Button</button>
-            </div>
             <div>
                {categories.map((category) => (
                   <CategoryContainer key={category.id} category={category} videos={videos.filter(video => video.category === category.id)}/>

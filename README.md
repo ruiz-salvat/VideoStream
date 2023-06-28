@@ -2,34 +2,28 @@
 
 ## To Do List
 
-* Fix bug with permissions
-* Registration form validation at template
-* serialize name plan
+* SSL
+  * https://www.learnbestcoding.com/post/17/ssl-https-with-nginx
+  * https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
+  * https://www.digitalocean.com/community/tutorials/how-to-secure-a-containerized-node-js-application-with-nginx-let-s-encrypt-and-docker-compose
 * nginx
   * 404
   * 502
-
 * Frontend
 
   * video reproducer
-  * Authentication Next JS
-    * NextAuth: https://next-auth.js.org/getting-started/example
-    * react hook form: https://blog.logrocket.com/react-hook-form-complete-guide/
-  * start with dashboard
   * index page 
-    * Redo design and add suggestions and more text
-    * scrolling
-  * redesign video page
+    * read cookie and display user page
+  * video page
 * Ads
+
+-- Milestone --
+
 * Externalize file storage
 * Analytics Bugs
 * Server/security setup
   * Firewall
     * make ports unavailable
-  * SSL
-    * https://www.learnbestcoding.com/post/17/ssl-https-with-nginx
-    * https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
-    * https://www.digitalocean.com/community/tutorials/how-to-secure-a-containerized-node-js-application-with-nginx-let-s-encrypt-and-docker-compose
   * NGINX
     * load balancer
     * finish proxies
@@ -44,7 +38,8 @@
 
 -- Milestone --
 
-* 404 error nginx
+* Registration form validation at template
+* serialize name plan
 * Logout
 * Captcha
 * OAuth
