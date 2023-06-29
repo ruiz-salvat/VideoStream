@@ -9,9 +9,11 @@
 * nginx
   * 404
   * 502
+* Backend
+  * video reproducer
+
 * Frontend
 
-  * video reproducer
   * index page 
     * read cookie and display user page
   * video page
@@ -61,6 +63,8 @@
 * DTO (two-way)
 * Handle just jpg and throw exceptions for other extensions
 * Create and throw exceptions for User and Role
+* Replace ips by domains...
+* Docker development volume nginx
 
 -- Issues --
 
