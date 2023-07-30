@@ -146,6 +146,16 @@
             <version>5.7.3</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mp4parser</groupId>
+            <artifactId>isoparser</artifactId>
+            <version>1.9.56</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mp4parser</groupId>
+            <artifactId>muxer</artifactId>
+            <version>1.9.56</version>
+        </dependency>
 
         <!-- Development tools -->
         <dependency>

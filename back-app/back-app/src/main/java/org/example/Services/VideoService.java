@@ -13,15 +13,24 @@ import org.example.Mappers.IMapper;
 import org.example.Repositories.ICategoryRepository;
 import org.example.Repositories.IPlanRepository;
 import org.example.Repositories.IVideoRepository;
+import org.mp4parser.Container;
+import org.mp4parser.muxer.Movie;
+import org.mp4parser.muxer.Track;
+import org.mp4parser.muxer.builder.DefaultMp4Builder;
+import org.mp4parser.muxer.container.mp4.MovieCreator;
+import org.mp4parser.muxer.tracks.AppendTrack;
+import org.mp4parser.muxer.tracks.ClippedTrack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
-import java.io.IOException;
+import java.io.*;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import static org.example.Util.Constants.*;
 
 @Service
 @AllArgsConstructor
@@ -61,6 +70,41 @@ public class VideoService implements IVideoService {
     }
 
     @Override
+    public Mono<byte[]> getVideoPart(String slug, double percentage) {
+        if (!videoRepository.existsBySlug(slug))
+            throw new VideoNotFoundException();
+
+        Video video = videoRepository.findBySlug(slug);
+        return Mono.fromSupplier(() -> {
+            try {
+                Movie movie = MovieCreator.build(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
+                Movie output = new Movie();
+
+                Track videoTrack = movie.getTracks().get(0);
+                Track audioTrack = movie.getTracks().get(1);
+
+                int videoSampleSize = videoTrack.getSamples().size();
+                double startVideoSample = videoSampleSize * percentage;
+                long startVideoSampleLong = (long)startVideoSample;
+
+                output.addTrack(new AppendTrack(new ClippedTrack(videoTrack, startVideoSampleLong, videoTrack.getSamples().size())));
+                output.addTrack(new AppendTrack(new ClippedTrack(audioTrack, startVideoSampleLong, videoTrack.getSamples().size())));
+
+                Container out = new DefaultMp4Builder().build(output);
+                File tempFile = new File(String.valueOf(Paths.get(String.format(getFileFormat(), TEMP_FILE_OUTPUT_NAME))));
+                FileChannel fc = new FileOutputStream(tempFile).getChannel();
+
+                out.writeContainer(fc);
+                fc.close();
+
+                return Files.readAllBytes(tempFile.toPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    @Override
     public VideoDTO getVideoDetails(String slug) {
         if (!videoRepository.existsBySlug(slug))
             throw new VideoNotFoundException();
@@ -80,8 +124,8 @@ public class VideoService implements IVideoService {
         if (videoRepository.existsBySlug(slug))
             throw new VideoAlreadyExistsException();
 
-        String videoFilePath = slug + ".mp4";
-        String imageFilePath = slug + ".jpg"; // TODO: handle different formats
+        String videoFilePath = slug + VIDEO_FILE_EXTENSION;
+        String imageFilePath = slug + IMAGE_FILE_EXTENSION;
 
         Category category;
         if (categoryRepository.findById(categoryId).isPresent())
