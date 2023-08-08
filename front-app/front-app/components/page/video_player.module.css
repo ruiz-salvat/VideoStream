@@ -1,0 +1,17 @@
+.video_player{
+    text-align: center;
+    margin: 2px solid red;
+}
+
+.video_screen {
+    max-width: -webkit-fill-available;
+}
+
+.video_score_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.video_score_element {
+    padding: 10px;
+}

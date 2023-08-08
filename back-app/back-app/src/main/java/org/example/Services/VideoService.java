@@ -84,11 +84,16 @@ public class VideoService implements IVideoService {
                 Track audioTrack = movie.getTracks().get(1);
 
                 int videoSampleSize = videoTrack.getSamples().size();
+                int audioSampleSize = audioTrack.getSamples().size();
+
                 double startVideoSample = videoSampleSize * percentage;
                 long startVideoSampleLong = (long)startVideoSample;
 
+                double startAudioSample = audioSampleSize * percentage;
+                long startAudioSampleLong = (long)startAudioSample;
+
                 output.addTrack(new AppendTrack(new ClippedTrack(videoTrack, startVideoSampleLong, videoTrack.getSamples().size())));
-                output.addTrack(new AppendTrack(new ClippedTrack(audioTrack, startVideoSampleLong, videoTrack.getSamples().size())));
+                output.addTrack(new AppendTrack(new ClippedTrack(audioTrack, startAudioSampleLong, audioTrack.getSamples().size())));
 
                 Container out = new DefaultMp4Builder().build(output);
                 File tempFile = new File(String.valueOf(Paths.get(String.format(getFileFormat(), TEMP_FILE_OUTPUT_NAME))));
