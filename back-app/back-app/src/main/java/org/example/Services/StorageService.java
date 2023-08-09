@@ -10,6 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static org.example.Util.Constants.IMAGE_FILE_EXTENSION;
+import static org.example.Util.Constants.VIDEO_FILE_EXTENSION;
+
 @Service
 public class StorageService implements IStorageService {
 
@@ -70,8 +73,8 @@ public class StorageService implements IStorageService {
 
     @Override
     public boolean delete(String slug) throws IOException {
-        Files.delete(root.resolve(slug + ".mp4"));
-        Files.delete(root.resolve(slug + ".jpg"));
+        Files.delete(root.resolve(slug + VIDEO_FILE_EXTENSION));
+        Files.delete(root.resolve(slug + IMAGE_FILE_EXTENSION));
         return true;
     }
 }

@@ -10,8 +10,8 @@ export default function Video({ videoDetails }) {
                <title>{videoDetails.title}</title>
             </Head>
          </div>
-         <VideoPage videoDetails={videoDetails} />
-      </Layout>             
+            <VideoPage videoDetails={videoDetails} />
+      </Layout>
    </>
 }                        
  

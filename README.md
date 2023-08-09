@@ -1,20 +1,17 @@
 # VideoStream
 
+
 ## To Do List
 
 * SSL
   * https://www.learnbestcoding.com/post/17/ssl-https-with-nginx
   * https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
   * https://www.digitalocean.com/community/tutorials/how-to-secure-a-containerized-node-js-application-with-nginx-let-s-encrypt-and-docker-compose
-* nginx
-  * 404
-  * 502
-* Backend
-  * video reproducer
+* finish video reproducer styles
 
 * Frontend
 
-  * index page 
+  * index page
     * read cookie and display user page
   * video page
 * Ads
@@ -51,6 +48,8 @@
 * CI/CD
 * GTA4 to login and registration
 * Document how video permissions work
+* Style 404
+* Style 502
 
 -- Improvement --
 
@@ -63,6 +62,7 @@
 * DTO (two-way)
 * Handle just jpg and throw exceptions for other extensions
 * Create and throw exceptions for User and Role
+* Not null and db constraints
 
 -- Issues --
 

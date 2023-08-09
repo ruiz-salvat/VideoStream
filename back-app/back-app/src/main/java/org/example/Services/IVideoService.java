@@ -1,6 +1,7 @@
 package org.example.Services;
 
 import org.example.DTOs.VideoDTO;
+import org.springframework.core.io.InputStreamResource;
 import reactor.core.publisher.Mono;
 import java.io.IOException;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 public interface IVideoService {
 
     Mono<byte[]> getVideo(String slug);
+
+    Mono<byte[]> getVideoPart(String slug, double percentage);
 
     VideoDTO getVideoDetails(String slug);
 
