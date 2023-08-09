@@ -3,14 +3,11 @@
 
 ## To Do List
 
-* Implement OGG enterely
 * SSL
   * https://www.learnbestcoding.com/post/17/ssl-https-with-nginx
   * https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
   * https://www.digitalocean.com/community/tutorials/how-to-secure-a-containerized-node-js-application-with-nginx-let-s-encrypt-and-docker-compose
-* video reproducer
-  * OGG format
-  * Video.js media player
+* finish video reproducer styles
 
 * Frontend
 
