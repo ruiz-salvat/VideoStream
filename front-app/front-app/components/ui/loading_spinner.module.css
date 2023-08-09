@@ -1,0 +1,8 @@
+.spinner_container {
+    background-color: #3564ff75;
+    width: 636px;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

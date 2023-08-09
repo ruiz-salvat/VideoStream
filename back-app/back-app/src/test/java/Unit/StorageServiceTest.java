@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import static Util.Constants.*;
+import static org.example.Util.Constants.IMAGE_FILE_EXTENSION;
+import static org.example.Util.Constants.VIDEO_FILE_EXTENSION;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -33,30 +35,30 @@ public class StorageServiceTest {
         MultipartFile file = new MockMultipartFile(TEST_SLUG, "some txt".getBytes());
 
         boolean isSavedImg;
-        boolean isSavedMp4;
+        boolean isSavedVideo;
 
         try {
-            isSavedImg = storageService.save(file, TEST_SLUG, ".jpg");
-            isSavedMp4 = storageService.save(file, TEST_SLUG, ".mp4");
+            isSavedImg = storageService.save(file, TEST_SLUG, IMAGE_FILE_EXTENSION);
+            isSavedVideo = storageService.save(file, TEST_SLUG, VIDEO_FILE_EXTENSION);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         assertTrue(isSavedImg);
-        assertTrue(isSavedMp4);
+        assertTrue(isSavedVideo);
 
-        File fImg = new File(TEST_DATA_PATH  + TEST_SLUG + ".jpg");
+        File fImg = new File(TEST_DATA_PATH  + TEST_SLUG + IMAGE_FILE_EXTENSION);
         assertTrue(fImg.exists());
 
-        File fMp4 = new File(TEST_DATA_PATH  + TEST_SLUG + ".mp4");
-        assertTrue(fMp4.exists());
+        File fVideo = new File(TEST_DATA_PATH  + TEST_SLUG + VIDEO_FILE_EXTENSION);
+        assertTrue(fVideo.exists());
     }
 
     @Test(expected = EmptyFileException.class)
     public void save_emptyFile() {
         MultipartFile file = new MockMultipartFile(TEST_SLUG, "".getBytes());
         try {
-            storageService.save(file, TEST_SLUG, ".jpg");
+            storageService.save(file, TEST_SLUG, IMAGE_FILE_EXTENSION);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -67,8 +69,8 @@ public class StorageServiceTest {
         // assuming that save_ok() passes
         MultipartFile file = new MockMultipartFile(TEST_SLUG, "some txt".getBytes());
         try {
-            storageService.save(file, TEST_SLUG, ".jpg");
-            storageService.save(file, TEST_SLUG, ".mp4");
+            storageService.save(file, TEST_SLUG, IMAGE_FILE_EXTENSION);
+            storageService.save(file, TEST_SLUG, VIDEO_FILE_EXTENSION);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -81,11 +83,11 @@ public class StorageServiceTest {
         }
         assertTrue(isDeleted);
 
-        File fImg = new File(TEST_DATA_PATH  + TEST_SLUG + ".jpg");
+        File fImg = new File(TEST_DATA_PATH  + TEST_SLUG + IMAGE_FILE_EXTENSION);
         assertFalse(fImg.exists());
 
-        File fMp4 = new File(TEST_DATA_PATH  + TEST_SLUG + ".mp4");
-        assertFalse(fMp4.exists());
+        File fVideo = new File(TEST_DATA_PATH  + TEST_SLUG + VIDEO_FILE_EXTENSION);
+        assertFalse(fVideo.exists());
     }
 
     @Test(expected = NoSuchFileException.class)

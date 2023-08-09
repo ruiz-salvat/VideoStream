@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
+import static org.example.Util.Constants.IMAGE_FILE_EXTENSION;
+import static org.example.Util.Constants.VIDEO_FILE_EXTENSION;
+
 @RestController
 @RequestMapping("private-video")
 @CrossOrigin
@@ -32,7 +35,7 @@ public class PrivateVideoController {
             @RequestParam("video_file") MultipartFile videoFile,
             @RequestParam("image_file") MultipartFile imageFile) {
         try {
-            if (storageService.save(videoFile, slug, ".mp4") && storageService.save(imageFile, slug, ".jpg")) {
+            if (storageService.save(videoFile, slug, VIDEO_FILE_EXTENSION) && storageService.save(imageFile, slug, IMAGE_FILE_EXTENSION)) {
                 VideoDTO videoDTO = videoService.saveVideo(slug, title, synopsis, description, category, plan);
                 return ResponseEntity.ok(videoDTO);
             }
