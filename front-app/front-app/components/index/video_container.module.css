@@ -9,8 +9,10 @@
 }
 
 .video_card_image {
-    max-width: 20rem;
-    min-width: -webkit-fill-available;
+    max-width: 17rem;
+    min-width: 17rem;
+    min-height: 15rem;
+    max-height: 15rem;
 }
 
 .video_card_text_container {
@@ -21,6 +23,9 @@
     color: #ffffff;
     font-size: 2rem;
     font-weight: 900;
+    max-width: 16rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .video_card_synopsis {
@@ -28,4 +33,7 @@
     max-width: 20rem;
     max-height: 10rem;
     overflow: hidden;
+    max-width: 16rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
