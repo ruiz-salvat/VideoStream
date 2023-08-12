@@ -138,7 +138,7 @@ export default function VideoPlayer({videoDetails}) {
                     <source src={`video/${videoDetails.slug}`} type="video/mp4"></source>
                 </video>
 
-                <div id='loading_spinner'>
+                <div id='loading_spinner' style={{width: '100%'}}>
                     <LoadingSpinner></LoadingSpinner>
                 </div>
             </div>
@@ -150,27 +150,27 @@ export default function VideoPlayer({videoDetails}) {
                     <div className={styles.video_score_element} id='video_duration_label'></div>
                     <div className={styles.video_score_element}>
                         
-                        <button id='play_button' onClick={() => playButtonOnClick()}>
+                        <div id='play_button' className={styles.action_button} onClick={() => playButtonOnClick()}>
                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.6582 9.28638C18.098 10.1862 18.8178 10.6361 19.0647 11.2122C19.2803 11.7152 19.2803 12.2847 19.0647 12.7878C18.8178 13.3638 18.098 13.8137 16.6582 14.7136L9.896 18.94C8.29805 19.9387 7.49907 20.4381 6.83973 20.385C6.26501 20.3388 5.73818 20.0469 5.3944 19.584C5 19.053 5 18.1108 5 16.2264V7.77357C5 5.88919 5 4.94701 5.3944 4.41598C5.73818 3.9531 6.26501 3.66111 6.83973 3.6149C7.49907 3.5619 8.29805 4.06126 9.896 5.05998L16.6582 9.28638Z" stroke="#000000" strokeWidth="2" strokeLinejoin="round"/>
                             </svg>
-                        </button>
+                        </div>
 
-                        <button id='pause_button' onClick={() => pauseButtonOnClick()} style={{display: 'none'}}>
+                        <div id='pause_button' className={styles.action_button} onClick={() => pauseButtonOnClick()} style={{display: 'none'}}>
                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 5V19M16 5V19" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
-                        </button>
+                        </div>
                     
                     </div>
-                    <div className={styles.video_score_element}>
-                        <input type="range" id="time_bar_fake" min={0} max={100} value={0} onChange={() => {}} />
-                        <input type="range" id="time_bar" min={0} max={100} onChange={() => timeBarChange()} style={{display: 'none'}} />
+                    <div className={`${styles.video_score_element} ${styles.input_range_container}`}>
+                        <input type="range" id="time_bar_fake" min={0} max={100} value={0} onChange={() => {}} className={styles.input_range} />
+                        <input type="range" id="time_bar" min={0} max={100} onChange={() => timeBarChange()} style={{display: 'none'}} className={styles.input_range} />
                     </div>
                     <div className={styles.video_score_element} id='video_percentage_label'></div>
                     <div className={styles.video_score_element}>
                         
-                        <button id='full_screen_button' onClick={() => fullScreenButtonOnClick()}>
+                        <button id='full_screen_button' className={styles.action_button} onClick={() => fullScreenButtonOnClick()}>
                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6 9.99739C6.01447 8.29083 6.10921 7.35004 6.72963 6.72963C7.35004 6.10921 8.29083 6.01447 9.99739 6" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round"/>
                                 <path d="M6 14.0007C6.01447 15.7072 6.10921 16.648 6.72963 17.2684C7.35004 17.8888 8.29083 17.9836 9.99739 17.998" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round"/>
