@@ -85,8 +85,8 @@ export default function VideoPlayer({videoDetails}) {
         loadingSpinner.style.display = 'block'
         
         videoPlayer.src = `video/${videoDetails.slug}/${videoPercentage}`
-        currentTimeLabel.innerHTML = ' ' + secondsToTimeString(currentTime) + ' '
-        videoPercentageLabel.innerHTML = ' ' + parseInt(videoPercentage) + '% '
+        currentTimeLabel.innerHTML = secondsToTimeString(currentTime)
+        videoPercentageLabel.innerHTML = parseInt(videoPercentage) + '%'
     }
 
     function onTimeUpdate(event) {
@@ -97,8 +97,8 @@ export default function VideoPlayer({videoDetails}) {
         currentTime = contextTime + event.target.currentTime
         videoPercentage = (currentTime / videoDuration) * 100
 
-        currentTimeLabel.innerHTML = ' ' + secondsToTimeString(currentTime) + ' '
-        videoPercentageLabel.innerHTML = ' ' + parseInt(videoPercentage) + '% '
+        currentTimeLabel.innerHTML = secondsToTimeString(currentTime)
+        videoPercentageLabel.innerHTML = parseInt(videoPercentage) + '%'
         timeBarInput.value = videoPercentage
     }
 
@@ -113,16 +113,16 @@ export default function VideoPlayer({videoDetails}) {
             
             videoDuration = videoPlayer.duration
             
-            currentTimeLabel.innerHTML = ' ' + secondsToTimeString(currentTime) + ' '
-            videoDurationLabel.innerHTML = ' ' + secondsToTimeString(videoDuration) + ' '
-            videoPercentageLabel.innerHTML = ' ' + videoPercentage + '% '
+            currentTimeLabel.innerHTML = secondsToTimeString(currentTime)
+            videoDurationLabel.innerHTML = secondsToTimeString(videoDuration)
+            videoPercentageLabel.innerHTML = videoPercentage + '% '
             
             loadingSpinner.style.display = 'none'
             videoPlayer.style.display = 'block'
             videoScoreContainer.style.display = 'block'
 
             videoPlayer.addEventListener('timeupdate', (event) => onTimeUpdate(event))
-            videoPlayer.addEventListener('canplay', (event) => onCanPlay())
+            videoPlayer.addEventListener('canplay', () => onCanPlay())
           }, "1000") // Wait until document is loaded
     }
 
