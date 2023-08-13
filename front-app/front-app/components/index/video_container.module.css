@@ -1,39 +1,22 @@
-.video_link {
-    text-decoration: none;
+.video_card_modal_background {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000000;
+    background-color: #00000091;
 }
 
-.video_card {
-    border: solid 10px #252525;
-    margin: 1.5rem;
-    background-color: #252525;
-}
-
-.video_card_image {
-    max-width: 17rem;
-    min-width: 17rem;
-    min-height: 15rem;
-    max-height: 15rem;
-}
-
-.video_card_text_container {
-    padding: 0.5rem;
-}
-
-.video_card_title {
-    color: #ffffff;
-    font-size: 2rem;
-    font-weight: 900;
-    max-width: 16rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.video_card_synopsis {
-    color: #ffffff;
-    max-width: 20rem;
-    max-height: 10rem;
-    overflow: hidden;
-    max-width: 16rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.video_card_modal_close_button {
+    position: absolute;
+    left: 0%;
+    right: -250px;
+    top: 45%;
+    width: 2rem;
+    height: 2rem;
+    margin-left: auto;
+    margin-right: auto;
 }

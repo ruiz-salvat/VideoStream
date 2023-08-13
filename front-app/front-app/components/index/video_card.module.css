@@ -1,0 +1,34 @@
+.video_card {
+    border: solid 2px #252525;
+    padding: 0.5rem;
+    margin: 1.5rem;
+    background-color: #252525;
+}
+
+.video_card:hover {
+    border: solid 2px #580202;
+    cursor: pointer;
+}
+
+.video_card_image {
+    max-width: 17rem;
+    min-width: 17rem;
+    min-height: 15rem;
+    max-height: 15rem;
+}
+
+.video_card_text_container {
+    padding: 0.5rem;
+    overflow: hidden;
+}
+
+.video_card_title {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 900;
+    max-width: 16rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
