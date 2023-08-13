@@ -31,6 +31,7 @@
   * name containers?
   * docker test
   * docker desktop?
+  * How to rebuild a single service
 * Unit Tests
 * Integration Tests
 * Docs

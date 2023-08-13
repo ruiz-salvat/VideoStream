@@ -1,7 +1,5 @@
 .video_player{
     text-align: center;
-    margin: 2px solid red;
-    
 }
 
 .video_screen {
@@ -16,7 +14,7 @@
 }
 
 .video_score_element {
-    padding: 10px;
+    padding: 1rem;
 }
 
 .video_player_container {

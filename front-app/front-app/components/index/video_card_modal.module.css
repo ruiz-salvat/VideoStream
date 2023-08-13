@@ -1,0 +1,69 @@
+.video_card_modal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    max-width: 17rem;
+    min-width: 17rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem;
+
+    background-color: #252525;
+    border: 2px solid #580202;
+}
+
+.video_card_modal_image {
+    max-width: 17rem;
+    min-width: 17rem;
+    min-height: 15rem;
+    max-height: 15rem;
+}
+
+.video_card_modal_text_container {
+    padding: 0.5rem;
+    overflow: hidden;
+}
+
+.video_card_modal_title {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 900;
+    max-width: 16rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.video_card_modal_synopsis {
+    color: #ffffff;
+    max-width: 20rem;
+    max-height: 10rem;
+    overflow: hidden;
+    max-width: 16rem;
+    text-overflow: ellipsis;
+}
+
+.action_buttons_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.link_div {
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    width: fit-content;
+    margin: 1rem;
+    padding: 0.5rem
+}
+
+.link_div:hover {
+    color: #252525;
+    background-color: #ffffff;
+}
+
+.video_link {
+    text-decoration: none;
+}
