@@ -7,14 +7,18 @@
   * https://www.learnbestcoding.com/post/17/ssl-https-with-nginx
   * https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
   * https://www.digitalocean.com/community/tutorials/how-to-secure-a-containerized-node-js-application-with-nginx-let-s-encrypt-and-docker-compose
-* finish video reproducer styles
-
 * Frontend
 
   * index page
+    * intro
     * read cookie and display user page
-  * video page
+  * video page issues
+  * Mobile view
 * Ads
+* Solve issues
+  * reproducer drag
+  * Some video upload
+
 
 -- Milestone --
 

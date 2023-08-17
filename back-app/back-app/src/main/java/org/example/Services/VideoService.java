@@ -77,6 +77,9 @@ public class VideoService implements IVideoService {
         Video video = videoRepository.findBySlug(slug);
         return Mono.fromSupplier(() -> {
             try {
+                System.out.println("\n--------\n");
+                System.out.println(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
+                System.out.println("\n--------\n");
                 Movie movie = MovieCreator.build(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
                 Movie output = new Movie();
 
