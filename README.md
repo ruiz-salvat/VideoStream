@@ -13,10 +13,12 @@
     * intro
     * read cookie and display user page
   * video page issues
+    * on videoclick play/pause
   * Mobile view
 * Ads
 * Solve issues
   * reproducer drag
+  * reproducer init (concurrency "wait until loaded")
   * Some video upload
 
 
