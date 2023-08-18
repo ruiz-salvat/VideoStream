@@ -76,9 +76,20 @@ public class VideoService implements IVideoService {
 
         Video video = videoRepository.findBySlug(slug);
 
-        System.out.println("\n--------\n");
-        System.out.println(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
-        System.out.println("\n--------\n");
+
+        File f = new File(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
+        try {
+            FileInputStream fis = new FileInputStream(f);
+            System.out.println("\n--------\n");
+            System.out.println(fis.available());
+            System.out.println(fis.getChannel());
+            System.out.println("\n--------\n");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         return null;
 //        return Mono.fromSupplier(() -> {
 //            try {
