@@ -90,6 +90,9 @@ public class VideoService implements IVideoService {
                 System.out.println(fis.getFD().valid());
                 System.out.println("fis.getFD()");
                 System.out.println(fis.getFD());
+                System.out.println("chanel");
+                System.out.println(fis.getChannel().size());
+                System.out.println(fis.getChannel().position());
                 System.out.println("\n");
 
 //                Movie movie = MovieCreator.build(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
