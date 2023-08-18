@@ -111,7 +111,7 @@ public class VideoService implements IVideoService {
 //            } catch (IOException e) {
 //                throw new RuntimeException(e);
 //            }
-        });
+//        });
     }
 
     @Override
