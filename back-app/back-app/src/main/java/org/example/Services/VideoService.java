@@ -75,40 +75,42 @@ public class VideoService implements IVideoService {
             throw new VideoNotFoundException();
 
         Video video = videoRepository.findBySlug(slug);
-        return Mono.fromSupplier(() -> {
-            try {
-                System.out.println("\n--------\n");
-                System.out.println(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
-                System.out.println("\n--------\n");
-                Movie movie = MovieCreator.build(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
-                Movie output = new Movie();
 
-                Track videoTrack = movie.getTracks().get(0);
-                Track audioTrack = movie.getTracks().get(1);
-
-                int videoSampleSize = videoTrack.getSamples().size();
-                int audioSampleSize = audioTrack.getSamples().size();
-
-                double startVideoSample = videoSampleSize * percentage;
-                long startVideoSampleLong = (long)startVideoSample;
-
-                double startAudioSample = audioSampleSize * percentage;
-                long startAudioSampleLong = (long)startAudioSample;
-
-                output.addTrack(new AppendTrack(new ClippedTrack(videoTrack, startVideoSampleLong, videoTrack.getSamples().size())));
-                output.addTrack(new AppendTrack(new ClippedTrack(audioTrack, startAudioSampleLong, audioTrack.getSamples().size())));
-
-                Container out = new DefaultMp4Builder().build(output);
-                File tempFile = new File(String.valueOf(Paths.get(String.format(getFileFormat(), TEMP_FILE_OUTPUT_NAME))));
-                FileChannel fc = new FileOutputStream(tempFile).getChannel();
-
-                out.writeContainer(fc);
-                fc.close();
-
-                return Files.readAllBytes(tempFile.toPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        System.out.println("\n--------\n");
+        System.out.println(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
+        System.out.println("\n--------\n");
+        return null;
+//        return Mono.fromSupplier(() -> {
+//            try {
+//                Movie movie = MovieCreator.build(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
+//                Movie output = new Movie();
+//
+//                Track videoTrack = movie.getTracks().get(0);
+//                Track audioTrack = movie.getTracks().get(1);
+//
+//                int videoSampleSize = videoTrack.getSamples().size();
+//                int audioSampleSize = audioTrack.getSamples().size();
+//
+//                double startVideoSample = videoSampleSize * percentage;
+//                long startVideoSampleLong = (long)startVideoSample;
+//
+//                double startAudioSample = audioSampleSize * percentage;
+//                long startAudioSampleLong = (long)startAudioSample;
+//
+//                output.addTrack(new AppendTrack(new ClippedTrack(videoTrack, startVideoSampleLong, videoTrack.getSamples().size())));
+//                output.addTrack(new AppendTrack(new ClippedTrack(audioTrack, startAudioSampleLong, audioTrack.getSamples().size())));
+//
+//                Container out = new DefaultMp4Builder().build(output);
+//                File tempFile = new File(String.valueOf(Paths.get(String.format(getFileFormat(), TEMP_FILE_OUTPUT_NAME))));
+//                FileChannel fc = new FileOutputStream(tempFile).getChannel();
+//
+//                out.writeContainer(fc);
+//                fc.close();
+//
+//                return Files.readAllBytes(tempFile.toPath());
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
         });
     }
 
