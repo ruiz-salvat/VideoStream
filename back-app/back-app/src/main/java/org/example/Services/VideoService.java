@@ -84,6 +84,13 @@ public class VideoService implements IVideoService {
                 String file = String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath())));
                 File f = new File(file);
                 FileInputStream fis = new FileInputStream(f);
+                
+                System.out.println("\n");
+                System.out.println("fis.getFD().valid()");
+                System.out.println(fis.getFD().valid());
+                System.out.println("fis.getFD()");
+                System.out.println(fis.getFD());
+                System.out.println("\n");
 
 //                Movie movie = MovieCreator.build(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
                 Movie movie = MovieCreator.build(fis.getChannel(), new FileRandomAccessSourceImpl(new RandomAccessFile(f, "r")), file);
