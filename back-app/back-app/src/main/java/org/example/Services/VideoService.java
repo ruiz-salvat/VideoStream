@@ -14,7 +14,9 @@ import org.example.Repositories.ICategoryRepository;
 import org.example.Repositories.IPlanRepository;
 import org.example.Repositories.IVideoRepository;
 import org.mp4parser.Container;
+import org.mp4parser.muxer.FileRandomAccessSourceImpl;
 import org.mp4parser.muxer.Movie;
+import org.mp4parser.muxer.RandomAccessSource;
 import org.mp4parser.muxer.Track;
 import org.mp4parser.muxer.builder.DefaultMp4Builder;
 import org.mp4parser.muxer.container.mp4.MovieCreator;
@@ -27,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 import java.io.*;
 import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -76,53 +79,44 @@ public class VideoService implements IVideoService {
 
         Video video = videoRepository.findBySlug(slug);
 
+        return Mono.fromSupplier(() -> {
+            try {
+                String file = String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath())));
+                File f = new File(file);
+                FileInputStream fis = new FileInputStream(f);
 
-        File f = new File(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
-        try {
-            FileInputStream fis = new FileInputStream(f);
-            System.out.println("\n--------\n");
-            System.out.println(fis.available());
-            System.out.println(fis.getChannel());
-            System.out.println("\n--------\n");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return null;
-//        return Mono.fromSupplier(() -> {
-//            try {
 //                Movie movie = MovieCreator.build(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
-//                Movie output = new Movie();
-//
-//                Track videoTrack = movie.getTracks().get(0);
-//                Track audioTrack = movie.getTracks().get(1);
-//
-//                int videoSampleSize = videoTrack.getSamples().size();
-//                int audioSampleSize = audioTrack.getSamples().size();
-//
-//                double startVideoSample = videoSampleSize * percentage;
-//                long startVideoSampleLong = (long)startVideoSample;
-//
-//                double startAudioSample = audioSampleSize * percentage;
-//                long startAudioSampleLong = (long)startAudioSample;
-//
-//                output.addTrack(new AppendTrack(new ClippedTrack(videoTrack, startVideoSampleLong, videoTrack.getSamples().size())));
-//                output.addTrack(new AppendTrack(new ClippedTrack(audioTrack, startAudioSampleLong, audioTrack.getSamples().size())));
-//
-//                Container out = new DefaultMp4Builder().build(output);
-//                File tempFile = new File(String.valueOf(Paths.get(String.format(getFileFormat(), TEMP_FILE_OUTPUT_NAME))));
-//                FileChannel fc = new FileOutputStream(tempFile).getChannel();
-//
-//                out.writeContainer(fc);
-//                fc.close();
-//
-//                return Files.readAllBytes(tempFile.toPath());
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
+                Movie movie = MovieCreator.build(fis.getChannel(), new FileRandomAccessSourceImpl(new RandomAccessFile(f, "r")), file);
+                fis.close();
+                Movie output = new Movie();
+
+                Track videoTrack = movie.getTracks().get(0);
+                Track audioTrack = movie.getTracks().get(1);
+
+                int videoSampleSize = videoTrack.getSamples().size();
+                int audioSampleSize = audioTrack.getSamples().size();
+
+                double startVideoSample = videoSampleSize * percentage;
+                long startVideoSampleLong = (long)startVideoSample;
+
+                double startAudioSample = audioSampleSize * percentage;
+                long startAudioSampleLong = (long)startAudioSample;
+
+                output.addTrack(new AppendTrack(new ClippedTrack(videoTrack, startVideoSampleLong, videoTrack.getSamples().size())));
+                output.addTrack(new AppendTrack(new ClippedTrack(audioTrack, startAudioSampleLong, audioTrack.getSamples().size())));
+
+                Container out = new DefaultMp4Builder().build(output);
+                File tempFile = new File(String.valueOf(Paths.get(String.format(getFileFormat(), TEMP_FILE_OUTPUT_NAME))));
+                FileChannel fc = new FileOutputStream(tempFile).getChannel();
+
+                out.writeContainer(fc);
+                fc.close();
+
+                return Files.readAllBytes(tempFile.toPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @Override
