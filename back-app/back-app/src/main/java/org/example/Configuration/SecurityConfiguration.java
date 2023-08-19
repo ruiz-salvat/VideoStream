@@ -41,6 +41,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/video/**").permitAll()
                 .antMatchers("/category/**").permitAll()
+                .antMatchers("/index-layout").permitAll()
                 .antMatchers("/components/title-bar").permitAll()
                 .antMatchers("/media/title_image.png").permitAll()
                 .antMatchers("/favicon.ico").permitAll()

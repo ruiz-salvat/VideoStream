@@ -14,9 +14,7 @@ import org.example.Repositories.ICategoryRepository;
 import org.example.Repositories.IPlanRepository;
 import org.example.Repositories.IVideoRepository;
 import org.mp4parser.Container;
-import org.mp4parser.muxer.FileRandomAccessSourceImpl;
 import org.mp4parser.muxer.Movie;
-import org.mp4parser.muxer.RandomAccessSource;
 import org.mp4parser.muxer.Track;
 import org.mp4parser.muxer.builder.DefaultMp4Builder;
 import org.mp4parser.muxer.container.mp4.MovieCreator;
@@ -29,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 import java.io.*;
 import java.nio.channels.FileChannel;
-import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -81,23 +78,7 @@ public class VideoService implements IVideoService {
 
         return Mono.fromSupplier(() -> {
             try {
-                String file = String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath())));
-                File f = new File(file);
-                FileInputStream fis = new FileInputStream(f);
-                
-                System.out.println("\n");
-                System.out.println("fis.getFD().valid()");
-                System.out.println(fis.getFD().valid());
-                System.out.println("fis.getFD()");
-                System.out.println(fis.getFD());
-                System.out.println("chanel");
-                System.out.println(fis.getChannel().size());
-                System.out.println(fis.getChannel().position());
-                System.out.println("\n");
-
-//                Movie movie = MovieCreator.build(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
-                Movie movie = MovieCreator.build(fis.getChannel(), new FileRandomAccessSourceImpl(new RandomAccessFile(f, "r")), file);
-                fis.close();
+                Movie movie = MovieCreator.build(String.valueOf(Paths.get(String.format(getFileFormat(), video.getVideoFilePath()))));
                 Movie output = new Movie();
 
                 Track videoTrack = movie.getTracks().get(0);

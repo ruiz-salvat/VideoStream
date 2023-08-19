@@ -17,7 +17,6 @@
   * Mobile view
 * Ads
 * Solve issues
-  * reproducer drag
   * reproducer init (concurrency "wait until loaded")
   * Some video upload
 
@@ -45,27 +44,28 @@
 -- Milestone --
 
 * Registration form validation at template
+* Structure backend by subfolders
+* Video image alt
 * serialize name plan
 * Logout
 * Captcha
-* OAuth
 * Dashboard
 * Plan name
 * New DB model
 * CI/CD
-* GTA4 to login and registration
+* GA4 to login and registration
 * Document how video permissions work
 * Style 404
 * Style 502
 
 -- Improvement --
 
+* solve problem with isoparser and reimplement jar package
+* OAuth 2.0
 * Scale admin
 * Set requirement upload image min width 300px;
-* Droplet monitoring
-* Mobile view
+* Droplet monitoring?
 * Custom error page with handling?
-* Docker Migration
 * DTO (two-way)
 * Handle just jpg and throw exceptions for other extensions
 * Create and throw exceptions for User and Role
