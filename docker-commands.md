@@ -51,3 +51,14 @@ sudo docker compose start <service_name>
 ```
 sudo docker compose -f production.yml up --force-recreate
 ```
+
+## Free disk space
+```
+sudo docker system prune
+
+Deletes cache:
+sudo docker system prune -a
+
+Check disk usage:
+sudo du -hs /path_to_docker_files
+```
