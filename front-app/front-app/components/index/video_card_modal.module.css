@@ -1,16 +1,7 @@
 .video_card_modal {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 16rem;
-    max-width: 17rem;
-    min-width: 17rem;
-    margin-left: auto;
-    margin-right: auto;
     padding: 0.5rem;
-
-    background-color: #252525;
     border: 2px solid #580202;
+    background-color: #252525;
 }
 
 .video_card_modal_image {

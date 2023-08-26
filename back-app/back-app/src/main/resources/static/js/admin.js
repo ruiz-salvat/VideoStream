@@ -1,13 +1,17 @@
 var xmlHttp = new XMLHttpRequest();
 const videoForm = document.querySelector("#video-form");
 const categoryForm = document.querySelector("#category-form");
+const indexCarouselForm = document.querySelector("#index-carousel-form");
 const videoListTable = document.querySelector("#video-list-table");
 const categoryListTable = document.querySelector("#category-list-table");
 const categorySelector = document.querySelector("#category");
 const planSelector = document.querySelector("#plan");
+const indexLayoutSelector = document.querySelector("#index-layout");
+const indexCarouselTable = document.querySelector("#index-carousel-table");
 
 let categoryOptions = [];
 let planOptions = [];
+let indexLayoutOptions = [];
 
 function addCategoryOption(category) {
     categoryOptions.push(category);
@@ -25,6 +29,15 @@ function addPlanOption(plan) {
     option.value = plan.id;
     option.id = "option_" + plan.id;
     planSelector.appendChild(option);
+}
+
+function addIndexLayoutOption(indexLayout) {
+    indexLayoutOptions.push(indexLayout);
+    const option = document.createElement("OPTION");
+    option.innerText = indexLayout.id; // TODO: set a name
+    option.value = indexLayout.id;
+    option.id = "option_" + indexLayout.id;
+    indexLayoutSelector.appendChild(option);
 }
 
 function removeCategoryOption(id) {
@@ -74,6 +87,14 @@ function deleteCategory(id) {
 
             xmlHttp.send( null );
             document.getElementById("response-message").innerHTML=xmlHttp.responseText;
+        });
+}
+
+function deleteIndexCarousel(id) {
+    fetch("private-index-carousel/" + id, {
+            method: "DELETE"
+        }).then(response => {
+            console.log("TODO: delete index carousel!");
         });
 }
 
@@ -145,6 +166,32 @@ function addCategoryToList(category) {
     categoryListTable.appendChild(tr);
 }
 
+function addIndexCarouselToList(indexCarousel) {
+    const tr = document.createElement("TR");
+    tr.id = indexCarousel.id;
+
+    const tdImageFilePath = document.createElement("TD");
+    const tdImageAlt = document.createElement("TD");
+    const tdActions = document.createElement("TD");
+
+    tdImageFilePath.innerHTML = `<div class='cell-container'>${indexCarousel.imageFilePath}</div>`;
+    tdImageAlt.innerHTML = `<div class='cell-container'>${indexCarousel.imageAlt}</div>`;
+
+    const deleteButton = document.createElement("BUTTON");
+    deleteButton.innerText = "delete";
+    deleteButton.addEventListener("click", function() {
+        if (confirm("Are you sure that you want to delete this Index Carousel?"))
+            deleteIndexCarousel(indexCarousel.id);
+    }, false);
+    tdActions.appendChild(deleteButton);
+
+    tr.appendChild(tdImageFilePath);
+    tr.appendChild(tdImageAlt);
+    tr.appendChild(tdActions);
+
+    indexCarouselTable.appendChild(tr);
+}
+
 fetch("category/all")
     .then(response => response.json())
     .then(response => {
@@ -174,6 +221,28 @@ fetch("category/all")
                     }
                 });
         });
+    });
+
+fetch("index-layout/all")
+    .then(response => response.json())
+    .then(response => {
+        console.log("index layouts", response);
+        if (response.length > 0) {
+            for (let indexLayout of response) {
+                addIndexLayoutOption(indexLayout);
+            }
+        }
+    });
+
+fetch("index-carousel/all")
+    .then(response => response.json())
+    .then(response => {
+        console.log("all index carousels", response);
+        if (response.length > 0) {
+            for (let indexCarousel of response) {
+                addIndexCarouselToList(indexCarousel);
+            }
+        }
     });
 
 videoForm.addEventListener("submit", ev => {
@@ -217,5 +286,20 @@ categoryForm.addEventListener("submit", ev => {
 
         xmlHttp.send( null );
         document.getElementById("response-message").innerHTML=xmlHttp.responseText;
+    });
+});
+
+indexCarouselForm.addEventListener("submit", ev => {
+    ev.preventDefault();
+    let data = new FormData(indexCarouselForm);
+
+    fetch("private-index-carousel", {
+        method: "POST",
+        body: data
+    }).then(r =>  r.json().then(json => ({status: r.status, data: json})))
+    .then(response => {
+
+          console.log("save video response:", response);
+
     });
 });

@@ -3,11 +3,14 @@ package org.example.DTOs;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class IndexLayoutDTO {
+
+    private long id;
 
     private String text1;
 
@@ -17,6 +20,6 @@ public class IndexLayoutDTO {
 
     private String text4;
 
-    // TODO: image src
+    private List<IndexCarouselDTO> indexCarousels;
 
 }

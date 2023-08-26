@@ -102,6 +102,47 @@ export default function VideoPlayer({videoDetails}) {
         timeBarInput.value = videoPercentage
     }
 
+    function setVideoDetails(videoPlayer, currentTimeLabel, videoDurationLabel, videoPercentageLabel, loadingSpinner, videoScoreContainer) {
+        videoDuration = videoPlayer.duration
+            
+        currentTimeLabel.innerHTML = secondsToTimeString(currentTime)
+        videoDurationLabel.innerHTML = secondsToTimeString(videoDuration)
+        videoPercentageLabel.innerHTML = videoPercentage + '% '
+        
+        loadingSpinner.style.display = 'none'
+        videoPlayer.style.display = 'block'
+        videoScoreContainer.style.display = 'block'
+
+        videoPlayer.addEventListener('timeupdate', (event) => onTimeUpdate(event))
+        videoPlayer.addEventListener('canplay', () => onCanPlay())
+    }
+
+    function displayErrorMessage() {
+        alert('Error loading video')
+    }
+
+    function checkVideoIsReady(k, videoPlayer, currentTimeLabel, videoDurationLabel, videoPercentageLabel, loadingSpinner, videoScoreContainer) {
+        if (videoPlayer.duration)
+            setVideoDetails(videoPlayer, currentTimeLabel, videoDurationLabel, videoPercentageLabel, loadingSpinner, videoScoreContainer)
+        else {
+            setTimeout(() => {
+                if (k > 5) { // max nmbr attempts is 5
+                    displayErrorMessage()
+                    return
+                }
+
+                if (!videoPlayer.duration)
+                    console.log('Video not ready yet, attempt nmbr: ' + k)
+                else
+                    console.log('Video is ready!')
+
+                k++
+
+                checkVideoIsReady(k, videoPlayer, currentTimeLabel, videoDurationLabel, videoPercentageLabel, loadingSpinner, videoScoreContainer)
+            }, "1000")
+        }
+    }
+
     function init() {
         setTimeout(() => {
             let videoPlayer = document.getElementById('video_player')
@@ -111,18 +152,8 @@ export default function VideoPlayer({videoDetails}) {
             let loadingSpinner = document.getElementById('loading_spinner')
             let videoScoreContainer = document.getElementById('video_score_container')
             
-            videoDuration = videoPlayer.duration
-            
-            currentTimeLabel.innerHTML = secondsToTimeString(currentTime)
-            videoDurationLabel.innerHTML = secondsToTimeString(videoDuration)
-            videoPercentageLabel.innerHTML = videoPercentage + '% '
-            
-            loadingSpinner.style.display = 'none'
-            videoPlayer.style.display = 'block'
-            videoScoreContainer.style.display = 'block'
-
-            videoPlayer.addEventListener('timeupdate', (event) => onTimeUpdate(event))
-            videoPlayer.addEventListener('canplay', () => onCanPlay())
+            let k = 1
+            checkVideoIsReady(k, videoPlayer, currentTimeLabel, videoDurationLabel, videoPercentageLabel, loadingSpinner, videoScoreContainer)
           }, "1000") // Wait until document is loaded
     }
 

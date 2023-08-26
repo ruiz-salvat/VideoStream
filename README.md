@@ -10,20 +10,20 @@
 * Frontend
 
   * index page
-    * intro
     * read cookie and display user page
-  * video page issues
-    * on videoclick play/pause
+  * video page
+    * Full screen
+    * volume
+    * mobile view input range
   * Mobile view
 * Ads
 * Solve issues
-  * reproducer init (concurrency "wait until loaded")
   * Some video upload
-
+* Finish Index carousel admin
+* Externalize file storage
 
 -- Milestone --
 
-* Externalize file storage
 * Analytics Bugs
 * Server/security setup
   * Firewall
@@ -46,11 +46,12 @@
 * Registration form validation at template
 * Structure backend by subfolders
 * Video image alt
-* serialize name plan
+* Plan name
+  * serialize name plan
+
 * Logout
 * Captcha
 * Dashboard
-* Plan name
 * New DB model
 * CI/CD
 * GA4 to login and registration
