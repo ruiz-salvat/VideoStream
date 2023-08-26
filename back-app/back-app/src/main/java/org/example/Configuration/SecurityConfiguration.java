@@ -41,6 +41,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/video/**").permitAll()
                 .antMatchers("/category/**").permitAll()
+                .antMatchers("/index-layout/**").permitAll()
+                .antMatchers("/index-carousel/**").permitAll()
                 .antMatchers("/components/title-bar").permitAll()
                 .antMatchers("/media/title_image.png").permitAll()
                 .antMatchers("/favicon.ico").permitAll()
@@ -54,6 +56,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .antMatchers("/private-video/**").hasAuthority("admin")
                 .antMatchers("/private-category/**").hasAuthority("admin")
                 .antMatchers("/private-plan/**").hasAuthority("admin")
+                .antMatchers("/private-index-carousel/**").hasAuthority("admin")
                 .antMatchers("/admin").hasAuthority("admin").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
 
