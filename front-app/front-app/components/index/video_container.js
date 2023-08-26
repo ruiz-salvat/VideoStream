@@ -34,8 +34,12 @@ export default function VideoContainer({video}) {
             </div>
 
             <div id={`video_card_modal_${video.slug}`} className={styles.video_card_modal_background} style={{display: 'none'}}>
-                <button id={`video_card_modal_close_button_${video.slug}`} className={styles.video_card_modal_close_button}>X</button>
-                <VideoCardModal video={video}></VideoCardModal>
+                <div className={styles.video_card_modal_absolute_container}> 
+                    <div className={styles.video_card_modal_container}>
+                        <button id={`video_card_modal_close_button_${video.slug}`} className={styles.video_card_modal_close_button}>X</button>
+                        <VideoCardModal video={video}></VideoCardModal>
+                    </div>
+                </div>
             </div>
         </div>
     </>

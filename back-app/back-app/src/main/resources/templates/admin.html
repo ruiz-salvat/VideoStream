@@ -111,6 +111,55 @@
     </div>
   </div>
 
+  <div class="component-container">
+    <div class="inner-container">
+      <h3>Index Carousel Images</h3>
+      <table id="index-carousel-table">
+        <tr>
+          <th>Name</th>
+          <th>Image Alt</th>
+<!--          <th>Index Layout</th>--> <!-- TODO: add column -->
+          <th>Actions</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="component-container">
+    <div class="inner-container">
+      <h3>Create new Index Carousel Image</h3>
+      <form id="index-carousel-form">
+        <div class="input-container">
+          <label for="index-carousel-image">Image File</label>
+          <input id="index-carousel-image" name="image_file" type="file" accept="application/jpg">
+        </div>
+
+        <div class="input-container">
+          <label for="index-carousel-name">Name</label>
+          <input id="index-carousel-name" name="name" type="text">
+        </div>
+
+        <div class="input-container">
+          <label for="index-carousel-alt">Image Alt</label>
+          <textarea id="index-carousel-alt" name="image_alt" rows="10" cols="33"></textarea>
+        </div>
+
+        <div class="input-container">
+          <label for="index-carousel-link">Link</label>
+          <input id="index-carousel-link" name="link" type="text">
+        </div>
+
+        <div class="input-container">
+          <label for="index-layout">Index Layout</label>
+          <select id="index-layout" name="index_layout">
+          </select>
+        </div>
+
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
   <script src="js/admin.js"></script>
 </body>
 </html>

@@ -1,0 +1,1 @@
+ALTER TABLE index_carousel ADD link VARCHAR(255) NULL;

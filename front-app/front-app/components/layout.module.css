@@ -9,6 +9,7 @@
     right: 3rem;
     position: fixed;
     margin-top: 2.5rem;
+    z-index: 1;
 }
 
 .menu_link {

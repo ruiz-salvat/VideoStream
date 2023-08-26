@@ -10,13 +10,40 @@
     background-color: #00000091;
 }
 
-.video_card_modal_close_button {
+.video_card_modal_absolute_container {
     position: absolute;
-    left: 0%;
-    right: -250px;
-    top: 13rem;
-    width: 2rem;
-    height: 2rem;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    max-width: 17rem;
+    min-width: 17rem;
+
     margin-left: auto;
     margin-right: auto;
+    
+    display: flex;
+    align-items: center;
+}
+
+.video_card_modal_container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.video_card_modal_close_button {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    background-color: transparent;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+}
+
+.video_card_modal_close_button:hover {
+    background-color: #ff0000;
+    color: #ffffff;
 }
