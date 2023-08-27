@@ -38,7 +38,7 @@ public class IndexLayoutService implements IIndexLayoutService {
 
             IndexLayoutDTO indexLayoutDTO = indexLayoutMapper.modelToDto(biggestIndexLayout);
 
-            List<IndexCarousel> indexCarousels = indexCarouselRepository.findAllByIndexLayout();
+            List<IndexCarousel> indexCarousels = indexCarouselRepository.findByIndexLayout_Id(biggestIndexLayout.getId());
             List<IndexCarouselDTO> indexCarouselDTOS = indexCarouselMapper.modelsToDtos(indexCarousels);
 
             indexLayoutDTO.setIndexCarousels(indexCarouselDTOS);
