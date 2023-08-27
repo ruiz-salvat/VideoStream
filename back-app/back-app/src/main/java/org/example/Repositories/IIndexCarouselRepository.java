@@ -13,6 +13,6 @@ public interface IIndexCarouselRepository extends JpaRepository<IndexCarousel, L
 
     IndexCarousel findByImageFilePath(String imageFilePath);
 
-    List<IndexCarousel> findAllByIndexLayout();
+    List<IndexCarousel> findByIndexLayout_Id(Long id);
 
 }
